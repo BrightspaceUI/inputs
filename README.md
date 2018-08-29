@@ -16,6 +16,8 @@ bower install d2l-inputs
 
 ### d2l-input-checkbox and d2l-input-checkbox-spacer
 
+![screenshot of d2l-input-checkbox component](/images/checkbox.gif?raw=true)
+
 Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components), then import `d2l-input-checkbox.html` and `d2l-input-checkbox-spacer.html`:
 
 ```html
