@@ -14,15 +14,22 @@ bower install d2l-inputs
 
 ## Usage
 
+Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components):
+```html
+<head>
+	<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+</head>
+```
+Then import the components below you want to use.
+
 ### d2l-input-checkbox and d2l-input-checkbox-spacer
 
 <img src="/images/checkbox.gif?raw=true" width="350">
 
-Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components), then import `d2l-input-checkbox.html` and `d2l-input-checkbox-spacer.html`:
+Import `d2l-input-checkbox.html` and `d2l-input-checkbox-spacer.html`:
 
 ```html
 <head>
-	<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 	<link rel="import" href="bower_components/d2l-inputs/d2l-input-checkbox.html">
 	<link rel="import" href="bower_components/d2l-inputs/d2l-input-checkbox-spacer.html">
 </head>
@@ -142,6 +149,82 @@ To align following related content below checkboxes, the `d2l-input-checkbox-spa
   also line up nicely with the checkbox.
 </d2l-input-checkbox-spacer>
 ```
+
+### d2l-input-search
+
+<img src="/images/search.gif?raw=true" width="700">
+
+Import `d2l-input-search.html`:
+
+```html
+<head>
+	<link rel="import" href="bower_components/d2l-inputs/d2l-input-search.html">
+</head>
+```
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-search.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<d2l-input-search label="Search" value="Apples"
+   placeholder="Search for fruit">
+</d2l-input-search>
+```
+
+The `d2l-input-search` component dispatches an event (`d2l-input-search-searched`) when a search is performed:
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-search.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+		<d2l-input-search label="Search" value="Apples"
+		   placeholder="Search for fruit">
+		</d2l-input-search>
+		<script>var search = document.body;</script>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<script>
+	search.addEventListener('d2l-input-search-searched', (e) => {
+	    // e.detail.value contains the search value
+	    console.log(e.detail.value);
+	});
+</script>
+```
+When the input is cleared, the same event will be fired with an empty value.
 
 ## Developing, Testing and Contributing
 
