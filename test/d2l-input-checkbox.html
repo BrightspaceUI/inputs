@@ -46,38 +46,6 @@
 
 				describe('checked', function() {
 
-					describe('checked-false', function() {
-
-						beforeEach(function() {
-							elem = fixture('basic');
-						});
-
-						it('should default "checked" to false', function() {
-							expect(elem.checked).to.be.false;
-							expect(elem.hasAttribute('checked')).to.be.false;
-							expect(elem.$$('input').checked).to.be.false;
-						});
-
-						it('should reflect "checked" property change to attribute and input', function() {
-							elem.checked = true;
-							expect(elem.hasAttribute('checked')).to.be.true;
-							expect(elem.$$('input').checked).to.be.true;
-						});
-
-						it('should reflect "checked" attribute change to property and input', function() {
-							elem.setAttribute('checked', 'checked');
-							expect(elem.checked).to.be.true;
-							expect(elem.$$('input').checked).to.be.true;
-						});
-
-						it('should reflect input "checked" change to attribute and property', function() {
-							elem.$$('input').click();
-							expect(elem.checked).to.be.true;
-							expect(elem.hasAttribute('checked')).to.be.true;
-						});
-
-					});
-
 					describe('checked-true', function() {
 
 						beforeEach(function() {
