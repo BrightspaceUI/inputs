@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>d2l-inputs demo</title>
+		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+		<link rel="import" href="../../d2l-typography/d2l-typography.html">
+		<link rel="import" href="../d2l-input-checkbox.html">
+		<link rel="import" href="../d2l-input-checkbox-spacer.html">
+		<custom-style>
+			<style is="custom-style" include="demo-pages-shared-styles"></style>
+		</custom-style>
+		<custom-style include="d2l-typography">
+			<style is="custom-style" include="d2l-typography"></style>
+		</custom-style>
+		<style>
+			html {
+				font-size: 20px;
+			}
+		</style>
+	</head>
+	<body unresolved class="d2l-typography">
+		<div class="vertical-section-container centered">
+
+			<h3>Simple checkbox with label</h3>
+			<demo-snippet>
+				<template>
+					<d2l-input-checkbox checked>Checked item</d2l-input-checkbox>
+					<d2l-input-checkbox>Unchecked item</d2l-input-checkbox>
+				</template>
+			</demo-snippet>
+
+			<h3>Checkbox with multi-line label</h3>
+			<demo-snippet>
+				<template>
+					<d2l-input-checkbox style="width:200px;">
+						Label for checkbox that wraps nicely onto
+						multiple lines and stays aligned
+					</d2l-input-checkbox>
+				</template>
+			</demo-snippet>
+
+			<h3>Checkbox with hidden label</h3>
+			<demo-snippet>
+				<template>
+					<d2l-input-checkbox aria-label="Label for checkbox"></d2l-input-checkbox>
+				</template>
+			</demo-snippet>
+
+			<h3>Disabled checkbox</h3>
+			<demo-snippet>
+				<template>
+					<d2l-input-checkbox checked disabled>Disabled checkbox</d2l-input-checkbox>
+				</template>
+			</demo-snippet>
+
+			<h3>Checkbox with label and secondary content</h3>
+			<demo-snippet>
+				<template>
+					<d2l-input-checkbox>Label for checkbox</d2l-input-checkbox>
+					<d2l-input-checkbox-spacer style="color:#999999;">
+						Additional content can go here and will<br>
+						also line up nicely with the checkbox.
+					</d2l-input-checkbox-spacer>
+				</template>
+			</demo-snippet>
+
+		</div>
+	</body>
+</html>
