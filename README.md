@@ -210,6 +210,7 @@ The `d2l-input-search` component dispatches an event (`d2l-input-search-searched
 		<d2l-input-search label="Search" value="Apples"
 		   placeholder="Search for fruit">
 		</d2l-input-search>
+		<script>var search = document.body;</script>
     <next-code-block></next-code-block>
   </template>
 </custom-element-demo>
