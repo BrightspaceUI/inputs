@@ -25,7 +25,7 @@ Polymer-based web component for D2L checkboxes
 				white-space: nowrap;
 			}
 
-			.d2l-checkbox-label {
+			.d2l-input-checkbox-label {
 				@apply --d2l-body-compact-text;
 				color: var(--d2l-color-ferrite);
 				display: inline-block;
@@ -33,12 +33,12 @@ Polymer-based web component for D2L checkboxes
 				vertical-align: middle;
 				white-space: normal;
 			}
-			:host-context([dir="rtl"]) .d2l-checkbox-label {
+			:host-context([dir="rtl"]) .d2l-input-checkbox-label {
 				margin-right: 0.5rem;
 				margin-left: 0;
 			}
-			:host([aria-label]) .d2l-checkbox-label,
-			:host-context([dir="rtl"][aria-label]) .d2l-checkbox-label {
+			:host([aria-label]) .d2l-input-checkbox-label,
+			:host-context([dir="rtl"][aria-label]) .d2l-input-checkbox-label {
 				margin-left: 0;
 				margin-right: 0;
 			}
@@ -74,7 +74,7 @@ Polymer-based web component for D2L checkboxes
 			}
 			input[type="checkbox"]:hover,
 			input[type="checkbox"]:focus,
-			input[type="checkbox"].d2l-checkbox-focus {
+			input[type="checkbox"].d2l-input-checkbox-focus {
 				border-color: var(--d2l-color-celestine);
 				border-width: 2px;
 				outline-width: 0;
@@ -84,7 +84,7 @@ Polymer-based web component for D2L checkboxes
 			}
 
 			input[type="checkbox"]:disabled,
-			:host([disabled]) .d2l-checkbox-label {
+			:host([disabled]) .d2l-input-checkbox-label {
 				opacity: 0.5;
 			}
 		</style>
@@ -99,7 +99,7 @@ Polymer-based web component for D2L checkboxes
 				on-change="_handleChange"
 				on-focus="_handleFocus"
 				value$="[[value]]" />
-			<span class="d2l-checkbox-label"><slot></slot></span>
+			<span class="d2l-input-checkbox-label"><slot></slot></span>
 		</label>
 	</template>
 	<script>
