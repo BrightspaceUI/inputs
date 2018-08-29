@@ -1,0 +1,62 @@
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../d2l-colors/d2l-colors.html">
+<custom-style>
+	<style is="custom-style">
+		html {
+			--d2l-input: {
+				border-radius: 0.3rem;
+				border-style: solid;
+				box-sizing: border-box;
+				color: var(--d2l-color-ferrite);
+				display: inline-block;
+				/*font-family: inherit; ... for now, this needs to be added within the style of the component html file where needed, as trying
+				to use this with @apply leads to an issue documented here: https://github.com/webcomponents/shadycss/issues/91 ... when this is fixed,
+				we can add it back to here */
+				font-size: 0.8rem;
+				font-weight: 400;
+				height: auto;
+				letter-spacing: 0.02rem;
+				line-height: 1.2rem;
+				margin: 0;
+				min-width: calc(2rem + 1em);
+				transition-duration: 0.5s;
+				transition-timing-function: ease;
+				transition-property: background-color, border-color;
+				vertical-align: middle;
+				width: 100%;
+				@apply --d2l-input-disabled-hover;
+			};
+			--d2l-input-placeholder: {
+				color: var(--d2l-color-mica);
+			};
+			--d2l-input-hover: {
+				border-color: var(--d2l-color-celestine);
+				border-width: 2px;
+				outline-width: 0;
+				padding: calc(0.4rem - 1px) calc(0.75rem - 1px);
+			};
+			--d2l-input-disabled: {
+				opacity: 0.5;
+			};
+			--d2l-input-disabled-hover: {
+				background-color: #ffffff;
+				border-color: var(--d2l-color-mica);
+				border-width: 1px;
+				box-shadow: inset 0 2px 0 0 rgba(185, 194, 208, .2);
+				padding: 0.4rem 0.75rem;
+			};
+			--d2l-input-invalid: {
+				border-color: var(--d2l-color-cinnabar);
+			};
+			--d2l-input-webkit-search-cancel: {
+				display: none;
+			};
+			--d2l-input-ms-clear: {
+				display: none;
+				width: 0;
+				height: 0;
+			};
+		}
+	</style>
+</custom-style>
