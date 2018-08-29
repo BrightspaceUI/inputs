@@ -16,7 +16,7 @@ bower install d2l-inputs
 
 ### d2l-input-checkbox and d2l-input-checkbox-spacer
 
-![screenshot of d2l-input-checkbox component](/images/checkbox.gif?raw=true)
+<img src="/images/checkbox.gif?raw=true" width="350">
 
 Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components), then import `d2l-input-checkbox.html` and `d2l-input-checkbox-spacer.html`:
 
@@ -37,7 +37,7 @@ for your checkbox should be placed inside the element:
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../d2l-typography/d2l-typography.html">
-    <link rel="import" href="d2l-inputs.html">
+    <link rel="import" href="d2l-input-checkbox.html">
     <custom-style include="d2l-typography">
       <style is="custom-style" include="d2l-typography"></style>
     </custom-style>
@@ -64,7 +64,7 @@ Many of the same attributes from native `<input type="checkbox">` are available:
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../d2l-typography/d2l-typography.html">
-    <link rel="import" href="d2l-inputs.html">
+    <link rel="import" href="d2l-input-checkbox.html">
     <custom-style include="d2l-typography">
       <style is="custom-style" include="d2l-typography"></style>
     </custom-style>
@@ -92,7 +92,7 @@ provide an accessible label:
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../d2l-typography/d2l-typography.html">
-    <link rel="import" href="d2l-inputs.html">
+    <link rel="import" href="d2l-input-checkbox.html">
     <custom-style include="d2l-typography">
       <style is="custom-style" include="d2l-typography"></style>
     </custom-style>
@@ -119,7 +119,8 @@ To align following related content below checkboxes, the `d2l-input-checkbox-spa
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../d2l-typography/d2l-typography.html">
-    <link rel="import" href="d2l-inputs.html">
+    <link rel="import" href="d2l-input-checkbox.html">
+    <link rel="import" href="d2l-input-checkbox-spacer.html">
     <custom-style include="d2l-typography">
       <style is="custom-style" include="d2l-typography"></style>
     </custom-style>
