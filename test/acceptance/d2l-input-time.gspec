@@ -1,6 +1,6 @@
 @objects
 
-	d2l-time-input-container    d2l-time-input
+	d2l-input-time-container    d2l-input-time
 		input                   ::d2l-shadow .d2l-input
 		dropdown                ::d2l-shadow d2l-dropdown-content
 			content             .dropdown-content
@@ -9,7 +9,7 @@
 
 @on no-d2l-shadow
 	@objects
-		d2l-time-input-container    d2l-time-input
+		d2l-input-time-container    d2l-input-time
 			input                   .d2l-input
 			dropdown                d2l-dropdown-content
 				content             .dropdown-content
