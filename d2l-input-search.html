@@ -183,13 +183,6 @@ Polymer-based web component for search
 				}
 			},
 
-			listeners: {
-				'focus': '_handleFocus',
-				'blur': '_handleBlur',
-				'mouseenter': '_handleMouseEnter',
-				'mouseleave': '_handleMouseLeave'
-			},
-
 			hostAttributes: {
 				'role': 'search'
 			},
@@ -202,6 +195,29 @@ Polymer-based web component for search
 				if (this.value !== undefined && this.value !== null) {
 					this._setLastSearchValue(this.value);
 				}
+				this._handleFocus = this._handleFocus.bind(this);
+				this._handleBlur = this._handleBlur.bind(this);
+				this._handleMouseEnter = this._handleMouseEnter.bind(this);
+				this._handleMouseLeave = this._handleMouseLeave.bind(this);
+			},
+
+			attached: function() {
+				Polymer.RenderStatus.afterNextRender(this, function() {
+					var elem = this._getContainer();
+					// need explicit event handlers for Polymer 1
+					elem.addEventListener('focus', this._handleFocus, true);
+					elem.addEventListener('blur', this._handleBlur, true);
+					elem.addEventListener('mouseenter', this._handleMouseEnter, true);
+					elem.addEventListener('mouseleave', this._handleMouseLeave, true);
+				});
+			},
+
+			detached: function() {
+				var elem = this._getContainer();
+				elem.removeEventListener('focus', this._handleFocus, true);
+				elem.removeEventListener('blur', this._handleBlur, true);
+				elem.removeEventListener('mouseenter', this._handleMouseEnter, true);
+				elem.removeEventListener('mouseleave', this._handleMouseLeave, true);
 			},
 
 			/**
