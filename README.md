@@ -228,7 +228,7 @@ When the input is cleared, the same event will be fired with an empty value.
 
 ### d2l-input-time
 
-<img src="/images/time.gif?raw=true" width="350">
+<img src="/images/time.gif?raw=true" width="550">
 
 Import `d2l-input-time.html`:
 
@@ -271,7 +271,7 @@ Import `d2l-input-time.html`:
 ></d2l-input-time>
 ```
 
-The `d2l-input-search` component dispatches an event (`d2l-input-time-changed`) when a search is performed:
+The `d2l-input-time` component dispatches an event (`d2l-input-time-changed`) when a time is set:
 
 <!---
 ```
@@ -279,7 +279,7 @@ The `d2l-input-search` component dispatches an event (`d2l-input-time-changed`) 
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../d2l-typography/d2l-typography.html">
-    <link rel="import" href="d2l-input-search.html">
+    <link rel="import" href="d2l-input-time.html">
     <custom-style include="d2l-typography">
       <style is="custom-style" include="d2l-typography"></style>
     </custom-style>
