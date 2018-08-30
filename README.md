@@ -226,6 +226,93 @@ The `d2l-input-search` component dispatches an event (`d2l-input-search-searched
 ```
 When the input is cleared, the same event will be fired with an empty value.
 
+### d2l-input-time
+
+<img src="/images/time.gif?raw=true" width="350">
+
+Import `d2l-input-time.html`:
+
+```html
+<head>
+	<link rel="import" href="bower_components/d2l-inputs/d2l-input-time.html">
+</head>
+```
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-time.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<label for="input-time-combobox">Time input:</label>
+<d2l-input-time
+	id="input-time"
+	time-interval="{{interval}}"
+	hours="{{hours}}"
+	minutes="{{minutes}}"
+	locale="{{locale}}"
+	timezone="{{timezone}}"
+></d2l-input-time>
+```
+
+The `d2l-input-search` component dispatches an event (`d2l-input-time-changed`) when a search is performed:
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-search.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+		<label for="input-time-combobox">Time input:</label>
+		<d2l-input-time
+			id="input-time"
+			time-interval="{{interval}}"
+			hours="{{hours}}"
+			minutes="{{minutes}}"
+			locale="{{locale}}"
+			timezone="{{timezone}}"
+    ></d2l-input-time>
+    <script>var time = document.body;</script>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<script>
+	time.addEventListener('d2l-input-time-changed', (e) => {
+	    // e.detail.value contains the search value
+	    console.log(e.detail.value);
+	});
+</script>
+```
+
 ## Developing, Testing and Contributing
 
 After cloning the repo, run `npm install` to install dependencies.
