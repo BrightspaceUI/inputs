@@ -29,6 +29,14 @@
 			<template>
 				<dom-bind>
 					<template is="dom-bind">
+						<label>Locale: <input value="{{locale::input}}"/></label>
+						<br/>
+						<label>Timezone: <input value="{{timezone::input}}"/></label>
+						<br/>
+						<label>Hours: <input value="{{hours::input}}"/></label>
+						<label>Minutes: <input value="{{minutes::input}}"/></label>
+						<label>Interval: <input value="{{interval::input}}"/></label>
+						<br/>
 						<label for="input-time-combobox">Time input:</label>
 						<d2l-input-time
 							id="input-time"
