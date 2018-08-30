@@ -109,6 +109,7 @@ Polymer-based web component for search
 		<div class="d2l-input-search-container">
 			<input
 				aria-label$="[[label]]"
+				autofocus$="[[autofocus]]"
 				class="d2l-focusable"
 				disabled$="[[disabled]]"
 				maxlength$="[[maxlength]]"
@@ -150,6 +151,12 @@ Polymer-based web component for search
 			 */
 
 			properties: {
+				/**
+				 * Indicates that the input should have focus when the page loads.
+				 */
+				autofocus: {
+					type: Boolean
+				},
 				/**
 				 * Whether the input is disabled.
 				 */
