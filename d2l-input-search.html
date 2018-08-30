@@ -43,10 +43,9 @@ Polymer-based web component for search
 				padding-left: 2.4rem;
 			}
 
-			input:hover,
-			input:focus,
-			.d2l-input-search-hover input,
-			.d2l-input-search-focus input {
+			div.d2l-input-search-hover input.d2l-input,
+			div.d2l-input-search-focus input.d2l-input {
+				@apply --d2l-input-hover-focus;
 				padding-right: calc(2.4rem - 1px);
 			}
 
