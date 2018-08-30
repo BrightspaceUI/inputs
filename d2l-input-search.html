@@ -16,7 +16,7 @@ Polymer-based web component for search
 <dom-module id="d2l-input-search">
 
 	<template strip-whitespace>
-		<style>
+		<style include="d2l-input-styles">
 
 			:host {
 				display: inline-block;
@@ -26,7 +26,6 @@ Polymer-based web component for search
 
 			input {
 				font-family: inherit;
-				@apply --d2l-input;
 				padding-right: 2.4rem;
 				overflow: hidden;
 				text-overflow: ellipsis;
@@ -44,23 +43,10 @@ Polymer-based web component for search
 				padding-left: 2.4rem;
 			}
 
-			input::placeholder {
-				@apply --d2l-input-placeholder;
-			}
-
-			input:disabled {
-				@apply --d2l-input-disabled;
-			}
-
-			input:hover:disabled {
-				@apply --d2l-input-disabled-hover;
-			}
-
 			input:hover,
 			input:focus,
 			.d2l-input-search-hover input,
 			.d2l-input-search-focus input {
-				@apply --d2l-input-hover;
 				padding-right: calc(2.4rem - 1px);
 			}
 
@@ -109,7 +95,7 @@ Polymer-based web component for search
 		<div class="d2l-input-search-container">
 			<input
 				aria-label$="[[label]]"
-				class="d2l-focusable"
+				class="d2l-input d2l-focusable"
 				disabled$="[[disabled]]"
 				maxlength$="[[maxlength]]"
 				on-keypress="_handleInputKeyPress"
