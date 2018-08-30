@@ -16,7 +16,7 @@ Polymer-based web component for search
 <dom-module id="d2l-input-search">
 
 	<template strip-whitespace>
-		<style>
+		<style include="d2l-input-styles">
 
 			:host {
 				display: inline-block;
@@ -26,7 +26,6 @@ Polymer-based web component for search
 
 			input {
 				font-family: inherit;
-				@apply --d2l-input;
 				padding-right: 2.4rem;
 				overflow: hidden;
 				text-overflow: ellipsis;
@@ -44,23 +43,9 @@ Polymer-based web component for search
 				padding-left: 2.4rem;
 			}
 
-			input::placeholder {
-				@apply --d2l-input-placeholder;
-			}
-
-			input:disabled {
-				@apply --d2l-input-disabled;
-			}
-
-			input:hover:disabled {
-				@apply --d2l-input-disabled-hover;
-			}
-
-			input:hover,
-			input:focus,
-			.d2l-input-search-hover input,
-			.d2l-input-search-focus input {
-				@apply --d2l-input-hover;
+			div.d2l-input-search-hover input.d2l-input,
+			div.d2l-input-search-focus input.d2l-input {
+				@apply --d2l-input-hover-focus;
 				padding-right: calc(2.4rem - 1px);
 			}
 
@@ -109,7 +94,7 @@ Polymer-based web component for search
 		<div class="d2l-input-search-container">
 			<input
 				aria-label$="[[label]]"
-				class="d2l-focusable"
+				class="d2l-input d2l-focusable"
 				disabled$="[[disabled]]"
 				maxlength$="[[maxlength]]"
 				on-keypress="_handleInputKeyPress"
@@ -198,13 +183,6 @@ Polymer-based web component for search
 				}
 			},
 
-			listeners: {
-				'focus': '_handleFocus',
-				'blur': '_handleBlur',
-				'mouseenter': '_handleMouseEnter',
-				'mouseleave': '_handleMouseLeave'
-			},
-
 			hostAttributes: {
 				'role': 'search'
 			},
@@ -217,6 +195,29 @@ Polymer-based web component for search
 				if (this.value !== undefined && this.value !== null) {
 					this._setLastSearchValue(this.value);
 				}
+				this._handleFocus = this._handleFocus.bind(this);
+				this._handleBlur = this._handleBlur.bind(this);
+				this._handleMouseEnter = this._handleMouseEnter.bind(this);
+				this._handleMouseLeave = this._handleMouseLeave.bind(this);
+			},
+
+			attached: function() {
+				Polymer.RenderStatus.afterNextRender(this, function() {
+					var elem = this._getContainer();
+					// need explicit event handlers for Polymer 1
+					elem.addEventListener('focus', this._handleFocus, true);
+					elem.addEventListener('blur', this._handleBlur, true);
+					elem.addEventListener('mouseenter', this._handleMouseEnter, true);
+					elem.addEventListener('mouseleave', this._handleMouseLeave, true);
+				});
+			},
+
+			detached: function() {
+				var elem = this._getContainer();
+				elem.removeEventListener('focus', this._handleFocus, true);
+				elem.removeEventListener('blur', this._handleBlur, true);
+				elem.removeEventListener('mouseenter', this._handleMouseEnter, true);
+				elem.removeEventListener('mouseleave', this._handleMouseLeave, true);
 			},
 
 			/**
