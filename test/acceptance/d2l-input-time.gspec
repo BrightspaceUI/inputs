@@ -16,4 +16,4 @@
 					listbox         iron-selector
 						time-item-* .d2l-input-time-item
 
-@import d2l-time-input.common.gspec
+@import d2l-input-time.common.gspec
