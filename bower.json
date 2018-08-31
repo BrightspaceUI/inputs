@@ -23,11 +23,15 @@
     "d2l-icons": "^5.1.0",
     "d2l-intl": "^1.0.0",
     "d2l-localize-behavior": "^1.1.3",
+    "d2l-offscreen": "^3.0.3",
     "d2l-polymer-behaviors": "^1.7.4",
     "d2l-typography": "^6.1.3",
     "iron-selector": "^2.1.0",
+    "iron-a11y-keys": "^2.1.2",
     "iron-a11y-keys-behavior": "^2.1.1",
-    "polymer": "Polymer/polymer#1 - 2"
+    "iron-input": "^2.1.3",
+    "polymer": "Polymer/polymer#1 - 2",
+    "vaadin-date-picker": "Brightspace/vaadin-date-picker#1 - 2"
   },
   "devDependencies": {
     "d2l-typography": "BrightspaceUI/typography#^6.0.0",
@@ -39,7 +43,8 @@
   "variants": {
     "1.x": {
       "dependencies": {
-        "polymer": "Polymer/polymer#^1.0.0"
+        "polymer": "Polymer/polymer#^1.0.0",
+        "vaadin-date-picker": "Brightspace/vaadin-date-picker#^1.2.8"
       },
       "resolutions": {
         "webcomponentsjs": "^0.7"
@@ -47,6 +52,7 @@
     }
   },
   "resolutions": {
-    "webcomponentsjs": "^1.0.0"
+    "webcomponentsjs": "^1.0.0",
+    "vaadin-date-picker": "^2.0.0"
   }
 }

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>d2l-input-date demo</title>
+		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+		<link rel="import" href="../../d2l-typography/d2l-typography.html">
+		<link rel="import" href="../d2l-input-date.html">
+		<custom-style>
+			<style is="custom-style" include="demo-pages-shared-styles"></style>
+		</custom-style>
+		<custom-style include="d2l-typography">
+			<style is="custom-style" include="d2l-typography"></style>
+		</custom-style>
+		<style>
+		html {
+			font-size: 20px;
+		}
+		</style>
+	</head>
+	<body>
+		<dom-module id="d2l-input-date-button-demo">
+			<template>
+				<style>
+				button {
+					width: 100%;
+				}
+				</style>
+				<d2l-input-date value="{{value}}">
+					<iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="_onEnter"></iron-a11y-keys>
+					<iron-a11y-keys target="[[_target]]" keys="up down" on-keys-pressed="_onUpDown"></iron-a11y-keys>
+					<button>[[_getButtonText(value)]]</button>
+				</d2l-input-date>
+			</template>
+			<script>
+			Polymer({
+				is: 'd2l-input-date-button-demo',
+				properties: {
+					value: {
+						type: String,
+						value: null
+					},
+					_target: Object
+				},
+				ready: function() {
+					this._target = this.$$('button');
+				},
+				_getButtonText: function(value) {
+					return value || 'Click Me!';
+				},
+				_onEnter: function(e) {
+					this.$$('d2l-input-date').onEnter(e);
+				},
+				_onUpDown: function(e) {
+					this.$$('d2l-input-date').onUpDown(e);
+				}
+			});
+			</script>
+		</dom-module>
+		<div class="vertical-section-container centered">
+			<h3>Basic d2l-input-date demo</h3>
+			<demo-snippet>
+				<template>
+					<d2l-input-date></d2l-input-date>
+				</template>
+			</demo-snippet>
+
+			<h3>d2l-input-date with slotted content</h3>
+			<demo-snippet>
+				<template>
+					<d2l-input-date-button-demo></d2l-input-date-button-demo>
+				</template>
+			</demo-snippet>
+		</div>
+		<script>
+			window.addEventListener('WebComponentsReady', function() {
+				document.body.addEventListener('d2l-input-date-changed', function(e) {
+					// eslint-disable-next-line no-console
+					console.log(e);
+				});
+			});
+		</script>
+	</body>
+</html>
