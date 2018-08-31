@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+		<title>d2l-input-time demo</title>
+
+		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+		<link rel="import" href="../../d2l-typography/d2l-typography.html">
+		<link rel="import" href="../d2l-input-time.html">
+		<custom-style>
+			<style is="custom-style" include="demo-pages-shared-styles"></style>
+		</custom-style>
+		<custom-style include="d2l-typography">
+			<style is="custom-style" include="d2l-typography"></style>
+		</custom-style>
+		<style>
+			html {
+				font-size: 20px;
+			}
+		</style>
+	</head>
+	<body unresolved class="d2l-typography" onload="window.location.href.indexOf('dir=rtl') > -1 && document.body.setAttribute('dir', 'rtl');">
+		<demo-snippet>
+			<template>
+				<dom-bind>
+					<template is="dom-bind">
+						<label>Locale: <input value="{{locale::input}}"/></label>
+						<br/>
+						<label>Timezone: <input value="{{timezone::input}}"/></label>
+						<br/>
+						<label>Hours: <input value="{{hours::input}}"/></label>
+						<label>Minutes: <input value="{{minutes::input}}"/></label>
+						<label>Interval: <input value="{{interval::input}}"/></label>
+						<br/>
+						<label for="input-time-combobox">Time input:</label>
+						<d2l-input-time
+							id="input-time"
+							time-interval="{{interval}}"
+							hours="{{hours}}"
+							minutes="{{minutes}}"
+							locale="{{locale}}"
+							timezone="{{timezone}}"
+						></d2l-input-time>
+						<span>I am beside the time input</span>
+					</template>
+				</dom-bind>
+			</template>
+		</demo-snippet>
+		<script>
+			window.addEventListener('WebComponentsReady', function() {
+				document.body.addEventListener('d2l-input-time-changed', function(e) {
+					// eslint-disable-next-line no-console
+					console.log(e);
+				});
+			});
+		</script>
+	</body>
+</html>
