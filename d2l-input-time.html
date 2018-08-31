@@ -6,6 +6,7 @@
 <link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../d2l-typography/d2l-typography-shared-styles.html">
 <link rel="import" href="../d2l-intl-import/d2l-intl.html">
+<link rel="import" href="../d2l-polymer-behaviors/d2l-id.html">
 
 <!--
 `d2l-input-time`
@@ -22,8 +23,8 @@ Accessible, Localized Time Picker Input Element
 				--d2l-input-padding: 0.7rem 1rem;
 				--d2l-input-padding-focus: calc(0.7rem - 1px) calc(1rem - 1px);
 
-				display: inline-flex;
-				flex-direction: column;
+				display: inline-block;
+				padding-bottom: 10px;
 			}
 
 			input {
@@ -116,7 +117,6 @@ Accessible, Localized Time Picker Input Element
 	<script>
 	/* global d2lIntl */
 	(function() {
-		var instances = 0;
 		Polymer({
 
 			is: 'd2l-input-time',
@@ -252,7 +252,7 @@ Accessible, Localized Time Picker Input Element
 			ready: function() {
 				this.__onAutoCloseFocus = this.__onAutoCloseFocus.bind(this);
 				this.__onAutoCloseClick = this.__onAutoCloseClick.bind(this);
-				this.id = this.id || ('d2l-input-time-' + instances++);
+				this.id = this.id || ('d2l-input-time-' + D2L.Id.getUniqueId());
 			},
 
 			focus: function() {
