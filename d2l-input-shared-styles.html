@@ -7,7 +7,6 @@
 			:host {
 				--d2l-input-border-radius: 0.3rem;
 				--d2l-input-height: auto;
-				--d2l-input-line-height: 1.2rem;
 				--d2l-input-width: 100%;
 				--d2l-input-background-color: #ffffff;
 				--d2l-input-background-hover: inherit;
@@ -36,7 +35,9 @@
 					font-size: 0.8rem;
 					font-weight: 400;
 					letter-spacing: 0.02rem;
-					line-height: var(--d2l-input-line-height);
+					/* using min-height instead of line-height as IE11
+					 * doesn't support line-height on inputs */
+					min-height: calc(2rem + 2px);
 				};
 				--d2l-input-textarea: {
 					line-height: normal;
