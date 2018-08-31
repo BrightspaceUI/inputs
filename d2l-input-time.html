@@ -6,6 +6,7 @@
 <link rel="import" href="../iron-selector/iron-selector.html">
 <link rel="import" href="../d2l-typography/d2l-typography-shared-styles.html">
 <link rel="import" href="../d2l-intl-import/d2l-intl.html">
+<link rel="import" href="../d2l-polymer-behaviors/d2l-id.html">
 
 <!--
 `d2l-input-time`
@@ -22,12 +23,16 @@ Accessible, Localized Time Picker Input Element
 				--d2l-input-padding: 0.7rem 1rem;
 				--d2l-input-padding-focus: calc(0.7rem - 1px) calc(1rem - 1px);
 
-				display: inline-flex;
-				flex-direction: column;
+				display: inline-block;
 			}
 
 			input {
 				font-family: inherit;
+			}
+
+			.d2l-input-time-container {
+				display: inline-flex;
+				flex-direction: column;
 			}
 
 			.d2l-dropdown-opener {
@@ -73,50 +78,50 @@ Accessible, Localized Time Picker Input Element
 				color: var(--d2l-color-celestine);
 			}
 		</style>
+		<div class="d2l-input-time-container">
+			<d2l-dropdown no-auto-open>
+				<div class="d2l-dropdown-opener" id="opener">
+					<input
+						id="{{id}}-combobox"
+						type="text"
+						class="d2l-input"
+						role="combobox"
+						aria-autocomplete="list"
+						aria-label$="{{label}}"
+						aria-owns$="{{listboxId}}"
+						aria-activedescendant$={{selectedListboxId}}
+						on-focus="_onTimeInputFocused"
+						value="{{value::input}}">
+				</div>
 
-		<d2l-dropdown no-auto-open>
-			<div class="d2l-dropdown-opener" id="opener">
-				<input
-					id="{{id}}-combobox"
-					type="text"
-					class="d2l-input"
-					role="combobox"
-					aria-autocomplete="list"
-					aria-label$="{{label}}"
-					aria-owns$="{{listboxId}}"
-					aria-activedescendant$={{selectedListboxId}}
-					on-focus="_onTimeInputFocused"
-					value="{{value::input}}">
-			</div>
+				<d2l-dropdown-content
+						id="dropdown"
+						min-width="[[_dropdownWidth]]"
+						max-width="[[_dropdownWidth]]"
+						boundary='[[boundary]]'
+						align="start"
+						no-auto-close
+						no-pointer
+						no-auto-focus
+						no-padding
+						on-tap="_handleTimesListClick">
 
-			<d2l-dropdown-content
-					id="dropdown"
-					min-width="[[_dropdownWidth]]"
-					max-width="[[_dropdownWidth]]"
-					boundary='[[boundary]]'
-					align="start"
-					no-auto-close
-					no-pointer
-					no-auto-focus
-					no-padding
-					on-tap="_handleTimesListClick">
-
-					<div class="dropdown-content">
-						<iron-selector id="{{listboxId}}" role="listbox" selected-attribute="selected">
-							<template is="dom-repeat" items="{{times}}">
-								<div id="{{listboxId}}-{{index}}" class="d2l-input-time-item" role="option">{{item}}</div>
-							</template>
-						</iron-selector>
-					</div>
-				</d2l-dropdown-content>
-		</d2l-dropdown>
-		<span class="timezone">{{timezone}}</span>
+						<div class="dropdown-content">
+							<iron-selector id="{{listboxId}}" role="listbox" selected-attribute="selected">
+								<template is="dom-repeat" items="{{times}}">
+									<div id="{{listboxId}}-{{index}}" class="d2l-input-time-item" role="option">{{item}}</div>
+								</template>
+							</iron-selector>
+						</div>
+					</d2l-dropdown-content>
+			</d2l-dropdown>
+			<span class="timezone">{{timezone}}</span>
+		</div>
 	</template>
 
 	<script>
 	/* global d2lIntl */
 	(function() {
-		var instances = 0;
 		Polymer({
 
 			is: 'd2l-input-time',
@@ -252,7 +257,7 @@ Accessible, Localized Time Picker Input Element
 			ready: function() {
 				this.__onAutoCloseFocus = this.__onAutoCloseFocus.bind(this);
 				this.__onAutoCloseClick = this.__onAutoCloseClick.bind(this);
-				this.id = this.id || ('d2l-input-time-' + instances++);
+				this.id = this.id || ('d2l-input-time-' + D2L.Id.getUniqueId());
 			},
 
 			focus: function() {
