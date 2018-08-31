@@ -24,7 +24,7 @@ Polymer-based web component for search
 				width: 100%
 			}
 
-			input {
+			input[type="text"].d2l-input {
 				font-family: inherit;
 				padding-right: 2.4rem;
 				overflow: hidden;
@@ -32,35 +32,35 @@ Polymer-based web component for search
 				white-space: nowrap;
 			}
 
-			:host-context([dir="rtl"]) input {
+			:host-context([dir="rtl"]) input[type="text"].d2l-input {
 				padding-right: 0.75rem;
 				padding-left: 2.4rem;
 			}
 
 			/* Duplicated because some browsers ignore CSS block for any invalid selector */
-			:host(:dir(rtl)) input {
+			:host(:dir(rtl)) input[type="text"].d2l-input {
 				padding-right: 0.75rem;
 				padding-left: 2.4rem;
 			}
 
-			div.d2l-input-search-hover input.d2l-input,
-			div.d2l-input-search-focus input.d2l-input {
+			.d2l-input-search-hover input[type="text"].d2l-input,
+			.d2l-input-search-focus input[type="text"].d2l-input{
 				@apply --d2l-input-hover-focus;
 				padding-right: calc(2.4rem - 1px);
 			}
 
-			:host-context([dir="rtl"]) input:hover,
-			:host-context([dir="rtl"]) input:focus,
-			:host-context([dir="rtl"]) .d2l-input-search-hover input,
-			:host-context([dir="rtl"]) .d2l-input-search-focus input {
+			:host-context([dir="rtl"]) input[type="text"].d2l-input:hover,
+			:host-context([dir="rtl"]) input[type="text"].d2l-input:focus,
+			:host-context([dir="rtl"]) .d2l-input-search-hover input[type="text"].d2l-input,
+			:host-context([dir="rtl"]) .d2l-input-search-focus input[type="text"].d2l-input {
 				padding-right: calc(0.75rem - 1px);
 				padding-left: calc(2.4rem - 1px);
 			}
 
-			:host(:dir(rtl)) input:hover,
-			:host(:dir(rtl)) input:focus,
-			:host(:dir(rtl)) .d2l-input-search-hover input,
-			:host(:dir(rtl)) .d2l-input-search-focus input {
+			:host(:dir(rtl)) input[type="text"].d2l-input:hover,
+			:host(:dir(rtl)) input[type="text"].d2l-input:focus,
+			:host(:dir(rtl)) .d2l-input-search-hover input[type="text"].d2l-input,
+			:host(:dir(rtl)) .d2l-input-search-focus input[type="text"].d2l-input {
 				padding-right: calc(0.75rem - 1px);
 				padding-left: calc(2.4rem - 1px);
 			}
