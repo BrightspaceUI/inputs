@@ -44,8 +44,8 @@ var browsers = {
 	})*/
 };
 
-var mainlineEndpoint = 'http://localhost:8081/components/d2l-inputs/demo';
-var oneDotXEndpoint = 'http://localhost:8000/components/d2l-inputs/demo';
+var mainlineEndpoint = 'http://localhost:8081/components/d2l-inputs';
+var oneDotXEndpoint = 'http://localhost:8000/components/d2l-inputs';
 
 var inputTimeClickScript = 'document.querySelector("d2l-input-time").$$(".d2l-input").dispatchEvent(new FocusEvent("focus"))';
 var rtlScript = 'document.body.setAttribute("dir", "rtl");';
