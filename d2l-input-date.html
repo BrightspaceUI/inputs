@@ -1,0 +1,119 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../vaadin-date-picker/vaadin-date-picker-light.html">
+<link rel="import" href="../iron-input/iron-input.html">
+<link rel="import" href="../iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="../d2l-colors/d2l-colors.html">
+<link rel="import" href="../d2l-offscreen/d2l-offscreen-shared-styles.html">
+<link rel="import" href="../d2l-polymer-behaviors/d2l-id.html">
+<link rel="import" href="../d2l-fastdom-import/fastdom.html">
+<link rel="import" href="d2l-input-shared-styles.html">
+<link rel="import" href="d2l-input-date-localize-behavior.html">
+<link rel="import" href="d2l-input-date-behavior.html">
+<link rel="import" href="d2l-input-date-style-modules.html">
+
+<!--
+`d2l-input-date`
+A Date Input for D2L Brightspace
+
+@demo demo/d2l-input-date.html
+-->
+<dom-module id="d2l-input-date">
+	<template>
+		<style
+			is="custom-style"
+			include="d2l-input-styles d2l-offscreen-shared-styles d2l-vaadin-date-picker-polymer1-styles"
+		>
+			:host {
+				display: block;
+			}
+			:host([hide-label]) > label,
+			.d2l-input-date-description {
+				@apply --d2l-offscreen;
+			}
+
+			:host(:dir(rtl)) :host([hide-label]) > label,
+			:host(:dir(rtl)) .d2l-input-date-description {
+				@apply --d2l-offscreen-rtl;
+			}
+			:host-context([dir="rtl"]) :host([hide-label]) > label,
+			:host-context([dir="rtl"]) .d2l-input-date-description {
+				@apply --d2l-offscreen-rtl;
+			}
+
+			vaadin-date-picker-light,
+			iron-input {
+				width: 100%;
+			}
+			input[type="text"].d2l-input {
+				/* Needed because: https://github.com/webcomponents/shadycss/issues/91 */
+				font-family: inherit !important;
+			}
+		</style>
+
+		<label>[[label]]</label>
+		<vaadin-date-picker-light
+			min="[[min]]"
+			max="[[max]]"
+			value="{{value}}"
+			on-value-changed="_handleValueChangedPolymer1"
+		>
+			<iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="onEnter"></iron-a11y-keys>
+			<iron-a11y-keys target="[[_target]]" keys="up down" on-keys-pressed="onUpDown"></iron-a11y-keys>
+			<slot>
+				<!-- .input class needed for polymer 1 version of vaadin-date-picker-light -->
+				<iron-input class="input">
+					<input
+						on-tap="_handleTap"
+						placeholder="{{placeholder}}"
+						class="d2l-input"
+						type="text"
+						on-focus="_handleFocus"
+						aria-describedby$="[[_descriptionId]]"
+						aria-label$="[[label]]"
+						aria-invalid$="[[_computedAriaInvalid(invalid)]]"
+					>
+					<div id="[[_descriptionId]]" class="d2l-input-date-description" >{{description}}</div>
+				</iron-input>
+			</slot>
+		</vaadin-date-picker-light>
+	</template>
+
+	<script>
+		Polymer({
+			is: 'd2l-input-date',
+
+			behaviors: [
+				D2L.PolymerBehaviors.Date.InputDateBehavior,
+				D2L.PolymerBehaviors.Date.LocalizeBehavior
+			],
+
+			properties: {
+				invalid: {
+					type: Boolean,
+					value: false,
+					reflectToAttribute: true
+				}
+			},
+
+			ready: function() {
+				var input = this.$$('input');
+				if (input) {
+					this._target = this.$$('input');
+				}
+			},
+
+			focus: function() {
+				var input = this.$$('input');
+				if (input) {
+					fastdom.mutate(function() {
+						input.focus();
+					});
+				}
+			},
+
+			_computedAriaInvalid: function(invalid) {
+				return invalid ? 'true' : 'false';
+			}
+		});
+	</script>
+</dom-module>

@@ -226,6 +226,137 @@ The `d2l-input-search` component dispatches an event (`d2l-input-search-searched
 ```
 When the input is cleared, the same event will be fired with an empty value.
 
+### d2l-input-date
+
+<img src="/images/date.gif?raw=true" width="550">
+
+Import `d2l-input-date.html`:
+
+```html
+<head>
+	<link rel="import" href="bower_components/d2l-inputs/d2l-input-date.html">
+</head>
+```
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-date.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<d2l-input-date></d2l-input-date>
+```
+
+The `d2l-input-date` component dispatches an event (`d2l-input-date-changed`) when a date is set:
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-date.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+		<d2l-input-date></d2l-input-date>
+    <script>var date = document.body;</script>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<script>
+	date.addEventListener('d2l-input-date-changed', (e) => {
+	    // e.detail.value contains the search value
+	    console.log(e.detail.value);
+	});
+</script>
+```
+
+`d2l-input-date` also includes a slot, to incorporate other elements (for example, a button):
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-date.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<dom-module id="d2l-input-date-button-demo">
+	<template>
+		<d2l-input-date value="{{value}}">
+			<iron-a11y-keys target="[[_target]]" keys="enter" on-keys-pressed="_onEnter"></iron-a11y-keys>
+			<iron-a11y-keys target="[[_target]]" keys="up down" on-keys-pressed="_onUpDown"></iron-a11y-keys>
+			<button>[[_getButtonText(value)]]</button>
+		</d2l-input-date>
+	</template>
+	<script>
+		Polymer({
+			is: 'd2l-input-date-button-demo',
+			properties: {
+				value: {
+					type: String,
+					value: null
+				},
+				_target: Object
+			},
+			ready: function() {
+				this._target = this.$$('button');
+			},
+			_getButtonText: function(value) {
+				return value || 'Click Me!';
+			},
+			_onEnter: function(e) {
+				this.$$('d2l-input-date').onEnter(e);
+			},
+			_onUpDown: function(e) {
+				this.$$('d2l-input-date').onUpDown(e);
+			}
+		});
+	</script>
+</dom-module>
+<d2l-input-date-button-demo></d2l-input-date-button-demo>
+```
+
 ### d2l-input-time
 
 <img src="/images/time.gif?raw=true" width="550">
