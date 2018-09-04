@@ -24,7 +24,7 @@ Then import the components below you want to use.
 
 ### d2l-input-checkbox and d2l-input-checkbox-spacer
 
-<img src="/images/checkbox.gif?raw=true" width="350">
+<img src="/screenshots/checkbox.gif?raw=true" width="350">
 
 Import `d2l-input-checkbox.html` and `d2l-input-checkbox-spacer.html`:
 
@@ -152,7 +152,7 @@ To align following related content below checkboxes, the `d2l-input-checkbox-spa
 
 ### d2l-input-search
 
-<img src="/images/search.gif?raw=true" width="700">
+<img src="/screenshots/search.gif?raw=true" width="700">
 
 Import `d2l-input-search.html`:
 
@@ -228,7 +228,7 @@ When the input is cleared, the same event will be fired with an empty value.
 
 ### d2l-input-date
 
-<img src="/images/date.gif?raw=true" width="550">
+<img src="/screenshots/date.gif?raw=true" width="550">
 
 Import `d2l-input-date.html`:
 
@@ -359,7 +359,7 @@ The `d2l-input-date` component dispatches an event (`d2l-input-date-changed`) wh
 
 ### d2l-input-time
 
-<img src="/images/time.gif?raw=true" width="550">
+<img src="/screenshots/time.gif?raw=true" width="550">
 
 Import `d2l-input-time.html`:
 
