@@ -1,0 +1,23 @@
+@objects
+
+	d2l-input-datetime           d2l-input-datetime
+		d2l-input-date-label    ::d2l-shadow .d2l-input-date-container label
+		d2l-input-date      ::d2l-shadow d2l-input-date
+			input-date          ::d2l-shadow .d2l-input
+		d2l-input-time-label    ::d2l-shadow .d2l-input-time-container label
+		d2l-input-time          ::d2l-shadow d2l-input-time
+		icon-button          ::d2l-shadow .clear-button
+			clear                ::d2l-shadow d2l-icon
+				svg                ::d2l-shadow svg g
+
+	d2l-input-datetime-labelless d2l-input-datetime[hide-label]
+		d2l-input-date-label    ::d2l-shadow .d2l-input-date-container label
+		d2l-input-date      ::d2l-shadow d2l-input-date
+			input-date          ::d2l-shadow .d2l-input
+		d2l-input-time-label    ::d2l-shadow .d2l-input-time-container label
+		d2l-input-time          ::d2l-shadow d2l-input-time
+		icon-button          ::d2l-shadow .clear-button
+			clear                ::d2l-shadow d2l-icon
+				svg                ::d2l-shadow svg g
+
+@import d2l-input-datetime.common.gspec
