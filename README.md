@@ -253,6 +253,9 @@ Import `d2l-input-date.html`:
         font-size: 20px;
         font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
       }
+      body {
+        height: 450px;
+      }
     </style>
     <next-code-block></next-code-block>
   </template>
@@ -279,6 +282,9 @@ The `d2l-input-date` component dispatches an event (`d2l-input-date-changed`) wh
       html {
         font-size: 20px;
         font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+      body {
+        height: 450px;
       }
     </style>
 		<d2l-input-date></d2l-input-date>
@@ -313,6 +319,9 @@ The `d2l-input-date` component dispatches an event (`d2l-input-date-changed`) wh
       html {
         font-size: 20px;
         font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+      body {
+        height: 450px;
       }
     </style>
     <next-code-block></next-code-block>
@@ -384,6 +393,9 @@ Import `d2l-input-time.html`:
         font-size: 20px;
         font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
       }
+      body {
+        height: 150px;
+      }
     </style>
     <next-code-block></next-code-block>
   </template>
@@ -394,11 +406,11 @@ Import `d2l-input-time.html`:
 <label for="input-time-combobox">Time input:</label>
 <d2l-input-time
 	id="input-time"
-	time-interval="{{interval}}"
-	hours="{{hours}}"
-	minutes="{{minutes}}"
-	locale="{{locale}}"
-	timezone="{{timezone}}"
+	time-interval="30"
+	hours="23"
+	minutes="59"
+	locale="en"
+	timezone="America/New_York"
 ></d2l-input-time>
 ```
 
@@ -419,16 +431,19 @@ The `d2l-input-time` component dispatches an event (`d2l-input-time-changed`) wh
         font-size: 20px;
         font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
       }
+      body {
+        height: 150px;
+      }
     </style>
 		<label for="input-time-combobox">Time input:</label>
 		<d2l-input-time
 			id="input-time"
-			time-interval="{{interval}}"
-			hours="{{hours}}"
-			minutes="{{minutes}}"
-			locale="{{locale}}"
-			timezone="{{timezone}}"
-    ></d2l-input-time>
+			time-interval="30"
+			hours="23"
+			minutes="59"
+			locale="en"
+			timezone="America/New_York"
+		></d2l-input-time>
     <script>var time = document.body;</script>
     <next-code-block></next-code-block>
   </template>
@@ -438,6 +453,97 @@ The `d2l-input-time` component dispatches an event (`d2l-input-time-changed`) wh
 ```html
 <script>
 	time.addEventListener('d2l-input-time-changed', (e) => {
+	    // e.detail.value contains the search value
+	    console.log(e.detail.value);
+	});
+</script>
+```
+
+### d2l-input-datetime
+
+<img src="/screenshots/datetime.gif?raw=true" width="550">
+
+Import `d2l-input-datetime.html`:
+
+```html
+<head>
+	<link rel="import" href="bower_components/d2l-inputs/d2l-input-datetime.html">
+</head>
+```
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-datetime.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+      body {
+        height: 450px;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<d2l-input-datetime
+	locale="en"
+	timezone="America/New_York"
+	placeholder="Pick A Date"
+	boundary='{"below":240}'
+	date-label="Date:"
+	time-label="Time:"
+></d2l-input-datetime>
+```
+
+The `d2l-input-datetime` component dispatches an event (`d2l-input-datetime-changed`) when a date or time is set:
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-datetime.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+      body {
+        height: 450px;
+      }
+    </style>
+		<d2l-input-datetime
+			locale="en"
+			timezone="America/New_York"
+			placeholder="Pick A Date"
+			boundary='{"below":240}'
+			date-label="Date:"
+			time-label="Time:"
+		></d2l-input-datetime>
+    <script>var datetime = document.body;</script>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<script>
+	datetime.addEventListener('d2l-input-datetime-changed', (e) => {
 	    // e.detail.value contains the search value
 	    console.log(e.detail.value);
 	});
