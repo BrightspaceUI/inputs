@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>d2l-input-text-iron-integration test</title>
+		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../../web-component-tester/browser.js"></script>
+		<link rel="import" href="../../iron-test-helpers/mock-interactions.html">
+		<link rel="import" href="../../iron-input/iron-input.html">
+		<link rel="import" href="../d2l-input-text.html">
+	</head>
+	<body>
+		<test-fixture id="integration">
+			<template>
+				<iron-input><d2l-input-text></d2l-input-text></iron-input>
+			</template>
+		</test-fixture>
+		<script>
+			describe('iron-input d2l-input-text integration', function() {
+
+				var elem;
+
+				beforeEach(function(done) {
+					elem = fixture('integration');
+					if (elem.inputElement) {
+						done();
+					} else {
+						elem.addEventListener('iron-input-ready', function() {
+							done();
+						});
+					}
+				});
+
+				describe('basic', function() {
+					it('should set inputElement', function() {
+						expect(elem.inputElement).to.equal(elem.querySelector('d2l-input-text'));
+					});
+				});
+
+				describe('value', function() {
+
+					it('should update value when bindValue changes', function() {
+						var textInput = elem.querySelector('d2l-input-text');
+						elem.bindValue = 'hello';
+						expect(textInput.value).to.equal('hello');
+						expect(elem.bindValue).to.equal('hello');
+					});
+
+					it('should update bindValue when input value changes', function(done) {
+						var textInput = elem.querySelector('d2l-input-text');
+						var input = textInput.$$('input');
+
+						elem.addEventListener('bind-value-changed', function() {
+							expect(textInput.value).to.equal('hello');
+							expect(elem.bindValue).to.equal('hello');
+							done();
+						});
+						input.value = 'hello';
+						input.dispatchEvent(new Event('input', { bubbles: true, cancelable: true, composed: true }));
+					});
+
+				});
+
+			});
+		</script>
+	</body>
+</html>

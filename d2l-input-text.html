@@ -1,0 +1,145 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../d2l-colors/d2l-colors.html">
+<link rel="import" href="../d2l-polymer-behaviors/d2l-focusable-behavior.html">
+<link rel="import" href="d2l-input-text-behavior.html">
+<link rel="import" href="d2l-input-shared-styles.html">
+
+<!--
+`d2l-input-text`
+Polymer-based web component for D2L text inputs
+
+@demo demo/d2l-input-text.html
+-->
+
+<dom-module id="d2l-input-text">
+	<template strip-whitespace>
+		<style include="d2l-input-styles">
+			:host {
+				display: inline-block;
+				width: 100%
+			}
+			input {
+				position: relative;
+				font-family: inherit;
+			}
+		</style>
+		<input
+			aria-invalid$="[[ariaInvalid]]"
+			aria-label$="[[ariaLabel]]"
+			aria-labelledby$="[[ariaLabelledby]]"
+			autofocus$="[[autofocus]]"
+			class="d2l-input d2l-focusable"
+			disabled$="[[disabled]]"
+			list$="[[list]]"
+			max$="[[max]]"
+			maxlength$="[[maxlength]]"
+			min$="[[min]]"
+			minlength$="[[minlength]]"
+			name$="[[name]]"
+			on-change="_handleChange"
+			on-keypress="_handleKeypress"
+			pattern$="[[pattern]]"
+			placeholder$="[[placeholder]]"
+			readonly$="[[readonly]]"
+			required$="[[required]]"
+			size$="[[size]]"
+			step$="[[step]]"
+			tabindex$="[[tabIndex]]"
+			type$="[[type]]"
+			value="{{value::input}}" />
+	</template>
+	<script>
+		Polymer({
+			is: 'd2l-input-text',
+
+			behaviors: [
+				D2L.PolymerBehaviors.FocusableBehavior,
+				D2L.PolymerBehaviors.Text.InputTextBehavior
+			],
+
+			properties: {
+				/**
+				 * Gets or sets the [aria-describedby attribute](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-describedby_attribute),
+				 * which contains the IDs of the elements that describe the input.
+				 */
+				ariaDescribedby: {
+					type: String
+				},
+				/**
+				 * List of pre-defined options to suggest to the user. The value must be the id of a <datalist> element in the same document.
+				 */
+				list: {
+					type: String
+				},
+				/**
+				 * The maximum numeric value for this item, which must not be less than its minimum (min attribute) value.
+				 */
+				max: {
+					type: String
+				},
+				/**
+				 * The minimum numeric value for this item, which must not be greater than its maximum (max attribute) value.
+				 */
+				min: {
+					type: String
+				},
+				/**
+				 * A regular expression that the control's value is checked against.
+				 */
+				pattern: {
+					type: String
+				},
+				/**
+				 * Indicates that the form will not be submitted when the user presses enter within the input cell.
+				 */
+				preventSubmit: {
+					type: Boolean,
+					value: false,
+				},
+				/**
+				 * The initial size of the control as an integer number of characters.
+				*/
+				size: {
+					type: Number
+				},
+				/**
+				 * Works with the min and max attributes to limit the increments at which a numeric value can be set.
+				*/
+				step: {
+					type: String
+				},
+				/**
+				 * Gets or sets the text input type, one of "text" (default), "number", "email", "password", "url".
+				 */
+				type: {
+					type: String,
+					value: 'text'
+				},
+				/**
+				 * Value of the input.
+				 */
+				value: {
+					type: String,
+					notify: true
+				}
+			},
+			_handleChange: function() {
+				if (Polymer.Element) {
+					// This custom focus event is only needed for Polymer 1. We should
+					// be able to remove this event once we move to Polymer 2.
+					this.dispatchEvent(new CustomEvent(
+						'change',
+						{bubbles: true, composed: false}
+					));
+				}
+			},
+			_handleKeypress: function(e) {
+				if (this.preventSubmit && e.keyCode === 13) {
+					e.preventDefault();
+					return false;
+				}
+				return true;
+			}
+		});
+	</script>
+</dom-module>

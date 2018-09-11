@@ -14,6 +14,14 @@ bower install d2l-inputs
 
 ## Usage
 
+Available `d2l-inputs` components:
+- [Text](#d2l-input-text)
+- [Checkbox](#d2l-input-checkbox-and-d2l-input-checkbox-spacer)
+- [Search](#d2l-input-search)
+- [Date](#d2l-input-date)
+- [Time](#d2l-input-time)
+- [DateTime](#d2l-input-datetime)
+
 Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyfill (for browsers who don't natively support web components):
 ```html
 <head>
@@ -21,6 +29,107 @@ Include the [webcomponents.js](http://webcomponents.org/polyfills/) "lite" polyf
 </head>
 ```
 Then import the components below you want to use.
+
+### d2l-input-text
+
+<img src="/screenshots/text.gif?raw=true" width="350">
+
+Import `d2l-input-text.html`:
+
+```html
+<head>
+	<link rel="import" href="bower_components/d2l-inputs/d2l-input-text.html">
+</head>
+```
+
+A `<d2l-input-text>` custom element can now be used in your application:
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-text.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<d2l-input-text name="myInput" value="input value"></d2l-input-text>
+```
+
+Many of the same attributes from native [`<input type="text">` are available](https://developer.mozilla.org/en/docs/Web/HTML/Element/input):
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-text.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<d2l-input-text disabled></d2l-input-text>
+```
+
+The `d2l-input-text` component dispatches an event (`change`) when text is entered/changed/removed:
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-text.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+    <d2l-input-text placeholder="enter some text"></d2l-input-text>
+    <script>var text = document.body;</script>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<script>
+	text.addEventListener('change', (e) => {
+	    // e.target.value contains the text value
+	    console.log(e.target.value);
+	});
+</script>
+```
+When the input is cleared, the same event will be fired with an empty value.
 
 ### d2l-input-checkbox and d2l-input-checkbox-spacer
 
@@ -297,7 +406,7 @@ The `d2l-input-date` component dispatches an event (`d2l-input-date-changed`) wh
 ```html
 <script>
 	date.addEventListener('d2l-input-date-changed', (e) => {
-	    // e.detail.value contains the search value
+	    // e.detail.value contains the date value
 	    console.log(e.detail.value);
 	});
 </script>
@@ -453,7 +562,7 @@ The `d2l-input-time` component dispatches an event (`d2l-input-time-changed`) wh
 ```html
 <script>
 	time.addEventListener('d2l-input-time-changed', (e) => {
-	    // e.detail.value contains the search value
+	    // e.detail.value contains the time value
 	    console.log(e.detail.value);
 	});
 </script>
@@ -544,8 +653,8 @@ The `d2l-input-datetime` component dispatches an event (`d2l-input-datetime-chan
 ```html
 <script>
 	datetime.addEventListener('d2l-input-datetime-changed', (e) => {
-	    // e.detail.value contains the search value
-	    console.log(e.detail.value);
+	    // e.detail contains the date and time values
+	    console.log(e.detail);
 	});
 </script>
 ```
