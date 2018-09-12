@@ -1,0 +1,188 @@
+<!doctype html>
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<html>
+	<head>
+
+	<title>d2l-input-textarea test</title>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
+
+	<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+	<script src="../../web-component-tester/browser.js"></script>
+	<script src="../../iron-test-helpers/mock-interactions.js"></script>
+	<link rel="import" href="../d2l-input-textarea.html">
+
+	</head>
+	<body>
+
+	<test-fixture id="basic">
+		<template>
+		<d2l-input-textarea></d2l-input-textarea>
+		</template>
+	</test-fixture>
+
+	<test-fixture id="has-value">
+		<template>
+		<d2l-input-textarea value="foobar"></d2l-input-textarea>
+		</template>
+	</test-fixture>
+
+	<test-fixture id="rows">
+		<template>
+		<d2l-input-textarea rows="3"></d2l-input-textarea>
+		</template>
+	</test-fixture>
+
+	<script>
+		suite('basic', function() {
+			var raf = window.requestAnimationFrame;
+
+			test('can set an initial value', function() {
+				var autogrow = fixture('has-value');
+				assert.equal(
+					autogrow.textarea.value,
+					'foobar',
+					'textarea value equals to initial value');
+			});
+
+			test('can update the value', function() {
+				var autogrow = fixture('has-value');
+				assert.equal(
+					autogrow.textarea.value,
+					'foobar',
+					'textarea value equals to initial value');
+				autogrow.value = 'batman';
+				assert.equal(
+					autogrow.textarea.value, 'batman', 'textarea value is updated');
+				assert.equal(autogrow.value, 'batman', 'value is updated');
+			});
+
+			test('can set an initial number of rows', function() {
+				var autogrow = fixture('rows');
+				assert.equal(autogrow.textarea.rows, 3, 'textarea has rows=3');
+			});
+
+			test('adding rows grows the textarea', function(done) {
+				var autogrow = fixture('basic');
+				var initialHeight = autogrow.offsetHeight;
+
+				autogrow.value = 'batman\nand\nrobin';
+				raf(function() {
+					var finalHeight = autogrow.offsetHeight;
+					assert.isTrue(finalHeight > initialHeight);
+					done();
+				});
+			});
+
+			test('removing rows shrinks the textarea', function(done) {
+				var autogrow = fixture('basic');
+				autogrow.value = 'batman\nand\nrobin';
+				raf(function() {
+					var initialHeight = autogrow.offsetHeight;
+					autogrow.value = 'batman';
+					raf(function() {
+						var finalHeight = autogrow.offsetHeight;
+						assert.isTrue(finalHeight < initialHeight);
+						done();
+					});
+				});
+			});
+
+			test('an undefined value is the empty string', function(done) {
+				var autogrow = fixture('basic');
+				var initialHeight = autogrow.offsetHeight;
+
+				autogrow.value = 'batman\nand\nrobin';
+				raf(function() {
+					var finalHeight = autogrow.offsetHeight;
+					assert.isTrue(finalHeight > initialHeight);
+
+					autogrow.value = undefined;
+					raf(function() {
+						assert.equal(autogrow.offsetHeight, initialHeight);
+						assert.equal(autogrow.textarea.value, '');
+						done();
+					});
+				});
+			});
+
+			test('textarea selection works', function(done) {
+				var autogrow = fixture('basic');
+				var textarea = autogrow.textarea;
+				autogrow.value = 'batman\nand\nrobin';
+				flush(function() {
+					autogrow.selectionStart = 3;
+					autogrow.selectionEnd = 5;
+					assert.equal(textarea.selectionStart, 3);
+					assert.equal(textarea.selectionEnd, 5);
+					done();
+				});
+			});
+		});
+
+		suite('focus/blur events', function() {
+			var input;
+
+			setup(function() {
+				input = fixture('basic');
+			});
+
+			test('focus/blur events fired on host element', function(done) {
+				var nFocusEvents = 0;
+				var nBlurEvents = 0;
+				input.addEventListener('focus', function() {
+					nFocusEvents += 1;
+					// setTimeout to wait for potentially more, erroneous events
+					setTimeout(function() {
+						assert.equal(nFocusEvents, 1, 'one focus event fired');
+						MockInteractions.blur(input.textarea);
+					});
+				});
+				input.addEventListener('blur', function() {
+					nBlurEvents += 1;
+					// setTimeout to wait for potentially more, erroneous events
+					setTimeout(function() {
+						assert.equal(nBlurEvents, 1, 'one blur event fired');
+						done();
+					});
+				});
+				MockInteractions.focus(input.textarea);
+			});
+		});
+
+		suite('change events', function() {
+			var input;
+			var raf = window.requestAnimationFrame;
+
+			setup(function() {
+				input = fixture('basic');
+			});
+
+			test('change events fired on host element', function(done) {
+				input.addEventListener('change', function(e) {
+					expect(e.target.value).to.equal('Batman and Robin');
+					done();
+				});
+
+				input.value = 'Batman and Robin';
+
+				raf(function() {
+					input.textarea.dispatchEvent(new Event('change', { bubbles: true, cancelable: false, composed: false }));
+				});
+			});
+		});
+	</script>
+
+	</body>
+</html>
