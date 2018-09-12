@@ -16,6 +16,7 @@ bower install d2l-inputs
 
 Available `d2l-inputs` components:
 - [Text](#d2l-input-text)
+- [Textarea](#d2l-input-textarea)
 - [Checkbox](#d2l-input-checkbox-and-d2l-input-checkbox-spacer)
 - [Search](#d2l-input-search)
 - [Date](#d2l-input-date)
@@ -124,6 +125,138 @@ The `d2l-input-text` component dispatches an event (`change`) when text is enter
 ```html
 <script>
 	text.addEventListener('change', (e) => {
+	    // e.target.value contains the text value
+	    console.log(e.target.value);
+	});
+</script>
+```
+When the input is cleared, the same event will be fired with an empty value.
+
+### d2l-input-textarea
+
+<img src="/screenshots/textarea.gif?raw=true" width="250">
+
+Import `d2l-input-textarea.html`:
+
+```html
+<head>
+	<link rel="import" href="bower_components/d2l-inputs/d2l-input-textarea.html">
+</head>
+```
+
+A `<d2l-input-textarea>` custom element can now be used in your application:
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-textarea.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<d2l-input-textarea name="myInput" value="input value"></d2l-input-textarea>
+```
+
+Many of the same attributes from native [`<textarea>` are available](https://developer.mozilla.org/en/docs/Web/HTML/Element/textarea):
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-textarea.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<d2l-input-textarea disabled></d2l-input-textarea>
+```
+
+These attributes may also be used:
+* `no-border` removes border styling from the text area.
+* `hover-styles` applies (square) hover styling to the text area.
+
+<img src="/screenshots/textarea-noborder.gif?raw=true" width="250">
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-textarea.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<d2l-input-textarea no-border hover-styles></d2l-input-textarea>
+```
+
+The `d2l-input-textarea` component dispatches an event (`change`) when text is entered/changed/removed:
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-textarea.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+    <d2l-input-textarea placeholder="enter some text"></d2l-input-textarea>
+    <script>var textarea = document.body;</script>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<script>
+	textarea.addEventListener('change', (e) => {
 	    // e.target.value contains the text value
 	    console.log(e.target.value);
 	});
