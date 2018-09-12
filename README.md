@@ -203,6 +203,7 @@ These attributes may also be used:
 * `hover-styles` applies (square) hover styling to the text area.
 
 <img src="/screenshots/textarea-noborder.gif?raw=true" width="250">
+
 <!---
 ```
 <custom-element-demo>
