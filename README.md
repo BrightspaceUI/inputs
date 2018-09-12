@@ -134,7 +134,7 @@ When the input is cleared, the same event will be fired with an empty value.
 
 ### d2l-input-textarea
 
-<img src="/screenshots/textarea.gif?raw=true" width="350">
+<img src="/screenshots/textarea.gif?raw=true" width="250">
 
 Import `d2l-input-textarea.html`:
 
@@ -202,7 +202,7 @@ These attributes may also be used:
 * `no-border` removes border styling from the text area.
 * `hover-styles` applies (square) hover styling to the text area.
 
-<img src="/screenshots/textarea-noborder.gif?raw=true" width="350">
+<img src="/screenshots/textarea-noborder.gif?raw=true" width="250">
 <!---
 ```
 <custom-element-demo>
