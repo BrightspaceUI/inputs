@@ -31,7 +31,7 @@
     "iron-a11y-keys-behavior": "^2.1.1",
     "iron-input": "^2.1.3",
     "polymer": "Polymer/polymer#1 - 2",
-    "vaadin-date-picker": "Brightspace/vaadin-date-picker#1 - 2"
+    "vaadin-date-picker": "Brightspace/vaadin-date-picker#hybrid"
   },
   "devDependencies": {
     "d2l-typography": "BrightspaceUI/typography#^6.0.0",
@@ -43,8 +43,7 @@
   "variants": {
     "1.x": {
       "dependencies": {
-        "polymer": "Polymer/polymer#^1.0.0",
-        "vaadin-date-picker": "Brightspace/vaadin-date-picker#^1.2.8"
+        "polymer": "Polymer/polymer#^1.0.0"
       },
       "resolutions": {
         "webcomponentsjs": "^0.7"
