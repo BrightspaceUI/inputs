@@ -156,6 +156,12 @@ Polymer-based web component for search
 					type: Number
 				},
 				/**
+				 * When true, the clear button will not be displayed when a search is performed.
+				 */
+				noClear: {
+					type: Boolean
+				},
+				/**
 				 * A hint to the user of what can be entered in the input.
 				 */
 				placeholder: {
@@ -224,22 +230,22 @@ Polymer-based web component for search
 			 * Performs a search.
 			 */
 			search: function() {
-				if (this.value !== this.lastSearchValue) {
-					this._setLastSearchValue(this.value);
-					this._dispatchEvent();
-				}
+				var noClear = (this.noClear === true);
+				this._setLastSearchValue(this.value);
+				this._dispatchEvent();
 				fastdom.mutate(function() {
-					if (this.value.length > 0) {
+					if (!noClear && this.value.length > 0) {
 						Polymer.dom(this.root).querySelector('.d2l-input-search-clear').focus();
 					}
 				}.bind(this));
 			},
 
 			_computeShowSearch: function(lastSearchValue, value) {
+				var noClear = (this.noClear === true);
 				var valueIsEmpty = (value === undefined || value === null || value === '');
 				var lastSearchValueIsEmpty = (lastSearchValue === undefined || lastSearchValue === null || lastSearchValue === '');
 				var showSearch = (valueIsEmpty && lastSearchValueIsEmpty) ||
-					(lastSearchValue !== value);
+					(lastSearchValue !== value) || noClear;
 				return showSearch;
 			},
 
@@ -284,10 +290,8 @@ Polymer-based web component for search
 					return;
 				}
 				e.preventDefault();
-				if (this.value !== this.lastSearchValue) {
-					this._setLastSearchValue(this.value);
-					this._dispatchEvent();
-				}
+				this._setLastSearchValue(this.value);
+				this._dispatchEvent();
 			},
 
 			_handleInput: function(e) {

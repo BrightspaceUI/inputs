@@ -20,6 +20,11 @@
 				<d2l-input-search value="foo"></d2l-input-search>
 			</template>
 		</test-fixture>
+		<test-fixture id="no-clear">
+			<template>
+				<d2l-input-search value="foo" no-clear></d2l-input-search>
+			</template>
+		</test-fixture>
 		<script>
 			describe('<d2l-input-search>', function() {
 
@@ -85,6 +90,11 @@
 						assertSearchVisibility(elem, false);
 					});
 
+					it('should NOT show clear if value is set in no-clear mode', function() {
+						var elem = fixture('no-clear');
+						assertSearchVisibility(elem, true);
+					});
+
 					it('should show search if value is modified', function() {
 						var elem = fixture('value-set');
 						elem.value = 'foobar';
@@ -108,6 +118,13 @@
 						elem.value = 'foobar';
 						clickSearchButton(elem);
 						assertSearchVisibility(elem, false);
+					});
+
+					it('should NOT show clear if modified value is searched in no-clear mode', function() {
+						var elem = fixture('no-clear');
+						elem.value = 'foobar';
+						clickSearchButton(elem);
+						assertSearchVisibility(elem, true);
 					});
 
 				});
@@ -151,24 +168,6 @@
 						});
 						elem.value = '';
 						clickSearchButton(elem);
-					});
-
-					it('should not fire "search" event when ENTER is pressed with no value change', function(done) {
-						var elem = fixture('value-set');
-						elem.addEventListener('d2l-input-search-searched', function() {
-							throw 'Unexpected search event';
-						});
-						pressEnter(elem);
-						setTimeout(done, 50);
-					});
-
-					it('should not fire "search" event when search button is pressed on empty value', function(done) {
-						var elem = fixture('basic');
-						elem.addEventListener('d2l-input-search-searched', function() {
-							throw 'Unexpected search event';
-						});
-						clickSearchButton(elem);
-						setTimeout(done, 50);
 					});
 
 				});
