@@ -76,6 +76,39 @@ Custom property | Description | Default
 				box-shadow: none;
 			}
 
+			/* fix IE & Edge textarea content cut off b/c mirror text size is smaller than textarea which mirror text is borderless */
+			@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+     			/* IE10+ CSS styles go here */
+				:host([no-border]) .mirror-text {
+					border: unset;
+					border-style: solid;
+					border-width: 2px;
+				}
+			}
+
+			@supports (-ms-ime-align:auto) {
+				/* IE Edge CSS styles go here */
+				:host([no-border]) .mirror-text {
+					border: unset;
+					border-style: solid;
+					border-width: 2px;
+				}
+			}
+
+			@-moz-document url-prefix() {
+				/* Fix Firefox on hover content area shrink and text shift issue */
+				:host([no-border]) textarea.d2l-input,
+				:host([no-border]) .mirror-text {
+					border: unset;
+					border-style: solid;
+					border-radius: 0;
+					border-color: transparent;
+					border-width: 2px;
+					padding: calc(0.4rem - 2px) calc(0.75rem - 2px);
+					box-shadow: none;
+				}
+			}
+
 			:host([hover-styles]) textarea.d2l-input:hover,
 			:host([hover-styles]) textarea.d2l-input:focus,
 			:host([hover-styles]) textarea.d2l-input[aria-invalid='true'] {
