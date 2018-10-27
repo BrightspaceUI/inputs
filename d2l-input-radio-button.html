@@ -1,0 +1,192 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../d2l-colors/d2l-colors.html">
+<link rel="import" href="../d2l-typography/d2l-typography-shared-styles.html">
+
+<!--
+'d2l-input-radio-button'
+Polymer-based web component for D2L radio buttons
+
+@demo demo/d2l-input-radio-button.html
+-->
+
+<dom-module id="d2l-input-radio-button">
+	<template strip-whitespace>
+		<style>
+			:host {
+				display: block;
+				margin-bottom: 0.9rem;
+			}
+			:host([aria-label]) {
+				display: inline-block;
+				margin-bottom: 0;
+			}
+			label {
+				display: inline-block;
+				white-space: nowrap;
+			}
+			.d2l-input-radio-button-label {
+				@apply --d2l-body-compact-text;
+				color: var(--d2l-color-ferrite);
+				display: inline-block;
+				margin-left: 0.5rem;
+				vertical-align: middle;
+				white-space: normal;
+			}
+			:host-context([dir="rtl"]) .d2l-input-radio-button-label {
+				margin-left: 0;
+				margin-right: 0.5rem;
+			}
+			:host([aria-label]) .d2l-input-radio-button-label,
+			:host-context([dir="rtl"][aria-label]) .d2l-input-radio-button-label {
+				margin-left: 0;
+				margin-right: 0;
+			}
+			input[type="radio"] {
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: 0.5rem 0.5rem;
+				border-radius: 50%;
+				border-style: solid;
+				box-sizing: border-box;
+				display: inline-block;
+				height: 1.2rem;
+				margin: 0;
+				padding: 0;
+				transition-duration: 0.5s;
+				transition-timing-function: ease;
+				transition-property: background-color, border-color;
+				vertical-align: middle;
+				width: 1.2rem;
+			}
+			input[type="radio"]:checked {
+				background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2210%22%20height%3D%2210%22%20viewBox%3D%220%200%2010%2010%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%0A%09%3Ccircle%20cx%3D%225%22%20cy%3D%225%22%20r%3D%225%22%20fill%3D%22%23565a5c%22%3E%3C/circle%3E%0A%3C/svg%3E");
+			}
+			input[type="radio"],
+			input[type="radio"]:hover:disabled {
+				background-color: var(--d2l-color-regolith);
+				border-color: var(--d2l-color-mica);
+				border-width: 1px;
+			}
+			input[type="radio"]:hover,
+			input[type="radio"]:focus,
+			input[type="radio"].d2l-radio-button-focus {
+				border-color: var(--d2l-color-celestine);
+				border-width: 2px;
+				outline-width: 0;
+			}
+			input[type="radio"][aria-invalid="true"] {
+				border-color: var(--d2l-color-cinnabar);
+			}
+			input[type="radio"]:disabled,
+			:host([disabled]) .d2l-radio-button-label {
+				opacity: 0.5;
+			}
+		</style>
+		<label>
+			<input
+				type="radio"
+				aria-label$="[[ariaLabel]]"
+				aria-labelledby$="[[ariaLabelledby]]"
+				checked="{{checked}}"
+				disabled$="[[disabled]]"
+				name$="[[name]]"
+				on-change="_handleChange"
+				on-focus="_handleFocus"
+				value$="[[value]]" />
+			<span class="d2l-input-radio-button-label"><slot></slot></span>
+		</label>
+	</template>
+	<script>
+		Polymer({
+			is: 'd2l-input-radio-button',
+			properties: {
+				/**
+				 * Fired when the checked state changes due to user interaction.
+				 *
+				 * @event change
+				*/
+				/**
+				 * Fired when the radio-button receives focus.
+				 *
+				 * @event focus
+				*/
+				/**
+				 * Gets or sets the [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-label_attribute)
+				 * attribute, which defines a string label for the radio button. Must be used when
+				 * an explicit label (through child elements) isn't provided.
+				 */
+				ariaLabel: {
+					type: String,
+					reflectToAttribute: true
+				},
+				/**
+				 * Gets or sets the [aria-labelledby attribute](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-labelledby_attribute),
+				 * which contains the IDs of labels for the radio button.
+				 */
+				ariaLabelledby: {
+					type: String
+				},
+				/**
+				 * Gets or sets the state of the radio button, `true` is checked and `false` is unchecked.
+				 */
+				checked: {
+					type: Boolean,
+					reflectToAttribute: true,
+					value: false
+				},
+				/**
+				 * Gets or sets the disabled state of the radio button, `true` is disabled and `false` is enabled.
+				 */
+				disabled: {
+					type: Boolean,
+					reflectToAttribute: true,
+					value: false
+				},
+				/**
+				 * Gets or sets the radio name, "" by default.
+				 */
+				name: {
+					type: String,
+					reflectToAttribute: true,
+					value: ''
+				},
+				/**
+				 * Gets or sets the radio value that gets submitted in forms, "on" by default.
+				 */
+				value: {
+					type: String,
+					reflectToAttribute: true,
+					value: 'on'
+				}
+			},
+			focus: function() {
+				this.$$('input').focus();
+			},
+			_handleChange: function(e) {
+				this.checked = e.target.checked;
+
+				// in shady DOM the input's "change" event will leak through,
+				// so no need to fire it
+				if (Polymer.Element || Polymer.Settings.useShadow) {
+					this.dispatchEvent(new CustomEvent(
+						'change',
+						{bubbles: true, composed: false}
+					));
+				}
+			},
+			_handleFocus: function() {
+				// in shady DOM the input's "focus" event does not bubble,
+				// so no need to fire it
+				if (!Polymer.Settings.useShadow) {
+					this.dispatchEvent(new CustomEvent(
+						'focus',
+						{bubbles: true, composed: false}
+					));
+				}
+			}
+		});
+	</script>
+</dom-module>
