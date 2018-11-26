@@ -10,6 +10,7 @@
 		<link rel="import" href="../../d2l-typography/d2l-typography.html">
 		<link rel="import" href="../d2l-input-radio-button.html">
 		<link rel="import" href="../d2l-input-radio-button-spacer.html">
+		<link rel="import" href="./d2l-input-radio-button-demo-component.html">
 		<custom-style>
 			<style is="custom-style" include="demo-pages-shared-styles"></style>
 		</custom-style>
@@ -28,8 +29,8 @@
 			<h3>Simple radio button with label</h3>
 			<demo-snippet>
 				<template>
-					<d2l-input-radio-button checked>Checked item</d2l-input-radio-button>
-					<d2l-input-radio-button>Unchecked item</d2l-input-radio-button>
+					<d2l-input-radio-button name="options" checked>Checked <b>bold</b> item</d2l-input-radio-button>
+					<d2l-input-radio-button name="options">Unchecked item</d2l-input-radio-button>
 				</template>
 			</demo-snippet>
 
@@ -65,6 +66,13 @@
 						Additional content can go here and will<br>
 						also line up nicely with the radio button.
 					</d2l-input-radio-button-spacer>
+				</template>
+			</demo-snippet>
+
+			<h3>Radio button in a demo component</h3>
+			<demo-snippet>
+				<template>
+					<d2l-input-radio-button-demo-component></d2l-input-radio-button-demo-component>
 				</template>
 			</demo-snippet>
 

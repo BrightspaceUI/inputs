@@ -186,6 +186,13 @@ Polymer-based web component for D2L radio buttons
 						{bubbles: true, composed: false}
 					));
 				}
+			},
+			_attachDom: function(dom) {
+				var slot = dom.querySelector('.d2l-input-radio-button-label');
+				while (this.firstChild) {
+					slot.appendChild(this.firstChild);
+				}
+				this.appendChild(dom);
 			}
 		});
 	</script>
