@@ -134,7 +134,7 @@
 								expect(e.target.checked).to.equal(true);
 								elem.removeEventListener('change', listener);
 								done();
-							}
+							};
 							elem.addEventListener('change', listener);
 							MockInteractions.tap(input);
 						});
