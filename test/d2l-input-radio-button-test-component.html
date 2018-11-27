@@ -1,0 +1,30 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../d2l-input-radio-button.html">
+
+<!--
+`d2l-input-radio-button-test-component`
+Test component to act as a parent of radio buttons
+
+-->
+
+<dom-module id="d2l-input-radio-button-test-component">
+	<template strip-whitespace>
+		<style>
+			:host {
+				display: block;
+			}
+
+			d2l-input-radio-button {
+				display: block;
+			}
+		</style>
+		<div>Hello</div>
+		<d2l-input-radio-button name="test-group" checked></d2l-input-radio-button>
+		<d2l-input-radio-button name="test-group"></d2l-input-radio-button>
+	</template>
+	<script>
+		Polymer({
+			is: 'd2l-input-radio-button-test-component',
+		});
+	</script>
+</dom-module>

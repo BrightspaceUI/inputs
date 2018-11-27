@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="rtl">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
@@ -21,6 +21,10 @@
 			html {
 				font-size: 20px;
 			}
+
+			d2l-input-radio-button {
+				display: block;
+			}
 		</style>
 	</head>
 	<body unresolved class="d2l-typography">
@@ -30,7 +34,7 @@
 			<demo-snippet>
 				<template>
 					<d2l-input-radio-button name="options" checked>Checked <b>bold</b> item</d2l-input-radio-button>
-					<d2l-input-radio-button name="options">Unchecked item</d2l-input-radio-button>
+					<d2l-input-radio-button name="options" value="off">Unchecked item</d2l-input-radio-button>
 				</template>
 			</demo-snippet>
 

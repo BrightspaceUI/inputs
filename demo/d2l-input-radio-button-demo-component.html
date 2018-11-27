@@ -1,0 +1,56 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../d2l-input-radio-button.html">
+
+<!--
+`d2l-input-radio-button-demo-component`
+Demo component to act as a parent of radio buttons
+
+-->
+
+<dom-module id="d2l-input-radio-button-demo-component">
+	<template strip-whitespace>
+		<style>
+			:host {
+				display: block;
+			}
+
+			d2l-input-radio-button {
+				display: block;
+			}
+
+		</style>
+
+		<d2l-input-radio-button name="databind" checked>
+			<template is="dom-repeat" items="[[numbers]]">
+				<span>[[item]]</span>
+			</template>
+			Checked <b>bold</b> item
+		</d2l-input-radio-button>
+		<d2l-input-radio-button name="databind">Unchecked [[counter]] item</d2l-input-radio-button>
+		<button on-tap="increment">Increment</button>
+		<p>This is the counter value: [[counter]]</p>
+	</template>
+	<script>
+		Polymer({
+			is: 'd2l-input-radio-button-demo-component',
+			properties: {
+				counter: {
+					type: Number,
+					value: 0,
+				},
+				numbers: {
+					type: Array,
+					value: function() {
+						return [
+							1, 2, 3
+						];
+					}
+				}
+			},
+			increment: function() {
+				this.counter += 1;
+				this.push('numbers', this.counter);
+			}
+		});
+	</script>
+</dom-module>

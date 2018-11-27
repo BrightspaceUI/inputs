@@ -1,4 +1,4 @@
-<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../d2l-colors/d2l-colors.html">
 <link rel="import" href="../d2l-typography/d2l-typography-shared-styles.html">
 
@@ -12,11 +12,11 @@ Polymer-based web component for D2L radio buttons
 <dom-module id="d2l-input-radio-button">
 	<template strip-whitespace>
 		<style>
-			:host {
+			.pseudo-host {
 				display: block;
 				margin-bottom: 0.9rem;
 			}
-			:host([aria-label]) {
+			.pseudo-host[has-aria-label] {
 				display: inline-block;
 				margin-bottom: 0;
 			}
@@ -32,12 +32,12 @@ Polymer-based web component for D2L radio buttons
 				vertical-align: middle;
 				white-space: normal;
 			}
-			:host-context([dir="rtl"]) .d2l-input-radio-button-label {
+			[dir="rtl"] .d2l-input-radio-button-label,
+			:dir(rtl) .d2l-input-radio-button-label {
 				margin-left: 0;
 				margin-right: 0.5rem;
 			}
-			:host([aria-label]) .d2l-input-radio-button-label,
-			:host-context([dir="rtl"][aria-label]) .d2l-input-radio-button-label {
+			.pseudo-host[has-aria-label] .d2l-input-radio-button-label {
 				margin-left: 0;
 				margin-right: 0;
 			}
@@ -81,23 +81,25 @@ Polymer-based web component for D2L radio buttons
 				border-color: var(--d2l-color-cinnabar);
 			}
 			input[type="radio"]:disabled,
-			:host([disabled]) .d2l-radio-button-label {
+			.pseudo-host[disabled] .d2l-input-radio-button-label {
 				opacity: 0.5;
 			}
 		</style>
-		<label>
-			<input
-				type="radio"
-				aria-label$="[[ariaLabel]]"
-				aria-labelledby$="[[ariaLabelledby]]"
-				checked="{{checked}}"
-				disabled$="[[disabled]]"
-				name$="[[name]]"
-				on-change="_handleChange"
-				on-focus="_handleFocus"
-				value$="[[value]]" />
-			<span class="d2l-input-radio-button-label"><slot></slot></span>
-		</label>
+		<div class="pseudo-host" has-aria-label$="[[ariaLabel]]" disabled$=[[disabled]]>
+			<label>
+				<input
+					type="radio"
+					aria-label$="[[ariaLabel]]"
+					aria-labelledby$="[[ariaLabelledby]]"
+					disabled$="[[disabled]]"
+					checked="[[checked]]"
+					name$="[[name]]"
+					on-change="_handleChange"
+					on-focus="_handleFocus"
+					value$="[[value]]" />
+				<span class="d2l-input-radio-button-label"><slot></slot></span>
+			</label>
+		</div>
 	</template>
 	<script>
 		Polymer({
@@ -131,10 +133,12 @@ Polymer-based web component for D2L radio buttons
 				},
 				/**
 				 * Gets or sets the state of the radio button, `true` is checked and `false` is unchecked.
+				 * IMPORTANT: This may not reflect the actual state of the underylying radio button if it
+				 * was changed in the background as a result of being part of a radio button group.
+				 * Use isChecked to get the value of the underlying radio button's checked property.
 				 */
 				checked: {
 					type: Boolean,
-					reflectToAttribute: true,
 					value: false
 				},
 				/**
@@ -162,8 +166,19 @@ Polymer-based web component for D2L radio buttons
 					value: 'on'
 				}
 			},
+			/**
+			 * Gets the check property of the underlying radio button
+			 */
+			get isChecked() {
+				try {
+					var c = this.querySelector('input').checked;
+					return c;
+				} catch (e) {
+					return false;
+				}
+			},
 			focus: function() {
-				this.$$('input').focus();
+				this.querySelector('input').focus();
 			},
 			_handleChange: function(e) {
 				this.checked = e.target.checked;
@@ -178,14 +193,12 @@ Polymer-based web component for D2L radio buttons
 				}
 			},
 			_handleFocus: function() {
-				// in shady DOM the input's "focus" event does not bubble,
-				// so no need to fire it
-				if (!Polymer.Settings.useShadow) {
-					this.dispatchEvent(new CustomEvent(
-						'focus',
-						{bubbles: true, composed: false}
-					));
-				}
+				// As this element is rendered into the light DOM we need to
+				// force it to fire focus events
+				this.dispatchEvent(new CustomEvent(
+					'focus',
+					{bubbles: true, composed: false}
+				));
 			},
 			_attachDom: function(dom) {
 				var slot = dom.querySelector('.d2l-input-radio-button-label');

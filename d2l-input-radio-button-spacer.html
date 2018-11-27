@@ -14,7 +14,12 @@ Spacer to align secondary content with radio-button
 				padding-left: 1.7rem;
 				margin-bottom: 0.9rem;
 			}
+			/* Do not combine these rtl styles. It seems to break Polymer 1/2 compatibility in IE/Edge */
 			:host-context([dir="rtl"]) {
+				padding-right: 1.7rem;
+				padding-left: 0;
+			}
+			:dir(rtl) {
 				padding-right: 1.7rem;
 				padding-left: 0;
 			}
