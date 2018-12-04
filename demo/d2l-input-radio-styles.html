@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>d2l-inputs demo</title>
+		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+		<link rel="import" href="../../d2l-typography/d2l-typography.html">
+		<link rel="import" href="../d2l-input-radio-styles.html">
+		<custom-style>
+			<style is="custom-style" include="demo-pages-shared-styles"></style>
+		</custom-style>
+		<custom-style include="d2l-typography">
+			<style is="custom-style" include="d2l-typography"></style>
+		</custom-style>
+		<custom-style include="d2l-input-radio-styles">
+			<style is="custom-style" include="d2l-input-radio-styles"></style>
+		</custom-style>
+		<style>
+			html {
+				font-size: 20px;
+			}
+		</style>
+	</head>
+	<body unresolved class="d2l-typography">
+		<div class="vertical-section-container centered">
+
+			<h3>Simple radio button with label</h3>
+			<demo-snippet>
+				<template>
+					<label class="d2l-input-radio-label">
+						<input name="ex1" type="radio" checked>Checked item
+					</label>
+					<label class="d2l-input-radio-label">
+						<input name="ex1" type="radio">Unchecked item
+					</label>
+
+				</template>
+			</demo-snippet>
+
+			<h3>Radio button with multi-line label</h3>
+			<demo-snippet>
+				<template>
+					<label class="d2l-input-radio-label" style="width:200px;">
+						<input name="ex2" type="radio" checked>
+						Label for radio button that wraps nicely onto
+						multiple lines and stays aligned
+					</label>
+					<label class="d2l-input-radio-label" style="width:200px;">
+						<input name="ex2" type="radio">
+						And this is another label that will also wrap
+						onto additional lines
+					</label>
+				</template>
+			</demo-snippet>
+
+			<h3>Radio button with hidden label</h3>
+			<demo-snippet>
+				<template>
+					<input name="ex3" type="radio" checked aria-label="Label for radio button 1">
+					<br/>
+					<input name="ex3" type="radio" aria-label="Label for radio button 2">
+				</template>
+			</demo-snippet>
+
+			<h3>Disabled radio button</h3>
+			<demo-snippet>
+				<template>
+					<label class="d2l-input-radio-label disabled">
+						<input name="ex4" type="radio" checked disabled>Checked item
+					</label>
+					<label class="d2l-input-radio-label disabled">
+						<input name="ex4" type="radio" disabled>Unchecked item
+					</label>
+				</template>
+			</demo-snippet>
+
+			<h3>Disabled radio button with hidden label</h3>
+			<demo-snippet>
+				<template>
+					<input name="ex5" type="radio" checked disabled aria-label="Label for radio button 1">
+					<br/>
+					<input name="ex5" type="radio" checked disabled aria-label="Label for radio button 2">
+				</template>
+			</demo-snippet>
+		</div>
+	</body>
+</html>
