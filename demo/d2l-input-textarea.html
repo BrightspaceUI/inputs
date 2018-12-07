@@ -141,6 +141,15 @@
 			<div id="output">Event target.value will be shown here</div>
 		</template>
 		</demo-snippet>
+
+		<script>
+			window.addEventListener('WebComponentsReady', function() {
+				document.body.addEventListener('change', function(e) {
+					// eslint-disable-next-line no-console
+					console.log('input change:', e.target.value, e.target);
+				});
+			});
+		</script>
 	</div>
 	</body>
 </html>

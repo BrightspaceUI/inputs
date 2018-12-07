@@ -124,9 +124,8 @@ Polymer-based web component for D2L text inputs
 				}
 			},
 			_handleChange: function() {
-				if (Polymer.Element) {
-					// This custom focus event is only needed for Polymer 1. We should
-					// be able to remove this event once we move to Polymer 2.
+				if (Polymer.Element || Polymer.Settings.useShadow) {
+					// Change events don't automatically propagate across shadow DOM boundaries
 					this.dispatchEvent(new CustomEvent(
 						'change',
 						{bubbles: true, composed: false}
