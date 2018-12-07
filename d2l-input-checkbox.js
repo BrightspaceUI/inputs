@@ -42,16 +42,12 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-checkbox">
 				vertical-align: middle;
 				white-space: normal;
 			}
-			:host-context([dir="rtl"]) .d2l-input-checkbox-label {
-				margin-right: 0.5rem;
-				margin-left: 0;
-			}
+
 			:host(:dir(rtl)) .d2l-input-checkbox-label {
 				margin-right: 0.5rem;
 				margin-left: 0;
 			}
-			:host([aria-label]) .d2l-input-checkbox-label,
-			:host-context([dir="rtl"][aria-label]) .d2l-input-checkbox-label {
+			:host([aria-label]) .d2l-input-checkbox-label {
 				margin-left: 0;
 				margin-right: 0;
 			}
