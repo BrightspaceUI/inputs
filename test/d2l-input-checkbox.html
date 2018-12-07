@@ -4,10 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 		<title>d2l-input-checkbox test</title>
-		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../web-component-tester/browser.js"></script>
-		<link rel="import" href="../../iron-test-helpers/mock-interactions.html">
-		<link rel="import" href="../d2l-input-checkbox.html">
+		<script src="../../@babel/polyfill/browser.js"></script>
+		<script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+		<script src="../../wct-browser-legacy/browser.js"></script>
+		<script type="module" src="../../@polymer/iron-test-helpers/mock-interactions.js"></script>
+		<script type="module" src="../d2l-input-checkbox.js"></script>
 	</head>
 	<body>
 		<test-fixture id="basic">
@@ -30,322 +31,326 @@
 				<d2l-input-checkbox name="cb-name" value="cb-value" label="name-value"></d2l-input-checkbox>
 			</template>
 		</test-fixture>
-		<script>
-			describe('d2l-input-checkbox', function() {
+		<script type="module">
+import '@polymer/iron-test-helpers/mock-interactions.js';
+import '../d2l-input-checkbox.js';
+import { Element } from '@polymer/polymer/polymer-element.js';
+import { useShadow } from '@polymer/polymer/lib/utils/settings.js';
+describe('d2l-input-checkbox', function() {
 
-				var elem;
+	var elem;
 
-				describe('basic', function() {
+	describe('basic', function() {
 
-					it('should instantiate the element', function() {
-						elem = fixture('basic');
-						expect(elem.is).to.equal('d2l-input-checkbox');
-					});
+		it('should instantiate the element', function() {
+			elem = fixture('basic');
+			expect(elem.is).to.equal('d2l-input-checkbox');
+		});
 
-				});
+	});
 
-				describe('checked', function() {
+	describe('checked', function() {
 
-					describe('checked-false', function() {
+		describe('checked-false', function() {
 
-						beforeEach(function() {
-							elem = fixture('basic');
-						});
-
-						it('should default "checked" to false', function() {
-							expect(elem.checked).to.be.false;
-							expect(elem.hasAttribute('checked')).to.be.false;
-							expect(elem.$$('input').checked).to.be.false;
-						});
-
-						it('should reflect "checked" property change to attribute and input', function() {
-							elem.checked = true;
-							expect(elem.hasAttribute('checked')).to.be.true;
-							expect(elem.$$('input').checked).to.be.true;
-						});
-
-						it('should reflect "checked" attribute change to property and input', function() {
-							elem.setAttribute('checked', 'checked');
-							expect(elem.checked).to.be.true;
-							expect(elem.$$('input').checked).to.be.true;
-						});
-
-						it('should reflect input "checked" change to attribute and property', function() {
-							elem.$$('input').click();
-							expect(elem.checked).to.be.true;
-							expect(elem.hasAttribute('checked')).to.be.true;
-						});
-
-					});
-
-					describe('checked-true', function() {
-
-						beforeEach(function() {
-							elem = fixture('checked');
-						});
-
-						it('should default "checked" to true', function() {
-							expect(elem.checked).to.be.true;
-							expect(elem.hasAttribute('checked')).to.be.true;
-							expect(elem.$$('input').checked).to.be.true;
-						});
-
-						it('should reflect "checked" property change to attribute and input', function() {
-							elem.checked = false;
-							expect(elem.hasAttribute('checked')).to.be.false;
-							expect(elem.$$('input').checked).to.be.false;
-						});
-
-						it('should reflect "checked" attribute change to property and input', function() {
-							elem.removeAttribute('checked');
-							expect(elem.checked).to.be.false;
-							expect(elem.$$('input').checked).to.be.false;
-						});
-
-						it('should reflect input "checked" change to attribute and property', function() {
-							elem.$$('input').click();
-							expect(elem.checked).to.be.false;
-							expect(elem.hasAttribute('checked')).to.be.false;
-						});
-
-					});
-
-					describe('checked-change-event', function() {
-
-						beforeEach(function() {
-							elem = fixture('basic');
-						});
-
-						it('should fire "change" event when input element is clicked', function(done) {
-							var input = elem.$$('input');
-							elem.addEventListener('change', function(e) {
-								if (Polymer.Element || Polymer.Settings.useShadow) {
-									expect(e.target).to.equal(elem);
-								} else {
-									expect(e.target).to.equal(input);
-								}
-								done();
-							});
-							MockInteractions.tap(input);
-						});
-
-						it('should reflect that a previously unchecked input is now checked', function(done) {
-							var input = elem.$$('input');
-							elem.addEventListener('change', function(e) {
-								expect(e.target.checked).to.equal(true);
-								done();
-							});
-							MockInteractions.tap(input);
-						});
-
-						it('should reflect that a previously checked input is now unchecked', function(done) {
-							elem = fixture('checked');
-							var input = elem.$$('input');
-
-							elem.addEventListener('change', function(e) {
-								expect(e.target.checked).to.equal(false);
-								done();
-							});
-							MockInteractions.tap(input);
-						});
-
-					});
-
-				});
-
-				describe('disabled', function() {
-
-					describe('disabled-false', function() {
-
-						beforeEach(function() {
-							elem = fixture('basic');
-						});
-
-						it('should default "disabled" to false', function() {
-							expect(elem.disabled).to.be.false;
-							expect(elem.hasAttribute('disabled')).to.be.false;
-							expect(elem.$$('input').disabled).to.be.false;
-						});
-
-						it('should reflect "disabled" property change to attribute and input', function() {
-							elem.disabled = true;
-							expect(elem.hasAttribute('disabled')).to.be.true;
-							expect(elem.$$('input').disabled).to.be.true;
-						});
-
-						it('should reflect "disabled" attribute change to property and input', function() {
-							elem.setAttribute('disabled', 'disabled');
-							expect(elem.disabled).to.be.true;
-							expect(elem.$$('input').disabled).to.be.true;
-						});
-
-					});
-
-					describe('disabled-true', function() {
-
-						beforeEach(function() {
-							elem = fixture('disabled');
-						});
-
-						it('should default "disabled" to true', function() {
-							expect(elem.disabled).to.be.true;
-							expect(elem.hasAttribute('disabled')).to.be.true;
-							expect(elem.$$('input').disabled).to.be.true;
-						});
-
-						it('should reflect "disabled" property change to attribute and input', function() {
-							elem.disabled = false;
-							expect(elem.hasAttribute('disabled')).to.be.false;
-							expect(elem.$$('input').disabled).to.be.false;
-						});
-
-						it('should reflect "disabled" attribute change to property and input', function() {
-							elem.removeAttribute('disabled');
-							expect(elem.disabled).to.be.false;
-							expect(elem.$$('input').disabled).to.be.false;
-						});
-
-					});
-
-				});
-
-				describe('value', function() {
-
-					describe('default', function() {
-
-						beforeEach(function() {
-							elem = fixture('basic');
-						});
-
-						it('should default "value" to "on"', function() {
-							expect(elem.value).to.equal('on');
-							expect(elem.getAttribute('value')).to.equal('on');
-							expect(elem.$$('input').value).to.equal('on');
-						});
-
-						it('should reflect "value" property change to attribute and input', function() {
-							elem.value = 'new value';
-							expect(elem.getAttribute('value')).to.equal('new value');
-							expect(elem.$$('input').value).to.equal('new value');
-						});
-
-						it('should reflect "value" attribute change to property and input', function() {
-							elem.setAttribute('value', 'new value');
-							expect(elem.value).to.equal('new value');
-							expect(elem.$$('input').value).to.equal('new value');
-						});
-
-					});
-
-					describe('set', function() {
-
-						beforeEach(function() {
-							elem = fixture('name-value');
-						});
-
-						it('should default "value" to "cb-value"', function() {
-							expect(elem.value).to.equal('cb-value');
-							expect(elem.getAttribute('value')).to.equal('cb-value');
-							expect(elem.$$('input').value).to.equal('cb-value');
-						});
-
-						it('should reflect "value" property change to attribute and input', function() {
-							elem.value = 'new value';
-							expect(elem.getAttribute('value')).to.equal('new value');
-							expect(elem.$$('input').value).to.equal('new value');
-						});
-
-						it('should reflect "value" attribute change to property and input', function() {
-							elem.setAttribute('value', 'new value');
-							expect(elem.value).to.equal('new value');
-							expect(elem.$$('input').value).to.equal('new value');
-						});
-
-					});
-
-				});
-
-				describe('name', function() {
-
-					describe('default', function() {
-
-						beforeEach(function() {
-							elem = fixture('basic');
-						});
-
-						it('should default "name" to ""', function() {
-							expect(elem.name).to.equal('');
-							expect(elem.$$('input').name).to.equal('');
-							expect(elem.getAttribute('name')).to.equal('');
-						});
-
-						it('should reflect "name" property change to attribute and input', function() {
-							elem.name = 'new name';
-							expect(elem.getAttribute('name')).to.equal('new name');
-							expect(elem.$$('input').name).to.equal('new name');
-						});
-
-						it('should reflect "name" attribute change to property and input', function() {
-							elem.setAttribute('name', 'new name');
-							expect(elem.name).to.equal('new name');
-							expect(elem.$$('input').name).to.equal('new name');
-						});
-
-					});
-
-					describe('set', function() {
-
-						beforeEach(function() {
-							elem = fixture('name-value');
-						});
-
-						it('should default "name" to "cb-name"', function() {
-							expect(elem.name).to.equal('cb-name');
-							expect(elem.getAttribute('name')).to.equal('cb-name');
-							expect(elem.$$('input').name).to.equal('cb-name');
-						});
-
-						it('should reflect "name" property change to attribute and input', function() {
-							elem.name = 'new name';
-							expect(elem.getAttribute('name')).to.equal('new name');
-							expect(elem.$$('input').name).to.equal('new name');
-						});
-
-						it('should reflect "name" attribute change to property and input', function() {
-							elem.setAttribute('name', 'new name');
-							expect(elem.name).to.equal('new name');
-							expect(elem.$$('input').name).to.equal('new name');
-						});
-
-					});
-
-				});
-
-				describe('focus management', function() {
-
-					beforeEach(function() {
-						elem = fixture('basic');
-					});
-
-					it('should fire "focus" event when input element is focussed', function(done) {
-						elem.addEventListener('focus', function(e) {
-							expect(e.target).to.equal(elem);
-							done();
-						});
-						MockInteractions.focus(elem.$$('input'));
-					});
-
-					it('should fire "focus" event when custom element is focussed', function(done) {
-						elem.addEventListener('focus', function(e) {
-							expect(e.target).to.equal(elem);
-							done();
-						});
-						MockInteractions.focus(elem);
-					});
-
-				});
-
+			beforeEach(function() {
+				elem = fixture('basic');
 			});
-		</script>
+
+			it('should default "checked" to false', function() {
+				expect(elem.checked).to.be.false;
+				expect(elem.hasAttribute('checked')).to.be.false;
+				expect(elem.$$('input').checked).to.be.false;
+			});
+
+			it('should reflect "checked" property change to attribute and input', function() {
+				elem.checked = true;
+				expect(elem.hasAttribute('checked')).to.be.true;
+				expect(elem.$$('input').checked).to.be.true;
+			});
+
+			it('should reflect "checked" attribute change to property and input', function() {
+				elem.setAttribute('checked', 'checked');
+				expect(elem.checked).to.be.true;
+				expect(elem.$$('input').checked).to.be.true;
+			});
+
+			it('should reflect input "checked" change to attribute and property', function() {
+				elem.$$('input').click();
+				expect(elem.checked).to.be.true;
+				expect(elem.hasAttribute('checked')).to.be.true;
+			});
+
+		});
+
+		describe('checked-true', function() {
+
+			beforeEach(function() {
+				elem = fixture('checked');
+			});
+
+			it('should default "checked" to true', function() {
+				expect(elem.checked).to.be.true;
+				expect(elem.hasAttribute('checked')).to.be.true;
+				expect(elem.$$('input').checked).to.be.true;
+			});
+
+			it('should reflect "checked" property change to attribute and input', function() {
+				elem.checked = false;
+				expect(elem.hasAttribute('checked')).to.be.false;
+				expect(elem.$$('input').checked).to.be.false;
+			});
+
+			it('should reflect "checked" attribute change to property and input', function() {
+				elem.removeAttribute('checked');
+				expect(elem.checked).to.be.false;
+				expect(elem.$$('input').checked).to.be.false;
+			});
+
+			it('should reflect input "checked" change to attribute and property', function() {
+				elem.$$('input').click();
+				expect(elem.checked).to.be.false;
+				expect(elem.hasAttribute('checked')).to.be.false;
+			});
+
+		});
+
+		describe('checked-change-event', function() {
+
+			beforeEach(function() {
+				elem = fixture('basic');
+			});
+
+			it('should fire "change" event when input element is clicked', function(done) {
+				var input = elem.$$('input');
+				elem.addEventListener('change', function(e) {
+					if (Element || useShadow) {
+						expect(e.target).to.equal(elem);
+					} else {
+						expect(e.target).to.equal(input);
+					}
+					done();
+				});
+				MockInteractions.tap(input);
+			});
+
+			it('should reflect that a previously unchecked input is now checked', function(done) {
+				var input = elem.$$('input');
+				elem.addEventListener('change', function(e) {
+					expect(e.target.checked).to.equal(true);
+					done();
+				});
+				MockInteractions.tap(input);
+			});
+
+			it('should reflect that a previously checked input is now unchecked', function(done) {
+				elem = fixture('checked');
+				var input = elem.$$('input');
+
+				elem.addEventListener('change', function(e) {
+					expect(e.target.checked).to.equal(false);
+					done();
+				});
+				MockInteractions.tap(input);
+			});
+
+		});
+
+	});
+
+	describe('disabled', function() {
+
+		describe('disabled-false', function() {
+
+			beforeEach(function() {
+				elem = fixture('basic');
+			});
+
+			it('should default "disabled" to false', function() {
+				expect(elem.disabled).to.be.false;
+				expect(elem.hasAttribute('disabled')).to.be.false;
+				expect(elem.$$('input').disabled).to.be.false;
+			});
+
+			it('should reflect "disabled" property change to attribute and input', function() {
+				elem.disabled = true;
+				expect(elem.hasAttribute('disabled')).to.be.true;
+				expect(elem.$$('input').disabled).to.be.true;
+			});
+
+			it('should reflect "disabled" attribute change to property and input', function() {
+				elem.setAttribute('disabled', 'disabled');
+				expect(elem.disabled).to.be.true;
+				expect(elem.$$('input').disabled).to.be.true;
+			});
+
+		});
+
+		describe('disabled-true', function() {
+
+			beforeEach(function() {
+				elem = fixture('disabled');
+			});
+
+			it('should default "disabled" to true', function() {
+				expect(elem.disabled).to.be.true;
+				expect(elem.hasAttribute('disabled')).to.be.true;
+				expect(elem.$$('input').disabled).to.be.true;
+			});
+
+			it('should reflect "disabled" property change to attribute and input', function() {
+				elem.disabled = false;
+				expect(elem.hasAttribute('disabled')).to.be.false;
+				expect(elem.$$('input').disabled).to.be.false;
+			});
+
+			it('should reflect "disabled" attribute change to property and input', function() {
+				elem.removeAttribute('disabled');
+				expect(elem.disabled).to.be.false;
+				expect(elem.$$('input').disabled).to.be.false;
+			});
+
+		});
+
+	});
+
+	describe('value', function() {
+
+		describe('default', function() {
+
+			beforeEach(function() {
+				elem = fixture('basic');
+			});
+
+			it('should default "value" to "on"', function() {
+				expect(elem.value).to.equal('on');
+				expect(elem.getAttribute('value')).to.equal('on');
+				expect(elem.$$('input').value).to.equal('on');
+			});
+
+			it('should reflect "value" property change to attribute and input', function() {
+				elem.value = 'new value';
+				expect(elem.getAttribute('value')).to.equal('new value');
+				expect(elem.$$('input').value).to.equal('new value');
+			});
+
+			it('should reflect "value" attribute change to property and input', function() {
+				elem.setAttribute('value', 'new value');
+				expect(elem.value).to.equal('new value');
+				expect(elem.$$('input').value).to.equal('new value');
+			});
+
+		});
+
+		describe('set', function() {
+
+			beforeEach(function() {
+				elem = fixture('name-value');
+			});
+
+			it('should default "value" to "cb-value"', function() {
+				expect(elem.value).to.equal('cb-value');
+				expect(elem.getAttribute('value')).to.equal('cb-value');
+				expect(elem.$$('input').value).to.equal('cb-value');
+			});
+
+			it('should reflect "value" property change to attribute and input', function() {
+				elem.value = 'new value';
+				expect(elem.getAttribute('value')).to.equal('new value');
+				expect(elem.$$('input').value).to.equal('new value');
+			});
+
+			it('should reflect "value" attribute change to property and input', function() {
+				elem.setAttribute('value', 'new value');
+				expect(elem.value).to.equal('new value');
+				expect(elem.$$('input').value).to.equal('new value');
+			});
+
+		});
+
+	});
+
+	describe('name', function() {
+
+		describe('default', function() {
+
+			beforeEach(function() {
+				elem = fixture('basic');
+			});
+
+			it('should default "name" to ""', function() {
+				expect(elem.name).to.equal('');
+				expect(elem.$$('input').name).to.equal('');
+				expect(elem.getAttribute('name')).to.equal('');
+			});
+
+			it('should reflect "name" property change to attribute and input', function() {
+				elem.name = 'new name';
+				expect(elem.getAttribute('name')).to.equal('new name');
+				expect(elem.$$('input').name).to.equal('new name');
+			});
+
+			it('should reflect "name" attribute change to property and input', function() {
+				elem.setAttribute('name', 'new name');
+				expect(elem.name).to.equal('new name');
+				expect(elem.$$('input').name).to.equal('new name');
+			});
+
+		});
+
+		describe('set', function() {
+
+			beforeEach(function() {
+				elem = fixture('name-value');
+			});
+
+			it('should default "name" to "cb-name"', function() {
+				expect(elem.name).to.equal('cb-name');
+				expect(elem.getAttribute('name')).to.equal('cb-name');
+				expect(elem.$$('input').name).to.equal('cb-name');
+			});
+
+			it('should reflect "name" property change to attribute and input', function() {
+				elem.name = 'new name';
+				expect(elem.getAttribute('name')).to.equal('new name');
+				expect(elem.$$('input').name).to.equal('new name');
+			});
+
+			it('should reflect "name" attribute change to property and input', function() {
+				elem.setAttribute('name', 'new name');
+				expect(elem.name).to.equal('new name');
+				expect(elem.$$('input').name).to.equal('new name');
+			});
+
+		});
+
+	});
+
+	describe('focus management', function() {
+
+		beforeEach(function() {
+			elem = fixture('basic');
+		});
+
+		it('should fire "focus" event when input element is focussed', function(done) {
+			elem.addEventListener('focus', function(e) {
+				expect(e.target).to.equal(elem);
+				done();
+			});
+			MockInteractions.focus(elem.$$('input'));
+		});
+
+		it('should fire "focus" event when custom element is focussed', function(done) {
+			elem.addEventListener('focus', function(e) {
+				expect(e.target).to.equal(elem);
+				done();
+			});
+			MockInteractions.focus(elem);
+		});
+
+	});
+
+});
+</script>
 	</body>
 </html>
