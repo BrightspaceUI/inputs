@@ -129,21 +129,8 @@
 			</template>
 			</demo-snippet>
 
-			<h3>d2l-input-textarea with change handler</h3>
-			<demo-snippet>
-			<template>
-				<d2l-input-textarea placeholder="Enter text and tab to see event result" rows="3" max-rows="3" onchange="handleTextAreaChange(event)"></d2l-input-textarea>
-				<div id="output">Event target.value will be shown here</div>
-			</template>
-			</demo-snippet>
-
 		</div>
 		<script>
-			// eslint-disable-next-line no-unused-vars
-			function handleTextAreaChange(e) {
-				document.getElementById('output').innerText = e.target.value;
-			}
-
 			document.body.addEventListener('change', function(e) {
 				// eslint-disable-next-line no-console
 				console.log('input change:', e.target.value, e.target);
