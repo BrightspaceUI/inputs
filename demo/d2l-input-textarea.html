@@ -35,119 +35,119 @@
 		</custom-style>
 	</head>
 	<body unresolved>
-	<div class="vertical-section-container centered">
-		<h3>An d2l-input-textarea grows automatically as more text is entered</h3>
-		<demo-snippet>
-		<template>
-			<d2l-input-textarea></d2l-input-textarea>
-		</template>
-		</demo-snippet>
-
-		<h3>The maximum height can be controlled either through the <i>max-rows</i>
-		property, or through a fixed max height</h3>
-		<demo-snippet>
-		<template>
-			<d2l-input-textarea max-rows="4" placeholder="scrolls after 4 rows"></d2l-input-textarea>
-			<d2l-input-textarea style="max-height: 50px;" placeholder="scrolls after 50px"></d2l-input-textarea>
-		</template>
-		</demo-snippet>
-
-		<h3>The initial height can also be controlled using the <i>rows</i> property,
-		or through a fixed height</h3>
-		<demo-snippet>
-		<template>
-			<d2l-input-textarea rows="4" placeholder="start with 4 rows"></d2l-input-textarea>
-			<d2l-input-textarea style="height: 50px;"></d2l-input-textarea>
-		</template>
-		</demo-snippet>
-
-		<h3>Example of updating the value imperatively</h3>
-		<demo-snippet>
-		<template>
-			<dom-bind>
-			<template is="dom-bind">
-				<div class="vertical-section">
-				<d2l-input-textarea value="{{value}}" id="a1"></d2l-input-textarea>
-				<p>bind to the d2l-input-textarea's <code>value</code>: {{value}}</p>
-
-				<br>
-				<p>Imperatively updating <code>ironAutogrowTextarea.value</code> will also update the
-				<code>textarea.value</code></p>
-				<button onclick="a1.value='pineapple'">Set value to 'pineapple'</button>
-
-				<br>
-				<p>Imperatively updating <code>ironAutogrowTextarea.textarea.value</code> will update
-				the display, but not update the internal <code>value</code></p>
-				<button onclick="a1.textarea.value='watermelon'">Set textarea.value to 'watermelon'</button>
-				</div>
+		<div class="vertical-section-container centered">
+			<h3>An d2l-input-textarea grows automatically as more text is entered</h3>
+			<demo-snippet>
+			<template>
+				<d2l-input-textarea></d2l-input-textarea>
 			</template>
-			</dom-bind>
-		</template>
-		</demo-snippet>
+			</demo-snippet>
 
-		<h3>Disabled</h3>
-		<demo-snippet>
-		<template>
-			<dom-bind>
-			<template is="dom-bind">
-				<div class="vertical-section">
-				<d2l-input-textarea disabled max-rows="4" placeholder="disabled with a placeholder"></d2l-input-textarea>
-				<d2l-input-textarea disabled value="disabled with a value"></d2l-input-textarea>
-				</div>
+			<h3>The maximum height can be controlled either through the <i>max-rows</i>
+			property, or through a fixed max height</h3>
+			<demo-snippet>
+			<template>
+				<d2l-input-textarea max-rows="4" placeholder="scrolls after 4 rows"></d2l-input-textarea>
+				<d2l-input-textarea style="max-height: 50px;" placeholder="scrolls after 50px"></d2l-input-textarea>
 			</template>
-			</dom-bind>
-		</template>
-		</demo-snippet>
+			</demo-snippet>
 
-		<h3>Invalid</h3>
-		<demo-snippet>
-		<template>
-			<dom-bind>
-			<template is="dom-bind">
-				<div class="vertical-section">
-				<d2l-input-textarea aria-invalid="true" placeholder="aria invalid"></d2l-input-textarea>
-				<d2l-input-textarea minlength="10" placeholder="minimum length of 10"></d2l-input-textarea>
-				</div>
+			<h3>The initial height can also be controlled using the <i>rows</i> property,
+			or through a fixed height</h3>
+			<demo-snippet>
+			<template>
+				<d2l-input-textarea rows="4" placeholder="start with 4 rows"></d2l-input-textarea>
+				<d2l-input-textarea style="height: 50px;"></d2l-input-textarea>
 			</template>
-			</dom-bind>
-		</template>
-		</demo-snippet>
+			</demo-snippet>
 
-		<h3>no-border and hover-styles</h3>
-		<demo-snippet>
-		<template>
-			<d2l-input-textarea no-border rows="3" placeholder="No border for embedding in tables or mobile views"></d2l-input-textarea>
-			<d2l-input-textarea hover-styles rows="3" placeholder="On hover/focus, square border in table cells"></d2l-input-textarea>
-			<d2l-input-textarea no-border hover-styles rows="3" placeholder="No border. On hover/focus, square border"></d2l-input-textarea>
-		</template>
-		</demo-snippet>
+			<h3>Example of updating the value imperatively</h3>
+			<demo-snippet>
+			<template>
+				<dom-bind>
+				<template is="dom-bind">
+					<div class="vertical-section">
+					<d2l-input-textarea value="{{value}}" id="a1"></d2l-input-textarea>
+					<p>bind to the d2l-input-textarea's <code>value</code>: {{value}}</p>
 
-		<h3>An d2l-input-textarea with autogrow disabled</h3>
-		<demo-snippet>
-		<template>
-			<d2l-input-textarea rows="3" max-rows="3" placeholder="No autogrow as rows === max-rows"></d2l-input-textarea>
-		</template>
-		</demo-snippet>
+					<br>
+					<p>Imperatively updating <code>ironAutogrowTextarea.value</code> will also update the
+					<code>textarea.value</code></p>
+					<button onclick="a1.value='pineapple'">Set value to 'pineapple'</button>
 
-		<h3>d2l-input-textarea with change handler</h3>
-		<demo-snippet>
-		<template>
-			<d2l-input-textarea placeholder="Enter text and tab to see event result" rows="3" max-rows="3" onchange="handleTextAreaChange(event)"></d2l-input-textarea>
-			<div id="output">Event target.value will be shown here</div>
-		</template>
-		</demo-snippet>
+					<br>
+					<p>Imperatively updating <code>ironAutogrowTextarea.textarea.value</code> will update
+					the display, but not update the internal <code>value</code></p>
+					<button onclick="a1.textarea.value='watermelon'">Set textarea.value to 'watermelon'</button>
+					</div>
+				</template>
+				</dom-bind>
+			</template>
+			</demo-snippet>
 
-	</div>
-	<script>
-		// eslint-disable-next-line no-unused-vars
-		function handleTextAreaChange(e) {
-			document.getElementById('output').innerText = e.target.value;
-		}
+			<h3>Disabled</h3>
+			<demo-snippet>
+			<template>
+				<dom-bind>
+				<template is="dom-bind">
+					<div class="vertical-section">
+					<d2l-input-textarea disabled max-rows="4" placeholder="disabled with a placeholder"></d2l-input-textarea>
+					<d2l-input-textarea disabled value="disabled with a value"></d2l-input-textarea>
+					</div>
+				</template>
+				</dom-bind>
+			</template>
+			</demo-snippet>
 
-		document.body.addEventListener('change', function(e) {
-			// eslint-disable-next-line no-console
-			console.log('input change:', e.target.value, e.target);
-		});
-	</script>
+			<h3>Invalid</h3>
+			<demo-snippet>
+			<template>
+				<dom-bind>
+				<template is="dom-bind">
+					<div class="vertical-section">
+					<d2l-input-textarea aria-invalid="true" placeholder="aria invalid"></d2l-input-textarea>
+					<d2l-input-textarea minlength="10" placeholder="minimum length of 10"></d2l-input-textarea>
+					</div>
+				</template>
+				</dom-bind>
+			</template>
+			</demo-snippet>
+
+			<h3>no-border and hover-styles</h3>
+			<demo-snippet>
+			<template>
+				<d2l-input-textarea no-border rows="3" placeholder="No border for embedding in tables or mobile views"></d2l-input-textarea>
+				<d2l-input-textarea hover-styles rows="3" placeholder="On hover/focus, square border in table cells"></d2l-input-textarea>
+				<d2l-input-textarea no-border hover-styles rows="3" placeholder="No border. On hover/focus, square border"></d2l-input-textarea>
+			</template>
+			</demo-snippet>
+
+			<h3>An d2l-input-textarea with autogrow disabled</h3>
+			<demo-snippet>
+			<template>
+				<d2l-input-textarea rows="3" max-rows="3" placeholder="No autogrow as rows === max-rows"></d2l-input-textarea>
+			</template>
+			</demo-snippet>
+
+			<h3>d2l-input-textarea with change handler</h3>
+			<demo-snippet>
+			<template>
+				<d2l-input-textarea placeholder="Enter text and tab to see event result" rows="3" max-rows="3" onchange="handleTextAreaChange(event)"></d2l-input-textarea>
+				<div id="output">Event target.value will be shown here</div>
+			</template>
+			</demo-snippet>
+
+		</div>
+		<script>
+			// eslint-disable-next-line no-unused-vars
+			function handleTextAreaChange(e) {
+				document.getElementById('output').innerText = e.target.value;
+			}
+
+			document.body.addEventListener('change', function(e) {
+				// eslint-disable-next-line no-console
+				console.log('input change:', e.target.value, e.target);
+			});
+		</script>
 	</body>
 </html>
