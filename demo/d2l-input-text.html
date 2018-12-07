@@ -55,7 +55,7 @@
 			window.addEventListener('WebComponentsReady', function() {
 				document.body.addEventListener('change', function(e) {
 					// eslint-disable-next-line no-console
-					console.log(e.target.value);
+					console.log('input change:', e.target.value, e.target);
 				});
 			});
 		</script>
