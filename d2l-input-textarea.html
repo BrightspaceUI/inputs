@@ -263,7 +263,7 @@ Custom property | Description | Default
 
 			fastdom.mutate(function() {
 				this.$.mirror.innerHTML = this._valueForMirror();
-			}, this);
+			}.bind(this), this);
 		},
 
 		_onInput: function(event) {
@@ -308,7 +308,7 @@ Custom property | Description | Default
 		_updateCached: function() {
 			fastdom.mutate(function() {
 				this.$.mirror.innerHTML = this._constrain(this.tokens);
-			}, this);
+			}.bind(this), this);
 		},
 
 		_handleChange: function() {
