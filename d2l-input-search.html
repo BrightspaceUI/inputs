@@ -215,7 +215,7 @@ Polymer-based web component for search
 					elem.addEventListener('blur', this._handleBlur, true);
 					elem.addEventListener('mouseenter', this._handleMouseEnter, true);
 					elem.addEventListener('mouseleave', this._handleMouseLeave, true);
-				});
+				}.bind(this));
 			},
 
 			detached: function() {
