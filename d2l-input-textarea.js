@@ -75,6 +75,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-textarea">
 				font-family: inherit;
 				line-height: inherit;
 				text-align: inherit;
+				overflow: auto;
 			}
 
 			:host([no-border]) textarea.d2l-input,
