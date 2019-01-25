@@ -56,7 +56,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 					padding: var(--d2l-input-padding-focus);
 				};
 				--d2l-input-invalid: {
-					border-color: var(--d2l-color-cinnabar);
+					border-color: var(--d2l-color-cinnabar) !important;
 				};
 				--d2l-input-disabled: {
 					opacity: 0.5;
@@ -95,8 +95,8 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 			textarea.d2l-input::-moz-placeholder {
 				@apply --d2l-input-placeholder;
 			}
-			input.d2l-input:-ms-input-placeholder,
-			textarea.d2l-input:-ms-input-placeholder {
+			input.d2l-input::-ms-input-placeholder,
+			textarea.d2l-input::-ms-input-placeholder {
 				@apply --d2l-input-placeholder;
 				/* IE will cause field to resize if placeholder font-size is different */
 				font-size: 0.8rem;
@@ -105,8 +105,8 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 			textarea.d2l-input:hover:disabled {
 				@apply --d2l-input-hover-disabled;
 			}
-			input.d2l-input:hover, input.d2l-input:focus,
-			textarea.d2l-input:hover, textarea.d2l-input:focus {
+			input.d2l-input:hover:not(:disabled), input.d2l-input:focus:not(:disabled),
+			textarea.d2l-input:hover:not(:disabled), textarea.d2l-input:focus:not(:disabled) {
 				@apply --d2l-input-hover-focus;
 			}
 			input.d2l-input[aria-invalid='true'], input.d2l-input:invalid,
