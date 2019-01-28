@@ -56,7 +56,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 					padding: var(--d2l-input-padding-focus);
 				};
 				--d2l-input-invalid: {
-					border-color: var(--d2l-color-cinnabar) !important;
+					border-color: var(--d2l-color-cinnabar);
 				};
 				--d2l-input-disabled: {
 					opacity: 0.5;
@@ -101,19 +101,40 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 				/* IE will cause field to resize if placeholder font-size is different */
 				font-size: 0.8rem;
 			}
-			input.d2l-input:hover:disabled,
-			textarea.d2l-input:hover:disabled {
-				@apply --d2l-input-hover-disabled;
-			}
-			input.d2l-input:hover:not(:disabled), input.d2l-input:focus:not(:disabled),
-			textarea.d2l-input:hover:not(:disabled), textarea.d2l-input:focus:not(:disabled) {
+			/* This selector duplication is required to work around specificity issues
+			   introduced by the ShadyCSS scoping shim. It applies an additional scoping
+			   class to the type attribute selector
+			*/
+			input[type="text"].d2l-input:hover, input[type="search"].d2l-input:hover,
+			input[type="tel"].d2l-input:hover, input[type="url"].d2l-input:hover,
+			input[type="email"].d2l-input:hover, input[type="password"].d2l-input:hover,
+			input[type="number"].d2l-input:hover,
+			input[type="text"].d2l-input:focus, input[type="search"].d2l-input:focus,
+			input[type="tel"].d2l-input:focus, input[type="url"].d2l-input:focus,
+			input[type="email"].d2l-input:focus, input[type="password"].d2l-input:focus,
+			input[type="number"].d2l-input:focus,
+			textarea.d2l-input:hover, textarea.d2l-input:focus {
 				@apply --d2l-input-hover-focus;
 			}
-			input.d2l-input[aria-invalid='true'], input.d2l-input:invalid,
+			input.d2l-input[aria-invalid='true'],
+			input[type="text"].d2l-input:invalid, input[type="search"].d2l-input:invalid,
+			input[type="tel"].d2l-input:invalid, input[type="url"].d2l-input:invalid,
+			input[type="email"].d2l-input:invalid, input[type="password"].d2l-input:invalid,
+			input[type="number"].d2l-input:invalid,
 			textarea.d2l-input[aria-invalid='true'], textarea.d2l-input:invalid {
 				@apply --d2l-input-invalid;
 			}
-			input.d2l-input:disabled,
+			input[type="text"].d2l-input:hover:disabled, input[type="search"].d2l-input:hover:disabled,
+			input[type="tel"].d2l-input:hover:disabled, input[type="url"].d2l-input:hover:disabled,
+			input[type="email"].d2l-input:hover:disabled, input[type="password"].d2l-input:hover:disabled,
+			input[type="number"].d2l-input:hover:disabled,
+			textarea.d2l-input:hover:disabled {
+				@apply --d2l-input-hover-disabled;
+			}
+			input[type="text"].d2l-input:disabled, input[type="search"].d2l-input:disabled,
+			input[type="tel"].d2l-input:disabled, input[type="url"].d2l-input:disabled,
+			input[type="email"].d2l-input:disabled, input[type="password"].d2l-input:disabled,
+			input[type="number"].d2l-input:disabled,
 			textarea.d2l-input:disabled {
 				@apply --d2l-input-disabled;
 			}
