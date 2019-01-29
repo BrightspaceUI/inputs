@@ -16,8 +16,6 @@ import 'd2l-polymer-behaviors/d2l-focusable-behavior.js';
 import './d2l-input-text-behavior.js';
 import './d2l-input-shared-styles.js';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { useShadow } from '@polymer/polymer/lib/utils/settings.js';
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<dom-module id="d2l-input-text">
@@ -34,7 +32,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-text">
 		</style>
 		<input aria-invalid$="[[ariaInvalid]]" aria-label$="[[ariaLabel]]" aria-labelledby$="[[ariaLabelledby]]" autofocus$="[[autofocus]]" class="d2l-input d2l-focusable" disabled$="[[disabled]]" list$="[[list]]" max$="[[max]]" maxlength$="[[maxlength]]" min$="[[min]]" minlength$="[[minlength]]" name$="[[name]]" on-change="_handleChange" on-keypress="_handleKeypress" pattern$="[[pattern]]" placeholder$="[[placeholder]]" readonly$="[[readonly]]" required$="[[required]]" size$="[[size]]" step$="[[step]]" tabindex$="[[tabIndex]]" type$="[[type]]" value="{{value::input}}">
 	</template>
-	
+
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);
@@ -113,13 +111,11 @@ Polymer({
 		}
 	},
 	_handleChange: function() {
-		if (PolymerElement || useShadow) {
-			// Change events don't automatically propagate across shadow DOM boundaries
-			this.dispatchEvent(new CustomEvent(
-				'change',
-				{bubbles: true, composed: false}
-			));
-		}
+		// Change events don't automatically propagate across shadow DOM boundaries
+		this.dispatchEvent(new CustomEvent(
+			'change',
+			{bubbles: true, composed: false}
+		));
 	},
 	_handleKeypress: function(e) {
 		if (this.preventSubmit && e.keyCode === 13) {
