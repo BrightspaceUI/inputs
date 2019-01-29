@@ -4,7 +4,6 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 		<title>d2l-input-checkbox test</title>
-		<script src="../../@babel/polyfill/browser.js"></script>
 		<script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 		<script src="../../wct-browser-legacy/browser.js"></script>
 		<script type="module" src="../../@polymer/iron-test-helpers/mock-interactions.js"></script>
@@ -34,6 +33,8 @@
 		<script type="module">
 import '@polymer/iron-test-helpers/mock-interactions.js';
 import '../d2l-input-checkbox.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { useShadow } from '@polymer/polymer/lib/utils/settings.js';
 describe('d2l-input-checkbox', function() {
 
 	var elem;
@@ -122,7 +123,11 @@ describe('d2l-input-checkbox', function() {
 			it('should fire "change" event when input element is clicked', function(done) {
 				var input = elem.$$('input');
 				elem.addEventListener('change', function(e) {
-					expect(e.target).to.equal(elem);
+					if (PolymerElement || useShadow) {
+						expect(e.target).to.equal(elem);
+					} else {
+						expect(e.target).to.equal(input);
+					}
 					done();
 				});
 				MockInteractions.tap(input);
