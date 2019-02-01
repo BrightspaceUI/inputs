@@ -128,8 +128,8 @@ Custom property | Description | Default
 			}
 
 			:host([no-padding]) textarea.d2l-input {
-				padding-left: 0px;
-				padding-right: 0px;
+				padding-left: 0;
+				padding-right: 0;
 			}
 
 		</style>
@@ -211,6 +211,10 @@ Custom property | Description | Default
 			 * @type {string|number}
 			 */
 			value: {observer: '_valueChanged', type: String, notify: true},
+			/**
+			 * Removes left and right padding from textarea.
+			 */
+			noPadding: {type: Boolean, value: false},
 		},
 
 		listeners: {'input': '_onInput'},
