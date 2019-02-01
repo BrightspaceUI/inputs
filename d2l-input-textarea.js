@@ -135,6 +135,11 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-textarea">
 				@apply --d2l-input-invalid;
 			}
 
+			:host([no-padding]) textarea.d2l-input {
+				padding-left: 0px;
+				padding-right: 0px;
+			}
+
 		</style>
 
 		<!-- the mirror sizes the input/textarea so it grows with typing -->
