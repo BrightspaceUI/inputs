@@ -51,7 +51,7 @@ document.body.appendChild($_documentContainer.content);
 		<script type="module">
 const $_documentContainer = document.createElement('template');
 
-$_documentContainer.innerHTML = `<div class="vertical-section-container centered">
+$_documentContainer.innerHTML = /*html*/`<div class="vertical-section-container centered">
 			<h3>Simple</h3>
 			<demo-snippet>
 				<template>
@@ -77,6 +77,13 @@ $_documentContainer.innerHTML = `<div class="vertical-section-container centered
 			<demo-snippet>
 				<template>
 					<d2l-input-text type="email" value="foo@"></d2l-input-text>
+				</template>
+			</demo-snippet>
+
+			<h3>Aria-Invalid</h3>
+			<demo-snippet>
+				<template>
+					<d2l-input-text type="text" aria-invalid="true"></d2l-input-text>
 				</template>
 			</demo-snippet>
 		</div>`;
