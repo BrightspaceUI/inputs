@@ -18,7 +18,7 @@ import './d2l-input-shared-styles.js';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
 const $_documentContainer = document.createElement('template');
 
-$_documentContainer.innerHTML = `<dom-module id="d2l-input-text">
+$_documentContainer.innerHTML = /*html*/`<dom-module id="d2l-input-text">
 	<template strip-whitespace="">
 		<style include="d2l-input-styles">
 			:host {
@@ -30,7 +30,30 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-text">
 				font-family: inherit;
 			}
 		</style>
-		<input aria-invalid$="[[ariaInvalid]]" aria-label$="[[ariaLabel]]" aria-labelledby$="[[ariaLabelledby]]" autofocus$="[[autofocus]]" class="d2l-input d2l-focusable" disabled$="[[disabled]]" list$="[[list]]" max$="[[max]]" maxlength$="[[maxlength]]" min$="[[min]]" minlength$="[[minlength]]" name$="[[name]]" on-change="_handleChange" on-keypress="_handleKeypress" pattern$="[[pattern]]" placeholder$="[[placeholder]]" readonly$="[[readonly]]" required$="[[required]]" size$="[[size]]" step$="[[step]]" tabindex$="[[tabIndex]]" type$="[[type]]" value="{{value::input}}">
+		<input
+			aria-invalid$="[[ariaInvalid]]"
+			aria-label$="[[ariaLabel]]"
+			aria-labelledby$="[[ariaLabelledby]]"
+			autofocus$="[[autofocus]]"
+			class="d2l-input d2l-focusable"
+			disabled$="[[disabled]]"
+			list$="[[list]]"
+			max$="[[max]]"
+			maxlength$="[[maxlength]]"
+			min$="[[min]]"
+			minlength$="[[minlength]]"
+			name$="[[name]]"
+			on-change="_handleChange"
+			on-keypress="_handleKeypress"
+			pattern$="[[pattern]]"
+			placeholder$="[[placeholder]]"
+			readonly$="[[readonly]]"
+			required$="[[required]]"
+			size$="[[size]]"
+			step$="[[step]]"
+			tabindex$="[[tabIndex]]"
+			type$="[[type]]"
+			value="{{value::input}}">
 	</template>
 
 </dom-module>`;
