@@ -2,7 +2,7 @@ import '@polymer/polymer/polymer-legacy.js';
 import 'd2l-colors/d2l-colors.js';
 const $_documentContainer = document.createElement('template');
 
-$_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
+$_documentContainer.innerHTML = /*html*/`<dom-module id="d2l-input-styles">
 	<template>
 		<style>
 			:host {
@@ -17,9 +17,11 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 				--d2l-input-padding-focus: calc(0.4rem - 1px) calc(0.75rem - 1px);
 				--d2l-input-color: var(--d2l-color-ferrite);
 				--d2l-input-placeholder-color: var(--d2l-color-mica);
+
 				--d2l-input-common: {
 					border-radius: var(--d2l-input-border-radius);
 					border-style: solid;
+					border-color: var(--d2l-input-border-color);
 					box-sizing: border-box;
 					display: inline-block;
 					margin: 0;
@@ -116,12 +118,14 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 			textarea.d2l-input:hover, textarea.d2l-input:focus {
 				@apply --d2l-input-hover-focus;
 			}
-			input.d2l-input[aria-invalid='true'],
+			input[aria-invalid="true"].d2l-input,
+			input[aria-invalid="true"].d2l-input:hover,
+			input[aria-invalid="true"].d2l-input:focus,
 			input[type="text"].d2l-input:invalid, input[type="search"].d2l-input:invalid,
 			input[type="tel"].d2l-input:invalid, input[type="url"].d2l-input:invalid,
 			input[type="email"].d2l-input:invalid, input[type="password"].d2l-input:invalid,
 			input[type="number"].d2l-input:invalid,
-			textarea.d2l-input[aria-invalid='true'], textarea.d2l-input:invalid {
+			textarea[aria-invalid='true'].d2l-input, textarea.d2l-input:invalid {
 				@apply --d2l-input-invalid;
 			}
 			input[type="text"].d2l-input:hover:disabled, input[type="search"].d2l-input:hover:disabled,
