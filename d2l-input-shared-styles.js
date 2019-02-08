@@ -67,6 +67,7 @@ $_documentContainer.innerHTML = /*html*/`<dom-module id="d2l-input-styles">
 					color: var(--d2l-input-placeholder-color);
 					font-size: 0.8rem;
 					font-weight: 400;
+					opacity: 1; /* Firefox has non-1 default */
 				};
 				--d2l-input: {
 					@apply --d2l-input-common;
