@@ -27,8 +27,6 @@ import './d2l-input-text-behavior.js';
 import './d2l-input-shared-styles.js';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
 import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-import { useShadow } from '@polymer/polymer/lib/utils/settings.js';
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<dom-module id="d2l-input-textarea">
@@ -315,13 +313,11 @@ Polymer({
 	},
 
 	_handleChange: function() {
-		if (PolymerElement || useShadow) {
-			// Change events don't automatically propagate across shadow DOM boundaries
-			this.dispatchEvent(new CustomEvent(
-				'change',
-				{bubbles: true, composed: true}
-			));
-		}
+		// Change events don't automatically propagate across shadow DOM boundaries
+		this.dispatchEvent(new CustomEvent(
+			'change',
+			{bubbles: true, composed: true}
+		));
 	}
 
 });

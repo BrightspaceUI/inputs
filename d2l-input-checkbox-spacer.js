@@ -22,10 +22,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-checkbox-spacer">
 				padding-left: 1.7rem;
 				margin-bottom: 0.9rem;
 			}
-			:host-context([dir="rtl"]) {
-				padding-right: 1.7rem;
-				padding-left: 0;
-			}
 			:host(:dir(rtl)) {
 				padding-right: 1.7rem;
 				padding-left: 0;
@@ -33,7 +29,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-checkbox-spacer">
 		</style>
 		<slot></slot>
 	</template>
-	
+
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);
