@@ -33,6 +33,8 @@
 		<script type="module">
 import '@polymer/iron-test-helpers/mock-interactions.js';
 import '../d2l-input-checkbox.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { useShadow } from '@polymer/polymer/lib/utils/settings.js';
 describe('d2l-input-checkbox', function() {
 
 	var elem;
@@ -121,7 +123,11 @@ describe('d2l-input-checkbox', function() {
 			it('should fire "change" event when input element is clicked', function(done) {
 				var input = elem.$$('input');
 				elem.addEventListener('change', function(e) {
-					expect(e.target).to.equal(elem);
+					if (PolymerElement || useShadow) {
+						expect(e.target).to.equal(elem);
+					} else {
+						expect(e.target).to.equal(input);
+					}
 					done();
 				});
 				MockInteractions.tap(input);

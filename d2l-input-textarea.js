@@ -27,6 +27,8 @@ import './d2l-input-text-behavior.js';
 import './d2l-input-shared-styles.js';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
 import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { useShadow } from '@polymer/polymer/lib/utils/settings.js';
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<dom-module id="d2l-input-textarea">
@@ -135,6 +137,11 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-textarea">
 				@apply --d2l-input-invalid;
 			}
 
+			:host([no-padding]) textarea.d2l-input {
+				padding-left: 0;
+				padding-right: 0;
+			}
+
 		</style>
 
 		<!-- the mirror sizes the input/textarea so it grows with typing -->
@@ -197,6 +204,10 @@ Polymer({
 		 * @type {string|number}
 		 */
 		value: {observer: '_valueChanged', type: String, notify: true},
+		/**
+		 * Removes left and right padding from textarea.
+		 */
+		noPadding: {type: Boolean, value: false, reflectToAttribute: true},
 	},
 
 	listeners: {'input': '_onInput'},
@@ -304,11 +315,13 @@ Polymer({
 	},
 
 	_handleChange: function() {
-		// Change events don't automatically propagate across shadow DOM boundaries
-		this.dispatchEvent(new CustomEvent(
-			'change',
-			{bubbles: true, composed: true}
-		));
+		if (PolymerElement || useShadow) {
+			// Change events don't automatically propagate across shadow DOM boundaries
+			this.dispatchEvent(new CustomEvent(
+				'change',
+				{bubbles: true, composed: true}
+			));
+		}
 	}
 
 });

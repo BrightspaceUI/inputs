@@ -41,6 +41,12 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-search">
 				white-space: nowrap;
 			}
 
+			:host-context([dir="rtl"]) input[type="text"].d2l-input {
+				padding-right: 0.75rem;
+				padding-left: 2.4rem;
+			}
+
+			/* Duplicated because some browsers ignore CSS block for any invalid selector */
 			:host(:dir(rtl)) input[type="text"].d2l-input {
 				padding-right: 0.75rem;
 				padding-left: 2.4rem;
@@ -50,6 +56,14 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-search">
 			.d2l-input-search-focus input[type="text"].d2l-input{
 				@apply --d2l-input-hover-focus;
 				padding-right: calc(2.4rem - 1px);
+			}
+
+			:host-context([dir="rtl"]) input[type="text"].d2l-input:hover,
+			:host-context([dir="rtl"]) input[type="text"].d2l-input:focus,
+			:host-context([dir="rtl"]) .d2l-input-search-hover input[type="text"].d2l-input,
+			:host-context([dir="rtl"]) .d2l-input-search-focus input[type="text"].d2l-input {
+				padding-right: calc(0.75rem - 1px);
+				padding-left: calc(2.4rem - 1px);
 			}
 
 			:host(:dir(rtl)) input[type="text"].d2l-input:hover,
@@ -71,6 +85,11 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-search">
 				right: 0.2rem;
 			}
 
+			:host-context([dir="rtl"]) d2l-button-icon {
+				left: 0.2rem;
+				right: auto;
+			}
+
 			:host(:dir(rtl)) d2l-button-icon {
 				left: 0.2rem;
 				right: auto;
@@ -87,6 +106,8 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-search">
 			<d2l-button-icon class="d2l-input-search-clear" disabled$="[[disabled]]" hidden="[[_showSearch]]" icon="d2l-tier1:close-default" on-click="_handleClearClick" text="[[localize('search.clear')]]"></d2l-button-icon>
 		</div>
 	</template>
+
+	
 
 </dom-module>`;
 

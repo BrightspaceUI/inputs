@@ -14,6 +14,7 @@ import '@polymer/polymer/polymer-legacy.js';
 import 'd2l-colors/d2l-colors.js';
 import 'd2l-typography/d2l-typography-shared-styles.js';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 import { useShadow } from '@polymer/polymer/lib/utils/settings.js';
 const $_documentContainer = document.createElement('template');
 
@@ -42,12 +43,16 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-checkbox">
 				vertical-align: middle;
 				white-space: normal;
 			}
-
+			:host-context([dir="rtl"]) .d2l-input-checkbox-label {
+				margin-right: 0.5rem;
+				margin-left: 0;
+			}
 			:host(:dir(rtl)) .d2l-input-checkbox-label {
 				margin-right: 0.5rem;
 				margin-left: 0;
 			}
-			:host([aria-label]) .d2l-input-checkbox-label {
+			:host([aria-label]) .d2l-input-checkbox-label,
+			:host-context([dir="rtl"][aria-label]) .d2l-input-checkbox-label {
 				margin-left: 0;
 				margin-right: 0;
 			}
@@ -106,7 +111,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-checkbox">
 			<span class="d2l-input-checkbox-label"><slot></slot></span>
 		</label>
 	</template>
-
+	
 </dom-module>`;
 
 document.head.appendChild($_documentContainer.content);
@@ -179,10 +184,15 @@ Polymer({
 	},
 	_handleChange: function(e) {
 		this.checked = e.target.checked;
-		this.dispatchEvent(new CustomEvent(
-			'change',
-			{bubbles: true, composed: false}
-		));
+
+		// in shady DOM the input's "change" event will leak through,
+		// so no need to fire it
+		if (PolymerElement || useShadow) {
+			this.dispatchEvent(new CustomEvent(
+				'change',
+				{bubbles: true, composed: false}
+			));
+		}
 	},
 	_handleFocus: function() {
 		// in shady DOM the input's "focus" event does not bubble,
