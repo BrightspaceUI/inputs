@@ -2,7 +2,7 @@ import '@polymer/polymer/polymer-legacy.js';
 import 'd2l-colors/d2l-colors.js';
 const $_documentContainer = document.createElement('template');
 
-$_documentContainer.innerHTML = /*html*/`<dom-module id="d2l-input-styles">
+$_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 	<template>
 		<style>
 			:host {
