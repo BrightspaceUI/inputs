@@ -2,7 +2,7 @@ import '@polymer/polymer/polymer-legacy.js';
 import 'd2l-colors/d2l-colors.js';
 const $_documentContainer = document.createElement('template');
 
-$_documentContainer.innerHTML = /*html*/`<dom-module id="d2l-input-styles">
+$_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 	<template>
 		<style>
 			:host {
@@ -67,6 +67,7 @@ $_documentContainer.innerHTML = /*html*/`<dom-module id="d2l-input-styles">
 					color: var(--d2l-input-placeholder-color);
 					font-size: 0.8rem;
 					font-weight: 400;
+					opacity: 1; /* Firefox has non-1 default */
 				};
 				--d2l-input: {
 					@apply --d2l-input-common;

@@ -135,6 +135,11 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-textarea">
 				@apply --d2l-input-invalid;
 			}
 
+			:host([no-padding]) textarea.d2l-input {
+				padding-left: 0;
+				padding-right: 0;
+			}
+
 		</style>
 
 		<!-- the mirror sizes the input/textarea so it grows with typing -->
@@ -197,6 +202,10 @@ Polymer({
 		 * @type {string|number}
 		 */
 		value: {observer: '_valueChanged', type: String, notify: true},
+		/**
+		 * Removes left and right padding from textarea.
+		 */
+		noPadding: {type: Boolean, value: false, reflectToAttribute: true},
 	},
 
 	listeners: {'input': '_onInput'},
