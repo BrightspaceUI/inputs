@@ -79,7 +79,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-checkbox">
 			input[type="checkbox"]:checked {
 				background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23565A5C%22%20d%3D%22M8.4%2016.6c.6.6%201.5.6%202.1%200l8-8c.6-.6.6-1.5%200-2.1-.6-.6-1.5-.6-2.1%200l-6.9%207-1.9-1.9c-.6-.6-1.5-.6-2.1%200-.6.6-.6%201.5%200%202.1l2.9%202.9z%22/%3E%3C/svg%3E%0A");
 			}
-			input[type="checkbox"].tri {
+			input[type="checkbox"]:indeterminate {
 				background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23565A5C%22%20d%3D%22M7.5%2C11h9c0.8%2C0%2C1.5%2C0.7%2C1.5%2C1.5l0%2C0c0%2C0.8-0.7%2C1.5-1.5%2C1.5h-9C6.7%2C14%2C6%2C13.3%2C6%2C12.5l0%2C0%0A%09C6%2C11.7%2C6.7%2C11%2C7.5%2C11z%22/%3E%3C/svg%3E%0A");
 			}
 			input[type="checkbox"],
@@ -155,10 +155,11 @@ Polymer({
 		/**
 		 * Gets or sets the state of the checkbox, `true` is tri-state and `false` other.
 		 */
-		tri: {
+		indeterminate: {
 			type: Boolean,
 			reflectToAttribute: true,
-			value: false
+			value: false,
+			observer: '_setIndeterminate'
 		},
 		/**
 		 * Gets or sets the disabled state of the checkbox, `true` is disabled and `false` is enabled.
@@ -190,6 +191,7 @@ Polymer({
 	},
 	_handleChange: function(e) {
 		this.checked = e.target.checked;
+		this.indeterminate = false;
 		this.dispatchEvent(new CustomEvent(
 			'change',
 			{bubbles: true, composed: false}
@@ -205,7 +207,23 @@ Polymer({
 			));
 		}
 	},
-	_getInputClass: function(tri) {
-		return tri ? 'tri' : '';
+	_setIndeterminate: function(newValue) {
+		var elem = this.$$('input');
+		if (newValue) {
+			elem.indeterminate = true;
+			elem.setAttribute('aria-checked', 'mixed');
+		} else {
+			elem.indeterminate = false;
+			elem.removeAttribute('aria-checked');
+		}
+		console.log(this.indeterminate);
+		const browserType = window.navigator.userAgent;
+		if (this.indeterminate && (browserType.indexOf('Trident') > -1 || browserType.indexOf('Edge') > -1)) {
+			console.log('in here');
+			this.dispatchEvent(new CustomEvent(
+				'change',
+				{bubbles: true, composed: false}
+			));
+		}
 	}
 });
