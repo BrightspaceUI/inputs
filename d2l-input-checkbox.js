@@ -105,7 +105,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-checkbox">
 			}
 		</style>
 		<label>
-			<input type="checkbox" class$="[[_getInputClass(tri)]]" aria-label$="[[ariaLabel]]" aria-labelledby$="[[ariaLabelledby]]" checked="{{checked}}" disabled$="[[disabled]]" name$="[[name]]" on-change="_handleChange" on-focus="_handleFocus" value$="[[value]]">
+			<input type="checkbox" class$="[[_getInputClass(tri)]]" aria-label$="[[ariaLabel]]" aria-labelledby$="[[ariaLabelledby]]" checked="{{checked}}" disabled$="[[disabled]]" name$="[[name]]" on-change="_handleChange" on-click="_onClick" on-focus="_handleFocus" value$="[[value]]">
 			<span class="d2l-input-checkbox-label"><slot></slot></span>
 		</label>
 	</template>
@@ -197,6 +197,17 @@ Polymer({
 			{bubbles: true, composed: false}
 		));
 	},
+	_onClick: function(e) {
+		const browserType = window.navigator.userAgent;
+		if ( this.indeterminate && (browserType.indexOf('Trident') > -1 || browserType.indexOf('Edge') > -1)) {
+			this.checked = !this.checked;
+			this.indeterminate = false;
+			this.dispatchEvent(new CustomEvent(
+				'change',
+				{bubbles: true, composed: false}
+			));
+		}
+	},
 	_handleFocus: function() {
 		// in shady DOM the input's "focus" event does not bubble,
 		// so no need to fire it
@@ -215,15 +226,6 @@ Polymer({
 		} else {
 			elem.indeterminate = false;
 			elem.removeAttribute('aria-checked');
-		}
-		console.log(this.indeterminate);
-		const browserType = window.navigator.userAgent;
-		if (this.indeterminate && (browserType.indexOf('Trident') > -1 || browserType.indexOf('Edge') > -1)) {
-			console.log('in here');
-			this.dispatchEvent(new CustomEvent(
-				'change',
-				{bubbles: true, composed: false}
-			));
 		}
 	}
 });
