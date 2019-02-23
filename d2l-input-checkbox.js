@@ -197,9 +197,9 @@ Polymer({
 			{bubbles: true, composed: false}
 		));
 	},
-	_onClick: function(e) {
+	_onClick: function() {
 		const browserType = window.navigator.userAgent;
-		if ( this.indeterminate && (browserType.indexOf('Trident') > -1 || browserType.indexOf('Edge') > -1)) {
+		if (this.indeterminate && (browserType.indexOf('Trident') > -1 || browserType.indexOf('Edge') > -1)) {
 			this.checked = !this.checked;
 			this.indeterminate = false;
 			this.dispatchEvent(new CustomEvent(
