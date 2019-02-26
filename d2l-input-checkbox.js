@@ -198,8 +198,8 @@ Polymer({
 		));
 	},
 	/**
-	 * This is needed only for IE11 and Edge AND going from indeterminate to checked/unchecked. 
-	 * When the indeterminate state is set, and the checkbox is clicked, the _handleChange 
+	 * This is needed only for IE11 and Edge AND going from indeterminate to checked/unchecked.
+	 * When the indeterminate state is set, and the checkbox is clicked, the _handleChange
 	 * function is NOT triggered, therefore we have to detect the click and handle it ourselves.
 	 */
 	_handleClick: function() {
