@@ -353,7 +353,7 @@ In addition to an indeterminate state indicated by the `indeterminate` attribute
 ```
 -->
 ```html
-<d2l-input-checkbox checked indeterminate>Checked checkbox</d2l-input-checkbox>
+<d2l-input-checkbox checked indeterminate>Indeterminate checkbox</d2l-input-checkbox>
 ```
 
 To hide the label when space is limited, use the `aria-label` attribute to
