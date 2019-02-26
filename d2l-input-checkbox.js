@@ -105,7 +105,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-checkbox">
 			}
 		</style>
 		<label>
-			<input type="checkbox" class$="[[_getInputClass(tri)]]" aria-label$="[[ariaLabel]]" aria-labelledby$="[[ariaLabelledby]]" checked="{{checked}}" disabled$="[[disabled]]" name$="[[name]]" on-change="_handleChange" on-click="_onClick" on-focus="_handleFocus" value$="[[value]]">
+			<input type="checkbox" aria-label$="[[ariaLabel]]" aria-labelledby$="[[ariaLabelledby]]" checked="{{checked}}" disabled$="[[disabled]]" name$="[[name]]" on-change="_handleChange" on-click="_handleClick" on-focus="_handleFocus" value$="[[value]]">
 			<span class="d2l-input-checkbox-label"><slot></slot></span>
 		</label>
 	</template>
@@ -197,7 +197,12 @@ Polymer({
 			{bubbles: true, composed: false}
 		));
 	},
-	_onClick: function() {
+	/**
+	 * This is needed only for IE11 and Edge AND going from indeterminate to checked/unchecked. 
+	 * When the indeterminate state is set, and the checkbox is clicked, the _handleChange 
+	 * function is NOT triggered, therefore we have to detect the click and handle it ourselves.
+	 */
+	_handleClick: function() {
 		const browserType = window.navigator.userAgent;
 		if (this.indeterminate && (browserType.indexOf('Trident') > -1 || browserType.indexOf('Edge') > -1)) {
 			this.checked = !this.checked;
