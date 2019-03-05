@@ -105,7 +105,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-checkbox">
 			}
 		</style>
 		<label>
-			<input type="checkbox" aria-label$="[[ariaLabel]]" aria-labelledby$="[[ariaLabelledby]]" checked="{{checked}}" disabled$="[[disabled]]" name$="[[name]]" on-change="_handleChange" on-click="_handleClick" on-focus="_handleFocus" value$="[[value]]">
+			<input type="checkbox" aria-label$="[[ariaLabel]]" aria-labelledby$="[[ariaLabelledby]]" checked="{{checked}}" disabled$="[[disabled]]" name$="[[name]]" on-change="_handleChange" on-click="_handleClick" on-focus="_handleFocus" value$="[[value]]" tabindex$="[[tabindex]]">
 			<span class="d2l-input-checkbox-label"><slot></slot></span>
 		</label>
 	</template>
@@ -160,6 +160,13 @@ Polymer({
 			reflectToAttribute: true,
 			value: false,
 			observer: '_setIndeterminate'
+		},
+		/**
+		 * Gets or sets the tabindex attribute
+		 */
+		tabindex: {
+			type: Number,
+			reflectToAttribute: true
 		},
 		/**
 		 * Gets or sets the disabled state of the checkbox, `true` is disabled and `false` is enabled.

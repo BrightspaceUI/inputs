@@ -40,6 +40,11 @@
 				<d2l-input-checkbox name="cb-name" value="cb-value" label="name-value"></d2l-input-checkbox>
 			</template>
 		</test-fixture>
+		<test-fixture id="tabindex">
+			<template>
+				<d2l-input-checkbox tabindex="-1" label="tabindex"></d2l-input-checkbox>
+			</template>
+		</test-fixture>
 		<script type="module">
 import '@polymer/iron-test-helpers/mock-interactions.js';
 import '../d2l-input-checkbox.js';
@@ -447,6 +452,61 @@ describe('d2l-input-checkbox', function() {
 				expect(elem.$$('input').name).to.equal('new name');
 			});
 
+		});
+
+	});
+
+	describe('tabindex', function() {
+
+		describe('default', function() {
+
+			beforeEach(function() {
+				elem = fixture('basic');
+			});
+
+			it('should default "tabindex" to undefined', function() {
+				expect(elem.tabindex).to.equal(undefined);
+				expect(elem.$$('input').tabindex).to.equal(undefined);
+				expect(elem.getAttribute('tabindex')).to.equal(null);
+			});
+
+			it('should reflect "tabindex" property change to attribute and input', function() {
+				elem.tabindex = '-1';
+				expect(elem.getAttribute('tabindex')).to.equal('-1');
+				expect(elem.$$('input').tabIndex).to.equal(-1);
+			});
+
+			it('should reflect "tabindex" attribute change to property and input', function() {
+				elem.setAttribute('tabindex', '-1');
+				expect(elem.tabindex).to.equal(-1);
+				expect(elem.$$('input').tabIndex).to.equal(-1);
+			});
+
+		});
+
+		describe('set', function() {
+
+			beforeEach(function() {
+				elem = fixture('tabindex');
+			});
+
+			it('should set "tabindex" to "-1"', function() {
+				expect(elem.tabindex).to.equal(-1);
+				expect(elem.getAttribute('tabindex')).to.equal('-1');
+				expect(elem.$$('input').tabIndex).to.equal(-1);
+			});
+
+			it('should reflect "tabindex" property change to attribute and input', function() {
+				elem.tabindex = '1';
+				expect(elem.getAttribute('tabindex')).to.equal('1');
+				expect(elem.$$('input').tabIndex).to.equal(1);
+			});
+
+			it('should reflect "tabindex" attribute change to property and input', function() {
+				elem.setAttribute('tabindex', '1');
+				expect(elem.tabindex).to.equal(1);
+				expect(elem.$$('input').tabIndex).to.equal(1);
+			});
 		});
 
 	});
