@@ -470,12 +470,6 @@ describe('d2l-input-checkbox', function() {
 				expect(elem.getAttribute('tabindex')).to.equal(null);
 			});
 
-			it('should reflect "tabindex" property change to attribute and input', function() {
-				elem.tabindex = '-1';
-				expect(elem.getAttribute('tabindex')).to.equal('-1');
-				expect(elem.$$('input').tabIndex).to.equal(-1);
-			});
-
 			it('should reflect "tabindex" attribute change to property and input', function() {
 				elem.setAttribute('tabindex', '-1');
 				expect(elem.tabindex).to.equal(-1);
@@ -494,12 +488,6 @@ describe('d2l-input-checkbox', function() {
 				expect(elem.tabindex).to.equal(-1);
 				expect(elem.getAttribute('tabindex')).to.equal('-1');
 				expect(elem.$$('input').tabIndex).to.equal(-1);
-			});
-
-			it('should reflect "tabindex" property change to attribute and input', function() {
-				elem.tabindex = '1';
-				expect(elem.getAttribute('tabindex')).to.equal('1');
-				expect(elem.$$('input').tabIndex).to.equal(1);
 			});
 
 			it('should reflect "tabindex" attribute change to property and input', function() {

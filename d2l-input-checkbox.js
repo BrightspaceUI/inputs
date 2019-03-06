@@ -165,8 +165,7 @@ Polymer({
 		 * Gets or sets the tabindex attribute
 		 */
 		tabindex: {
-			type: Number,
-			reflectToAttribute: true
+			type: Number
 		},
 		/**
 		 * Gets or sets the disabled state of the checkbox, `true` is disabled and `false` is enabled.
