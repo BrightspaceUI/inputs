@@ -227,9 +227,11 @@ Polymer({
 		var elem = this.$$('input');
 		if (newValue) {
 			elem.indeterminate = true;
+			elem.setAttribute('indeterminate', true);
 			elem.setAttribute('aria-checked', 'mixed');
 		} else {
 			elem.indeterminate = false;
+			elem.removeAttribute('indeterminate');
 			elem.removeAttribute('aria-checked');
 		}
 	}
