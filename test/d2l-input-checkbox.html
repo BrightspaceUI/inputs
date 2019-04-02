@@ -20,6 +20,16 @@
 				<d2l-input-checkbox checked label="checked"></d2l-input-checkbox>
 			</template>
 		</test-fixture>
+		<test-fixture id="indeterminate-checked">
+			<template>
+				<d2l-input-checkbox indeterminate checked label="indeterminate-checked"></d2l-input-checkbox>
+			</template>
+		</test-fixture>
+		<test-fixture id="indeterminate-unchecked">
+			<template>
+				<d2l-input-checkbox indeterminate label="indeterminate-unchecked"></d2l-input-checkbox>
+			</template>
+		</test-fixture>
 		<test-fixture id="disabled">
 			<template>
 				<d2l-input-checkbox disabled label="disabled"></d2l-input-checkbox>
@@ -28,6 +38,11 @@
 		<test-fixture id="name-value">
 			<template>
 				<d2l-input-checkbox name="cb-name" value="cb-value" label="name-value"></d2l-input-checkbox>
+			</template>
+		</test-fixture>
+		<test-fixture id="tabindex">
+			<template>
+				<d2l-input-checkbox tabindex="-1" label="tabindex"></d2l-input-checkbox>
 			</template>
 		</test-fixture>
 		<script type="module">
@@ -149,6 +164,128 @@ describe('d2l-input-checkbox', function() {
 
 		});
 
+	});
+
+	describe('indeterminate', function() {
+		describe('indeterminate-checked', function() {
+
+			beforeEach(function() {
+				elem = fixture('indeterminate-checked');
+			});
+
+			it('should default "checked" and "indeterminate" to true', function() {
+				expect(elem.checked).to.be.true;
+				expect(elem.indeterminate).to.be.true;
+				expect(elem.hasAttribute('checked')).to.be.true;
+				expect(elem.hasAttribute('indeterminate')).to.be.true;
+				expect(elem.$$('input').checked).to.be.true;
+			});
+
+			it('should reflect "checked" and "indeterminate" property change to attribute and input', function() {
+				elem.checked = false;
+				expect(elem.hasAttribute('checked')).to.be.false;
+				expect(elem.hasAttribute('indeterminate')).to.be.true;
+				expect(elem.$$('input').checked).to.be.false;
+			});
+
+			it('should reflect input "checked" and "indeterminate" change to attribute and property', function() {
+				elem.$$('input').click();
+				expect(elem.checked).to.be.false;
+				expect(elem.indeterminate).to.be.false;
+				expect(elem.hasAttribute('checked')).to.be.false;
+				expect(elem.hasAttribute('indeterminate')).to.be.false;
+			});
+			it('should fire "change" event when input element is clicked', function(done) {
+				var input = elem.$$('input');
+				elem.addEventListener('change', function(e) {
+					expect(e.target.checked).to.equal(false);
+					expect(e.target.indeterminate).to.equal(false);
+					done();
+				});
+				MockInteractions.tap(input);
+			});
+
+		});
+		describe('indeterminate-unchecked', function() {
+
+			beforeEach(function() {
+				elem = fixture('indeterminate-unchecked');
+			});
+
+			it('should default "checked" to false and "indeterminate" to true', function() {
+				expect(elem.checked).to.be.false;
+				expect(elem.indeterminate).to.be.true;
+				expect(elem.hasAttribute('checked')).to.be.false;
+				expect(elem.hasAttribute('indeterminate')).to.be.true;
+				expect(elem.$$('input').checked).to.be.false;
+			});
+
+			it('should reflect "checked" and "indeterminate" property change to attribute and input', function() {
+				elem.checked = true;
+				expect(elem.hasAttribute('checked')).to.be.true;
+				expect(elem.hasAttribute('indeterminate')).to.be.true;
+				expect(elem.$$('input').checked).to.be.true;
+			});
+
+			it('should reflect input "checked" and "indeterminate" change to attribute and property', function() {
+				elem.$$('input').click();
+				expect(elem.checked).to.be.true;
+				expect(elem.indeterminate).to.be.false;
+				expect(elem.hasAttribute('checked')).to.be.true;
+				expect(elem.hasAttribute('indeterminate')).to.be.false;
+			});
+			it('should fire "change" event when input element is clicked', function(done) {
+				var input = elem.$$('input');
+				elem.addEventListener('change', function(e) {
+					expect(e.target.checked).to.equal(true);
+					expect(e.target.indeterminate).to.equal(false);
+					done();
+				});
+				MockInteractions.tap(input);
+			});
+		});
+		describe('set indeterminate from unchecked', function() {
+
+			beforeEach(function() {
+				elem = fixture('basic');
+			});
+
+			it('should reflect input "indeterminate" change to attribute and property', function() {
+				elem.indeterminate = true;
+				expect(elem.checked).to.be.false;
+				expect(elem.indeterminate).to.be.true;
+				expect(elem.hasAttribute('checked')).to.be.false;
+				expect(elem.hasAttribute('indeterminate')).to.be.true;
+			});
+			it('should reflect input "indeterminate" change to attribute and property', function() {
+				elem.setAttribute('indeterminate', true);
+				expect(elem.checked).to.be.false;
+				expect(elem.indeterminate).to.be.true;
+				expect(elem.hasAttribute('checked')).to.be.false;
+				expect(elem.hasAttribute('indeterminate')).to.be.true;
+			});
+		});
+		describe('set indeterminate from checked', function() {
+
+			beforeEach(function() {
+				elem = fixture('checked');
+			});
+
+			it('should reflect input "indeterminate" change to attribute and property', function() {
+				elem.indeterminate = true;
+				expect(elem.checked).to.be.true;
+				expect(elem.indeterminate).to.be.true;
+				expect(elem.hasAttribute('checked')).to.be.true;
+				expect(elem.hasAttribute('indeterminate')).to.be.true;
+			});
+			it('should reflect input "indeterminate" change to attribute and property', function() {
+				elem.setAttribute('indeterminate', true);
+				expect(elem.checked).to.be.true;
+				expect(elem.indeterminate).to.be.true;
+				expect(elem.hasAttribute('checked')).to.be.true;
+				expect(elem.hasAttribute('indeterminate')).to.be.true;
+			});
+		});
 	});
 
 	describe('disabled', function() {
@@ -315,6 +452,49 @@ describe('d2l-input-checkbox', function() {
 				expect(elem.$$('input').name).to.equal('new name');
 			});
 
+		});
+
+	});
+
+	describe('tabindex', function() {
+
+		describe('default', function() {
+
+			beforeEach(function() {
+				elem = fixture('basic');
+			});
+
+			it('should default "tabindex" to undefined', function() {
+				expect(elem.tabindex).to.equal(undefined);
+				expect(elem.$$('input').tabindex).to.equal(undefined);
+				expect(elem.getAttribute('tabindex')).to.equal(null);
+			});
+
+			it('should reflect "tabindex" attribute change to property and input', function() {
+				elem.setAttribute('tabindex', '-1');
+				expect(elem.tabindex).to.equal(-1);
+				expect(elem.$$('input').tabIndex).to.equal(-1);
+			});
+
+		});
+
+		describe('set', function() {
+
+			beforeEach(function() {
+				elem = fixture('tabindex');
+			});
+
+			it('should set "tabindex" to "-1"', function() {
+				expect(elem.tabindex).to.equal(-1);
+				expect(elem.getAttribute('tabindex')).to.equal('-1');
+				expect(elem.$$('input').tabIndex).to.equal(-1);
+			});
+
+			it('should reflect "tabindex" attribute change to property and input', function() {
+				elem.setAttribute('tabindex', '1');
+				expect(elem.tabindex).to.equal(1);
+				expect(elem.$$('input').tabIndex).to.equal(1);
+			});
 		});
 
 	});

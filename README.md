@@ -329,6 +329,33 @@ Many of the same attributes from native `<input type="checkbox">` are available:
 <d2l-input-checkbox checked>Checked checkbox</d2l-input-checkbox>
 ```
 
+In addition to an indeterminate state indicated by the `indeterminate` attribute:
+
+<!---
+```
+<custom-element-demo>
+  <template>
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../d2l-typography/d2l-typography.html">
+    <link rel="import" href="d2l-input-checkbox.html">
+    <custom-style include="d2l-typography">
+      <style is="custom-style" include="d2l-typography"></style>
+    </custom-style>
+    <style>
+      html {
+        font-size: 20px;
+        font-family: 'Lato', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+      }
+    </style>
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<d2l-input-checkbox checked indeterminate>Indeterminate checkbox</d2l-input-checkbox>
+```
+
 To hide the label when space is limited, use the `aria-label` attribute to
 provide an accessible label:
 
