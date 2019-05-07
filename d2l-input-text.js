@@ -30,7 +30,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-text">
 				font-family: inherit;
 			}
 		</style>
-		<input aria-invalid$="[[ariaInvalid]]" aria-label$="[[ariaLabel]]" aria-labelledby$="[[ariaLabelledby]]" autofocus$="[[autofocus]]" class="d2l-input d2l-focusable" disabled$="[[disabled]]" list$="[[list]]" max$="[[max]]" maxlength$="[[maxlength]]" min$="[[min]]" minlength$="[[minlength]]" name$="[[name]]" on-change="_handleChange" on-keypress="_handleKeypress" pattern$="[[pattern]]" placeholder$="[[placeholder]]" readonly$="[[readonly]]" required$="[[required]]" size$="[[size]]" step$="[[step]]" tabindex$="[[tabIndex]]" type$="[[type]]" value="{{value::input}}">
+		<input aria-invalid$="[[ariaInvalid]]" aria-label$="[[ariaLabel]]" aria-labelledby$="[[ariaLabelledby]]" autocomplete="[[autocomplete]]" autofocus$="[[autofocus]]" class="d2l-input d2l-focusable" disabled$="[[disabled]]" list$="[[list]]" max$="[[max]]" maxlength$="[[maxlength]]" min$="[[min]]" minlength$="[[minlength]]" name$="[[name]]" on-change="_handleChange" on-keypress="_handleKeypress" pattern$="[[pattern]]" placeholder$="[[placeholder]]" readonly$="[[readonly]]" required$="[[required]]" size$="[[size]]" step$="[[step]]" tabindex$="[[tabIndex]]" type$="[[type]]" value="{{value::input}}">
 	</template>
 
 </dom-module>`;
@@ -50,6 +50,13 @@ Polymer({
 		 * which contains the IDs of the elements that describe the input.
 		 */
 		ariaDescribedby: {
+			type: String
+		},
+		/**
+		 * On "text" or "number" input types, allows user agent to provide
+		 * automated assistance filling out forms. [Supported values](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete)
+		 */
+		autocomplete: {
 			type: String
 		},
 		/**
