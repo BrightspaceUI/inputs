@@ -27,6 +27,7 @@ Polymer-based web component for D2L text inputs
 			aria-invalid$="[[ariaInvalid]]"
 			aria-label$="[[ariaLabel]]"
 			aria-labelledby$="[[ariaLabelledby]]"
+			autocomplete="[[autocomplete]]"
 			autofocus$="[[autofocus]]"
 			class="d2l-input d2l-focusable"
 			disabled$="[[disabled]]"
@@ -63,6 +64,13 @@ Polymer-based web component for D2L text inputs
 				 * which contains the IDs of the elements that describe the input.
 				 */
 				ariaDescribedby: {
+					type: String
+				},
+				/**
+				 * On "text" or "number" input types, allows user agent to provide
+				 * automated assistance filling out forms. [Supported values](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete)
+				 */
+				autocomplete: {
 					type: String
 				},
 				/**
