@@ -19,17 +19,13 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 				--d2l-input-placeholder-color: var(--d2l-color-mica);
 
 				--d2l-input-common: {
-					background-color: var(--d2l-input-background-color);
 					border-radius: var(--d2l-input-border-radius);
 					border-style: solid;
 					border-color: var(--d2l-input-border-color);
-					border-width: 1px;
-					box-shadow: var(--d2l-input-boxshadow);
 					box-sizing: border-box;
 					display: inline-block;
 					margin: 0;
 					min-width: calc(2rem + 1em);
-					padding: var(--d2l-input-padding);
 					vertical-align: middle;
 					width: var(--d2l-input-width);
 					transition: background-color 0.5s ease, border-color 0.5s ease;
@@ -48,8 +44,10 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 					min-height: calc(2rem + 2px);
 				};
 				--d2l-input-hover-disabled: {
-					border-color: var(--d2l-color-galena);
+					background-color: var(--d2l-input-background-color);
+					border-color: var(--d2l-input-border-color);
 					border-width: 1px;
+					box-shadow: var(--d2l-input-boxshadow);
 					padding: var(--d2l-input-padding);
 				};
 				--d2l-input-hover-focus: {
@@ -74,6 +72,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 				--d2l-input: {
 					@apply --d2l-input-common;
 					@apply --d2l-input-text;
+					@apply --d2l-input-hover-disabled;
 					height: var(--d2l-input-height);
 				};
 			}
