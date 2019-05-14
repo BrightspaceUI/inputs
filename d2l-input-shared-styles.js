@@ -48,7 +48,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 					min-height: calc(2rem + 2px);
 				};
 				--d2l-input-hover-disabled: {
-					border-color: var(--d2l-color-mica);
+					border-color: var(--d2l-color-galena);
 					border-width: 1px;
 					padding: var(--d2l-input-padding);
 				};
@@ -63,7 +63,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 					border-color: var(--d2l-color-cinnabar);
 				};
 				--d2l-input-disabled: {
-					border-color: var(--d2l-color-mica);
 					opacity: 0.5;
 				};
 				--d2l-input-placeholder: {
