@@ -11,21 +11,25 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 				--d2l-input-line-height: 1.2rem;
 				--d2l-input-width: 100%;
 				--d2l-input-background-color: #ffffff;
-				--d2l-input-border-color: var(--d2l-color-mica);
-				--d2l-input-boxshadow: inset 0 2px 0 0 rgba(185, 194, 208, .2);
+				--d2l-input-border-color: var(--d2l-color-galena);
+				--d2l-input-boxshadow: inset 0 2px 0 0 rgba(181, 189, 194, .2);
 				--d2l-input-padding: 0.4rem 0.75rem;
 				--d2l-input-padding-focus: calc(0.4rem - 1px) calc(0.75rem - 1px);
 				--d2l-input-color: var(--d2l-color-ferrite);
 				--d2l-input-placeholder-color: var(--d2l-color-mica);
 
 				--d2l-input-common: {
+					background-color: var(--d2l-input-background-color);
 					border-radius: var(--d2l-input-border-radius);
 					border-style: solid;
 					border-color: var(--d2l-input-border-color);
+					border-width: 1px;
+					box-shadow: var(--d2l-input-boxshadow);
 					box-sizing: border-box;
 					display: inline-block;
 					margin: 0;
 					min-width: calc(2rem + 1em);
+					padding: var(--d2l-input-padding);
 					vertical-align: middle;
 					width: var(--d2l-input-width);
 					transition: background-color 0.5s ease, border-color 0.5s ease;
@@ -44,10 +48,8 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 					min-height: calc(2rem + 2px);
 				};
 				--d2l-input-hover-disabled: {
-					background-color: var(--d2l-input-background-color);
 					border-color: var(--d2l-color-mica);
 					border-width: 1px;
-					box-shadow: var(--d2l-input-boxshadow);
 					padding: var(--d2l-input-padding);
 				};
 				--d2l-input-hover-focus: {
@@ -61,6 +63,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 					border-color: var(--d2l-color-cinnabar);
 				};
 				--d2l-input-disabled: {
+					border-color: var(--d2l-color-mica);
 					opacity: 0.5;
 				};
 				--d2l-input-placeholder: {
@@ -72,7 +75,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 				--d2l-input: {
 					@apply --d2l-input-common;
 					@apply --d2l-input-text;
-					@apply --d2l-input-hover-disabled;
 					height: var(--d2l-input-height);
 				};
 			}

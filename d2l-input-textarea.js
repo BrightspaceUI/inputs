@@ -127,7 +127,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-textarea">
 				border-width: 2px;
 				outline-width: 0;
 				padding: calc(0.4rem - 2px) calc(0.75rem - 2px);
-				box-shadow: inset 0 2px 0 0 rgba(185, 194, 208, .2);
+				box-shadow: inset 0 2px 0 0 rgba(181, 189, 194, .2);
 				transition-property: none;
 			}
 
