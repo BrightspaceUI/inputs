@@ -11,8 +11,8 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 				--d2l-input-line-height: 1.2rem;
 				--d2l-input-width: 100%;
 				--d2l-input-background-color: #ffffff;
-				--d2l-input-border-color: var(--d2l-color-mica);
-				--d2l-input-boxshadow: inset 0 2px 0 0 rgba(185, 194, 208, .2);
+				--d2l-input-border-color: var(--d2l-color-galena);
+				--d2l-input-boxshadow: inset 0 2px 0 0 rgba(181, 189, 194, .2); /* corundum */
 				--d2l-input-padding: 0.4rem 0.75rem;
 				--d2l-input-padding-focus: calc(0.4rem - 1px) calc(0.75rem - 1px);
 				--d2l-input-color: var(--d2l-color-ferrite);
@@ -45,7 +45,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 				};
 				--d2l-input-hover-disabled: {
 					background-color: var(--d2l-input-background-color);
-					border-color: var(--d2l-color-mica);
+					border-color: var(--d2l-input-border-color);
 					border-width: 1px;
 					box-shadow: var(--d2l-input-boxshadow);
 					padding: var(--d2l-input-padding);
