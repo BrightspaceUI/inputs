@@ -105,7 +105,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-checkbox">
 			}
 		</style>
 		<label>
-			<input type="checkbox" aria-label$="[[ariaLabel]]" aria-labelledby$="[[ariaLabelledby]]" checked="{{checked}}" disabled$="[[disabled]]" name$="[[name]]" on-change="_handleChange" on-click="_handleClick" on-focus="_handleFocus" value$="[[value]]" tabindex$="[[tabindex]]">
+			<input type="checkbox" aria-label$="[[ariaLabel]]" aria-labelledby$="[[ariaLabelledby]]" checked="{{checked}}" disabled$="[[disabled]]" name$="[[name]]" on-change="_handleChange" on-click="_handleClick" on-focus="_handleFocus" value$="[[value]]" tabindex$="[[tabIndex]]">
 			<span class="d2l-input-checkbox-label"><slot></slot></span>
 		</label>
 	</template>
@@ -162,9 +162,9 @@ Polymer({
 			observer: '_setIndeterminate'
 		},
 		/**
-		 * Gets or sets the tabindex attribute
+		 * Gets or sets the tabIndex attribute
 		 */
-		tabindex: {
+		tabIndex: {
 			type: Number
 		},
 		/**
