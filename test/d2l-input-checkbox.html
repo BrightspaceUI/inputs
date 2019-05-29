@@ -42,7 +42,7 @@
 		</test-fixture>
 		<test-fixture id="tabindex">
 			<template>
-				<d2l-input-checkbox tabindex="-1" label="tabindex"></d2l-input-checkbox>
+				<d2l-input-checkbox tab-index="-1" label="tabindex"></d2l-input-checkbox>
 			</template>
 		</test-fixture>
 		<script type="module">
@@ -465,14 +465,14 @@ describe('d2l-input-checkbox', function() {
 			});
 
 			it('should default "tabindex" to undefined', function() {
-				expect(elem.tabindex).to.equal(undefined);
-				expect(elem.$$('input').tabindex).to.equal(undefined);
-				expect(elem.getAttribute('tabindex')).to.equal(null);
+				expect(elem.tabIndex).to.equal(undefined);
+				expect(elem.$$('input').tabIndex).to.equal(0);
+				expect(elem.getAttribute('tab-index')).to.equal(null);
 			});
 
 			it('should reflect "tabindex" attribute change to property and input', function() {
-				elem.setAttribute('tabindex', '-1');
-				expect(elem.tabindex).to.equal(-1);
+				elem.setAttribute('tab-index', '-1');
+				expect(elem.getAttribute('tab-index')).to.equal('-1');
 				expect(elem.$$('input').tabIndex).to.equal(-1);
 			});
 
@@ -485,14 +485,13 @@ describe('d2l-input-checkbox', function() {
 			});
 
 			it('should set "tabindex" to "-1"', function() {
-				expect(elem.tabindex).to.equal(-1);
-				expect(elem.getAttribute('tabindex')).to.equal('-1');
+				expect(elem.getAttribute('tab-index')).to.equal('-1');
 				expect(elem.$$('input').tabIndex).to.equal(-1);
 			});
 
 			it('should reflect "tabindex" attribute change to property and input', function() {
-				elem.setAttribute('tabindex', '1');
-				expect(elem.tabindex).to.equal(1);
+				elem.setAttribute('tab-index', '1');
+				expect(elem.getAttribute('tab-index')).to.equal('1');
 				expect(elem.$$('input').tabIndex).to.equal(1);
 			});
 		});
