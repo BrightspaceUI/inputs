@@ -105,7 +105,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-checkbox">
 			}
 		</style>
 		<label>
-			<input type="checkbox" aria-label$="[[ariaLabel]]" aria-labelledby$="[[ariaLabelledby]]" checked="{{checked}}" disabled$="[[disabled]]" name$="[[name]]" on-change="_handleChange" on-click="_handleClick" on-focus="_handleFocus" value$="[[value]]" tabindex$="[[tabIndex]]">
+			<input type="checkbox" aria-label$="[[ariaLabel]]" aria-labelledby$="[[ariaLabelledby]]" checked="{{checked}}" disabled$="[[disabled]]" name$="[[name]]" on-change="_handleChange" on-click="_handleClick" on-focus="_handleFocus" value$="[[value]]" tabindex$="[[_tabindex]]">
 			<span class="d2l-input-checkbox-label"><slot></slot></span>
 		</label>
 	</template>
@@ -162,10 +162,11 @@ Polymer({
 			observer: '_setIndeterminate'
 		},
 		/**
-		 * Gets or sets the tabIndex attribute
+		 * Gets or sets the tabbable state of the checkbox. tabbable is `true` by default.
 		 */
-		tabIndex: {
-			type: Number
+		tabbable: {
+			type: Boolean,
+			value: true
 		},
 		/**
 		 * Gets or sets the disabled state of the checkbox, `true` is disabled and `false` is enabled.
@@ -190,6 +191,10 @@ Polymer({
 			type: String,
 			reflectToAttribute: true,
 			value: 'on'
+		},
+		_tabindex: {
+			type: Number,
+			computed: '_computeTabindex(tabbable)'
 		}
 	},
 	focus: function() {
@@ -240,5 +245,8 @@ Polymer({
 			elem.removeAttribute('indeterminate');
 			elem.removeAttribute('aria-checked');
 		}
+	},
+	_computeTabindex: function(tabbable) {
+		return tabbable ? 0 : -1;
 	}
 });

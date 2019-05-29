@@ -40,11 +40,6 @@
 				<d2l-input-checkbox name="cb-name" value="cb-value" label="name-value"></d2l-input-checkbox>
 			</template>
 		</test-fixture>
-		<test-fixture id="tabindex">
-			<template>
-				<d2l-input-checkbox tab-index="-1" label="tabindex"></d2l-input-checkbox>
-			</template>
-		</test-fixture>
 		<script type="module">
 import '@polymer/iron-test-helpers/mock-interactions.js';
 import '../d2l-input-checkbox.js';
@@ -456,7 +451,7 @@ describe('d2l-input-checkbox', function() {
 
 	});
 
-	describe('tabindex', function() {
+	describe('tabbable', function() {
 
 		describe('default', function() {
 
@@ -464,15 +459,15 @@ describe('d2l-input-checkbox', function() {
 				elem = fixture('basic');
 			});
 
-			it('should default "tabindex" to undefined', function() {
-				expect(elem.tabIndex).to.equal(undefined);
+			it('should default "tabbable" to true', function() {
+				expect(elem.tabbable).to.equal(true);
 				expect(elem.$$('input').tabIndex).to.equal(0);
-				expect(elem.getAttribute('tab-index')).to.equal(null);
+				expect(elem.getAttribute('tabbable')).to.equal(null);
 			});
 
-			it('should reflect "tabindex" attribute change to property and input', function() {
-				elem.setAttribute('tab-index', '-1');
-				expect(elem.getAttribute('tab-index')).to.equal('-1');
+			it('should reflect "tabbable" property change and "tabindex" attribute change to input', function() {
+				elem.tabbable = false;
+				expect(elem.tabbable).to.equal(false);
 				expect(elem.$$('input').tabIndex).to.equal(-1);
 			});
 
@@ -481,18 +476,19 @@ describe('d2l-input-checkbox', function() {
 		describe('set', function() {
 
 			beforeEach(function() {
-				elem = fixture('tabindex');
+				elem = fixture('basic');
+				elem.tabbable = false;
 			});
 
-			it('should set "tabindex" to "-1"', function() {
-				expect(elem.getAttribute('tab-index')).to.equal('-1');
+			it('should set "tabbable" to "false"', function() {
+				expect(elem.getAttribute('tabbable')).to.equal(null);
 				expect(elem.$$('input').tabIndex).to.equal(-1);
 			});
 
-			it('should reflect "tabindex" attribute change to property and input', function() {
-				elem.setAttribute('tab-index', '1');
-				expect(elem.getAttribute('tab-index')).to.equal('1');
-				expect(elem.$$('input').tabIndex).to.equal(1);
+			it('should reflect "tabbable" attribute change to property and input', function() {
+				elem.setAttribute('tabbable', false);
+				expect(elem.tabbable).to.equal(true);
+				expect(elem.$$('input').tabIndex).to.equal(0);
 			});
 		});
 
