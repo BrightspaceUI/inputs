@@ -162,7 +162,7 @@ Polymer({
 			observer: '_setIndeterminate'
 		},
 		/**
-		 * Gets or sets the not-tabbable state of the checkbox. `true` is not-tabbable and false` is tabbable.
+		 * Gets or sets the not-tabbable state of the checkbox. `true` is not-tabbable and `false` is tabbable.
 		 */
 		notTabbable: {
 			type: Boolean,

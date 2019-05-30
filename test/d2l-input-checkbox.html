@@ -464,7 +464,7 @@ describe('d2l-input-checkbox', function() {
 				elem = fixture('basic');
 			});
 
-			it('should default "not-tabbable" to undefined', function() {
+			it('should default "not-tabbable" to false', function() {
 				expect(elem.notTabbable).to.be.false;
 				expect(elem.$$('input').tabIndex).to.equal(0);
 				expect(elem.hasAttribute('not-tabbable')).to.be.false;
