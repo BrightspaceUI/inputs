@@ -35,7 +35,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-search">
 
 			input[type="text"].d2l-input {
 				font-family: inherit;
-				padding-right: 2.4rem;
+				padding-right: 2.2rem;
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
@@ -43,13 +43,13 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-search">
 
 			:host(:dir(rtl)) input[type="text"].d2l-input {
 				padding-right: 0.75rem;
-				padding-left: 2.4rem;
+				padding-left: 2.2rem;
 			}
 
 			.d2l-input-search-hover input[type="text"].d2l-input,
 			.d2l-input-search-focus input[type="text"].d2l-input{
 				@apply --d2l-input-hover-focus;
-				padding-right: calc(2.4rem - 1px);
+				padding-right: calc(2.2rem - 1px);
 			}
 
 			:host(:dir(rtl)) input[type="text"].d2l-input:hover,
@@ -57,22 +57,21 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-search">
 			:host(:dir(rtl)) .d2l-input-search-hover input[type="text"].d2l-input,
 			:host(:dir(rtl)) .d2l-input-search-focus input[type="text"].d2l-input {
 				padding-right: calc(0.75rem - 1px);
-				padding-left: calc(2.4rem - 1px);
+				padding-left: calc(2.2rem - 1px);
 			}
 
 			d2l-button-icon {
-				--d2l-button-icon-min-height: 1.7rem;
-				--d2l-button-icon-min-width: 1.7rem;
+				--d2l-button-icon-min-height: 1.5rem;
+				--d2l-button-icon-min-width: 1.5rem;
 				--d2l-button-icon-border-radius: 4px;
+				--d2l-button-icon-focus-box-shadow: 0 0 0 1px #ffffff, 0 0 0 3px #006fbf;
 				position: absolute;
-				height: 1.7rem;
-				width: 1.7rem;
-				top: 0.2rem;
-				right: 0.2rem;
+				top: calc(0.25rem - 1px);
+				right: 0.3rem;
 			}
 
 			:host(:dir(rtl)) d2l-button-icon {
-				left: 0.2rem;
+				left: 0.3rem;
 				right: auto;
 			}
 
