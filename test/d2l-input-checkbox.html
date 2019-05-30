@@ -40,6 +40,11 @@
 				<d2l-input-checkbox name="cb-name" value="cb-value" label="name-value"></d2l-input-checkbox>
 			</template>
 		</test-fixture>
+		<test-fixture id="not-tabbable">
+			<template>
+				<d2l-input-checkbox not-tabbable="not-tabbable" label="not-tabbable"></d2l-input-checkbox>
+			</template>
+		</test-fixture>
 		<script type="module">
 import '@polymer/iron-test-helpers/mock-interactions.js';
 import '../d2l-input-checkbox.js';
@@ -451,7 +456,7 @@ describe('d2l-input-checkbox', function() {
 
 	});
 
-	describe('tabbable', function() {
+	describe('not-tabbable', function() {
 
 		describe('default', function() {
 
@@ -459,15 +464,21 @@ describe('d2l-input-checkbox', function() {
 				elem = fixture('basic');
 			});
 
-			it('should default "tabbable" to true', function() {
-				expect(elem.tabbable).to.equal(true);
+			it('should default "not-tabbable" to undefined', function() {
+				expect(elem.notTabbable).to.be.false;
 				expect(elem.$$('input').tabIndex).to.equal(0);
-				expect(elem.getAttribute('tabbable')).to.equal(null);
+				expect(elem.hasAttribute('not-tabbable')).to.be.false;
 			});
 
-			it('should reflect "tabbable" property change and "tabindex" attribute change to input', function() {
-				elem.tabbable = false;
-				expect(elem.tabbable).to.equal(false);
+			it('should reflect "not-tabbable" property change to property and input', function() {
+				elem.notTabbable = true;
+				expect(elem.notTabbable).to.be.true;
+				expect(elem.$$('input').tabIndex).to.equal(-1);
+			});
+
+			it('should reflect "not-tabbable" attribute change to property and input', function() {
+				elem.setAttribute('not-tabbable', 'not-tabbable');
+				expect(elem.notTabbable).to.be.true;
 				expect(elem.$$('input').tabIndex).to.equal(-1);
 			});
 
@@ -476,18 +487,24 @@ describe('d2l-input-checkbox', function() {
 		describe('set', function() {
 
 			beforeEach(function() {
-				elem = fixture('basic');
-				elem.tabbable = false;
+				elem = fixture('not-tabbable');
 			});
 
-			it('should set "tabbable" to "false"', function() {
-				expect(elem.getAttribute('tabbable')).to.equal(null);
+			it('should set "not-tabbable" to true', function() {
+				expect(elem.notTabbable).to.be.true;
+				expect(elem.hasAttribute('not-tabbable')).to.be.true;
 				expect(elem.$$('input').tabIndex).to.equal(-1);
 			});
 
-			it('should reflect "tabbable" attribute change to property and input', function() {
-				elem.setAttribute('tabbable', false);
-				expect(elem.tabbable).to.equal(true);
+			it('should reflect "not-tabbable" property change to property and input', function() {
+				elem.notTabbable = false;
+				expect(elem.notTabbable).to.be.false;
+				expect(elem.$$('input').tabIndex).to.equal(0);
+			});
+
+			it('should reflect "not-tabbable" attribute change to property and input', function() {
+				elem.removeAttribute('not-tabbable');
+				expect(elem.notTabbable).to.be.false;
 				expect(elem.$$('input').tabIndex).to.equal(0);
 			});
 		});

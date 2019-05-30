@@ -162,11 +162,11 @@ Polymer({
 			observer: '_setIndeterminate'
 		},
 		/**
-		 * Gets or sets the tabbable state of the checkbox. tabbable is `true` by default.
+		 * Gets or sets the not-tabbable state of the checkbox. `true` is not-tabbable and false` is tabbable.
 		 */
-		tabbable: {
+		notTabbable: {
 			type: Boolean,
-			value: true
+			value: false
 		},
 		/**
 		 * Gets or sets the disabled state of the checkbox, `true` is disabled and `false` is enabled.
@@ -194,7 +194,7 @@ Polymer({
 		},
 		_tabindex: {
 			type: Number,
-			computed: '_computeTabindex(tabbable)'
+			computed: '_computeTabindex(notTabbable)'
 		}
 	},
 	focus: function() {
@@ -246,7 +246,7 @@ Polymer({
 			elem.removeAttribute('aria-checked');
 		}
 	},
-	_computeTabindex: function(tabbable) {
-		return tabbable ? 0 : -1;
+	_computeTabindex: function(notTabbable) {
+		return notTabbable ? -1 : 0;
 	}
 });
