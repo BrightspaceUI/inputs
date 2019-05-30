@@ -66,7 +66,8 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-search">
 				--d2l-button-icon-border-radius: 4px;
 				--d2l-button-icon-focus-box-shadow: 0 0 0 1px #ffffff, 0 0 0 3px #006fbf;
 				position: absolute;
-				top: calc(0.25rem - 1px);
+				top: 50%;
+				transform: translateY(-50%);
 				right: 0.3rem;
 			}
 
