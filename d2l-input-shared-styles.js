@@ -28,7 +28,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 					min-width: calc(2rem + 1em);
 					vertical-align: middle;
 					width: var(--d2l-input-width);
-					transition: background-color 0.5s ease, border-color 0.5s ease;
+					transition: background-color 0.5s ease, border-color 0.001s ease;
 				};
 				--d2l-input-text: {
 					color: var(--d2l-input-color);

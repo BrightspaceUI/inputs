@@ -54,9 +54,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-radio-styles">
 				height: 1.2rem;
 				margin: 0;
 				padding: 0;
-				transition-duration: 0.5s;
-				transition-timing-function: ease;
-				transition-property: background-color, border-color;
+				transition: background-color 0.5s ease, border-color 0.001s ease;
 				vertical-align: middle;
 				width: 1.2rem;
 			}
