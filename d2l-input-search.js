@@ -33,7 +33,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-search">
 				width: 100%
 			}
 
-			input[type="text"].d2l-input {
+			input[type="seach"].d2l-input {
 				font-family: inherit;
 				padding-right: 2.2rem;
 				overflow: hidden;
@@ -41,21 +41,21 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-search">
 				white-space: nowrap;
 			}
 
-			:host(:dir(rtl)) input[type="text"].d2l-input {
+			:host(:dir(rtl)) input[type="search"].d2l-input {
 				padding-right: 0.75rem;
 				padding-left: 2.2rem;
 			}
 
-			.d2l-input-search-hover input[type="text"].d2l-input,
-			.d2l-input-search-focus input[type="text"].d2l-input{
+			.d2l-input-search-hover input[type="search"].d2l-input,
+			.d2l-input-search-focus input[type="search"].d2l-input{
 				@apply --d2l-input-hover-focus;
 				padding-right: calc(2.2rem - 1px);
 			}
 
-			:host(:dir(rtl)) input[type="text"].d2l-input:hover,
-			:host(:dir(rtl)) input[type="text"].d2l-input:focus,
-			:host(:dir(rtl)) .d2l-input-search-hover input[type="text"].d2l-input,
-			:host(:dir(rtl)) .d2l-input-search-focus input[type="text"].d2l-input {
+			:host(:dir(rtl)) input[type="search"].d2l-input:hover,
+			:host(:dir(rtl)) input[type="search"].d2l-input:focus,
+			:host(:dir(rtl)) .d2l-input-search-hover input[type="search"].d2l-input,
+			:host(:dir(rtl)) .d2l-input-search-focus input[type="search"].d2l-input {
 				padding-right: calc(0.75rem - 1px);
 				padding-left: calc(2.2rem - 1px);
 			}
@@ -82,7 +82,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-search">
 
 		</style>
 		<div class="d2l-input-search-container">
-			<input aria-label$="[[label]]" class="d2l-input d2l-focusable" disabled$="[[disabled]]" maxlength$="[[maxlength]]" on-keypress="_handleInputKeyPress" on-input="_handleInput" placeholder$="[[placeholder]]" type="text" value="[[value]]">
+			<input aria-label$="[[label]]" class="d2l-input d2l-focusable" disabled$="[[disabled]]" maxlength$="[[maxlength]]" on-keypress="_handleInputKeyPress" on-input="_handleInput" placeholder$="[[placeholder]]" type="search" value="[[value]]">
 			<d2l-button-icon class="d2l-input-search-search" disabled$="[[disabled]]" hidden="[[!_showSearch]]" icon="d2l-tier1:search" on-click="search" text="[[localize('search')]]"></d2l-button-icon>
 			<d2l-button-icon class="d2l-input-search-clear" disabled$="[[disabled]]" hidden="[[_showSearch]]" icon="d2l-tier1:close-default" on-click="_handleClearClick" text="[[localize('search.clear')]]"></d2l-button-icon>
 		</div>
@@ -158,10 +158,6 @@ Polymer({
 			type: Boolean,
 			computed: '_computeShowSearch(lastSearchValue, value)'
 		}
-	},
-
-	hostAttributes: {
-		'role': 'search'
 	},
 
 	_keyCodes: {
