@@ -33,7 +33,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-search">
 				width: 100%
 			}
 
-			input[type="seach"].d2l-input {
+			input[type="search"].d2l-input {
 				font-family: inherit;
 				padding-right: 2.2rem;
 				overflow: hidden;
