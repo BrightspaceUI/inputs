@@ -528,8 +528,8 @@ npm test
 
 [bower-url]: http://bower.io/search/?q=d2l-inputs
 [bower-image]: https://badge.fury.io/bo/d2l-inputs.svg
-[ci-url]: https://travis-ci.org/BrightspaceUI/inputs
-[ci-image]: https://travis-ci.org/BrightspaceUI/inputs.svg?branch=master
+[ci-url]: https://travis-ci.com/BrightspaceUI/inputs
+[ci-image]: https://travis-ci.com/BrightspaceUI/inputs.svg?branch=master
 
 ## Versioning & Releasing
 
