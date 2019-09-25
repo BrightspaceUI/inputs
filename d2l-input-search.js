@@ -39,6 +39,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-search">
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
+				-webkit-appearance: textfield;
 			}
 
 			:host(:dir(rtl)) input[type="search"].d2l-input {

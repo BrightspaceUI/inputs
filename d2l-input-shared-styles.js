@@ -143,7 +143,8 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 			textarea.d2l-input:disabled {
 				@apply --d2l-input-disabled;
 			}
-			input.d2l-input::-webkit-search-cancel-button {
+			input.d2l-input::-webkit-search-cancel-button,
+			input.d2l-input::-webkit-search-decoration {
 				display: none;
 			}
 			input.d2l-input::-ms-clear {
