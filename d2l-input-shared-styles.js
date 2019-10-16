@@ -16,7 +16,6 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 				--d2l-input-padding: 0.4rem 0.75rem;
 				--d2l-input-padding-focus: calc(0.4rem - 1px) calc(0.75rem - 1px);
 				--d2l-input-color: var(--d2l-color-ferrite);
-				--d2l-input-placeholder-color: var(--d2l-color-mica);
 
 				--d2l-input-common: {
 					border-radius: var(--d2l-input-border-radius);
@@ -64,7 +63,7 @@ $_documentContainer.innerHTML = `<dom-module id="d2l-input-styles">
 					opacity: 0.5;
 				};
 				--d2l-input-placeholder: {
-					color: var(--d2l-input-placeholder-color);
+					color: var(--d2l-color-mica);
 					font-size: 0.8rem;
 					font-weight: 400;
 					opacity: 1; /* Firefox has non-1 default */
