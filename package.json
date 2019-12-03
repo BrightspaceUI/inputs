@@ -42,7 +42,7 @@
   },
   "main": "d2l-inputs.js",
   "dependencies": {
-    "@brightspace-ui/core": "^1.18.0",
+    "@brightspace-ui/core": "^1.19.1",
     "@polymer/polymer": "^3.0.0",
     "d2l-button": "BrightspaceUI/button#semver:^5",
     "d2l-colors": "BrightspaceUI/colors#semver:^4",
