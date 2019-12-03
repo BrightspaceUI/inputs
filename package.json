@@ -33,7 +33,7 @@
     "sauce-connect-launcher": "^1",
     "wct-browser-legacy": "^1"
   },
-  "version": "2.6.6",
+  "version": "2.6.7",
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",
