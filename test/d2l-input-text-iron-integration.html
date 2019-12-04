@@ -52,7 +52,7 @@ describe('iron-input d2l-input-text integration', function() {
 
 		it('should update bindValue when input value changes', function(done) {
 			var textInput = elem.querySelector('d2l-input-text');
-			var input = textInput.$$('input');
+			var input = textInput.shadowRoot.querySelector('input');
 
 			elem.addEventListener('bind-value-changed', function() {
 				expect(textInput.value).to.equal('hello');
