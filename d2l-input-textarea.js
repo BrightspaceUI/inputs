@@ -18,10 +18,9 @@ Custom property | Description | Default
   from HTML and may be out of place here. Review them and
   then delete this comment!
 */
+import '@brightspace-ui/core/components/colors/colors.js';
 import '@polymer/polymer/polymer-legacy.js';
-
 import 'fastdom/fastdom.js';
-import 'd2l-colors/d2l-colors.js';
 import 'd2l-polymer-behaviors/d2l-focusable-behavior.js';
 import './d2l-input-text-behavior.js';
 import './d2l-input-shared-styles.js';

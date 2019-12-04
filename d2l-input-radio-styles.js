@@ -1,5 +1,5 @@
 import '@polymer/polymer/polymer-legacy.js';
-import 'd2l-colors/d2l-colors.js';
+import '@brightspace-ui/core/components/colors/colors.js';
 import 'd2l-typography/d2l-typography-shared-styles.js';
 const $_documentContainer = document.createElement('template');
 
