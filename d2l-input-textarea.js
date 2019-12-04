@@ -21,7 +21,6 @@ Custom property | Description | Default
 import '@brightspace-ui/core/components/colors/colors.js';
 import '@polymer/polymer/polymer-legacy.js';
 import 'fastdom/fastdom.js';
-import 'd2l-polymer-behaviors/d2l-focusable-behavior.js';
 import './d2l-input-text-behavior.js';
 import './d2l-input-shared-styles.js';
 import { Polymer } from '@polymer/polymer/lib/legacy/polymer-fn.js';
@@ -158,7 +157,6 @@ Polymer({
 	is: 'd2l-input-textarea',
 
 	behaviors: [
-		D2L.PolymerBehaviors.FocusableBehavior,
 		D2L.PolymerBehaviors.Text.InputTextBehavior
 	],
 
@@ -245,6 +243,12 @@ Polymer({
 	 */
 	set selectionEnd(value) {
 		this.$.textarea.selectionEnd = value;
+	},
+
+	focus: function() {
+		var elem = dom(this.root).querySelector('.d2l-focusable');
+		if (!elem) return;
+		elem.focus();
 	},
 
 	_valueChanged: function(value) {
