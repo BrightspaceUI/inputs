@@ -1,6 +1,6 @@
 > Deprecated: use [BrightspaceUI/core](https://github.com/BrightspaceUI/core) instead.
 
-The only component that isn't currentlly available in `@brightspace-ui/core` is `<d2l-input-textarea>`, so it remains here. It wasn't migrated due to its reliance on Polymer style mixins, and the reliance of places that use it on overriding those mixins. Mixins aren't something that Lit supports.
+The only component that isn't available in `@brightspace-ui/core` is `<d2l-input-textarea>`, so it remains here. It wasn't migrated due to its reliance on Polymer style mixins, and places that rely on overriding those mixins. Mixins aren't something that Lit supports. However, if you don't need `<d2l-input-textarea>`'s auto-grow functionality, [use the styles from core](https://github.com/BrightspaceUI/core/tree/master/components/inputs#text-areas).
 
 ### d2l-input-textarea
 
