@@ -3,67 +3,25 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
-		<title>d2l-inputs demo</title>
-		<script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
-		<script type="module" src="../../@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
-		<script type="module" src="../../@polymer/iron-demo-helpers/demo-snippet.js"></script>
-		<script type="module" src="../../d2l-typography/d2l-typography.js"></script>
-		<script type="module" src="../d2l-input-radio-styles.js"></script>
-		<!-- FIXME(polymer-modulizer):
-		These imperative modules that innerHTML your HTML are
-		a hacky way to be sure that any mixins in included style
-		modules are ready before any elements that reference them are
-		instantiated, otherwise the CSS @apply mixin polyfill won't be
-		able to expand the underlying CSS custom properties.
-		See: https://github.com/Polymer/polymer-modulizer/issues/154
-		-->
-	<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style>
-			<style is="custom-style" include="demo-pages-shared-styles"></style>
-		</custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+		<link rel="stylesheet" href="/node_modules/@brightspace-ui/core/components/demo/styles.css" type="text/css">
+		<script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 		<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style include="d2l-typography">
-			<style is="custom-style" include="d2l-typography"></style>
-		</custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+			import '/node_modules/@brightspace-ui/core/components/demo/demo-page.js';
+			import '../d2l-input-radio-styles.js';
+		</script>
 		<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<custom-style include="d2l-input-radio-styles">
-			<style is="custom-style" include="d2l-input-radio-styles"></style>
-		</custom-style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
-		<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<style>
-			html {
-				font-size: 20px;
-			}
-		</style>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+			const $_documentContainer = document.createElement('template');
+			$_documentContainer.innerHTML = `<custom-style include="d2l-input-radio-styles">
+					<style is="custom-style" include="d2l-input-radio-styles"></style>
+				</custom-style>`;
+			document.body.appendChild($_documentContainer.content);
+		</script>
 	</head>
-	<body unresolved class="d2l-typography">
-		<script type="module">
-const $_documentContainer = document.createElement('template');
-
-$_documentContainer.innerHTML = `<div class="vertical-section-container centered">
+	<body unresolved>
+		<d2l-demo-page page-title="d2l-input-radio-styles">
 
 			<h3>Simple radio button with label</h3>
-			<demo-snippet>
+			<d2l-demo-snippet>
 				<template>
 					<label class="d2l-input-radio-label">
 						<input name="ex1" type="radio" checked="">Checked item
@@ -71,12 +29,11 @@ $_documentContainer.innerHTML = `<div class="vertical-section-container centered
 					<label class="d2l-input-radio-label">
 						<input name="ex1" type="radio">Unchecked item
 					</label>
-
 				</template>
-			</demo-snippet>
+			</d2l-demo-snippet>
 
 			<h3>Radio button with multi-line label</h3>
-			<demo-snippet>
+			<d2l-demo-snippet>
 				<template>
 					<label class="d2l-input-radio-label" style="width:200px;">
 						<input name="ex2" type="radio" checked="">
@@ -89,19 +46,19 @@ $_documentContainer.innerHTML = `<div class="vertical-section-container centered
 						onto additional lines
 					</label>
 				</template>
-			</demo-snippet>
+			</d2l-demo-snippet>
 
 			<h3>Radio button with hidden label</h3>
-			<demo-snippet>
+			<d2l-demo-snippet>
 				<template>
 					<input name="ex3" type="radio" checked="" aria-label="Label for radio button 1">
 					<br>
 					<input name="ex3" type="radio" aria-label="Label for radio button 2">
 				</template>
-			</demo-snippet>
+			</d2l-demo-snippet>
 
 			<h3>Disabled radio button</h3>
-			<demo-snippet>
+			<d2l-demo-snippet>
 				<template>
 					<label class="d2l-input-radio-label disabled">
 						<input name="ex4" type="radio" checked="" disabled="">Checked item
@@ -110,19 +67,16 @@ $_documentContainer.innerHTML = `<div class="vertical-section-container centered
 						<input name="ex4" type="radio" disabled="">Unchecked item
 					</label>
 				</template>
-			</demo-snippet>
+			</d2l-demo-snippet>
 
 			<h3>Disabled radio button with hidden label</h3>
-			<demo-snippet>
+			<d2l-demo-snippet>
 				<template>
 					<input name="ex5" type="radio" checked="" disabled="" aria-label="Label for radio button 1">
 					<br>
 					<input name="ex5" type="radio" checked="" disabled="" aria-label="Label for radio button 2">
 				</template>
-			</demo-snippet>
-		</div>`;
-
-document.body.appendChild($_documentContainer.content);
-</script>
+			</d2l-demo-snippet>
+		</d2l-demo-page>
 	</body>
 </html>
