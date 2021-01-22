@@ -6,12 +6,8 @@
   },
   "name": "d2l-inputs",
   "scripts": {
-    "lint": "npm run lint:wc && npm run lint:js",
-    "lint:js": "eslint . --ext .js,.html test/**/*.html demo/**/*.html",
-    "lint:wc": "polymer lint",
-    "test:polymer:local": "polymer test --skip-plugin sauce",
-    "test:polymer:sauce": "polymer test --skip-plugin local",
-    "test": "npm run lint && npm run test:polymer:local"
+    "lint": "eslint . --ext .js,.html test/**/*.html demo/**/*.html",
+    "test": "npm run lint"
   },
   "author": "D2L Corporation",
   "license": "Apache-2.0",
@@ -38,9 +34,8 @@
   },
   "main": "d2l-inputs.js",
   "dependencies": {
-    "@brightspace-ui/core": "^1.19.1",
+    "@brightspace-ui/core": "^1.113.4",
     "@polymer/polymer": "^3.0.0",
-    "d2l-typography": "BrightspaceUI/typography#semver:^7",
-    "fastdom": "^1"
+    "d2l-typography": "BrightspaceUI/typography#semver:^7"
   }
 }
