@@ -7,23 +7,19 @@
   "name": "d2l-inputs",
   "scripts": {
     "lint": "eslint . --ext .js,.html test/**/*.html demo/**/*.html",
+    "start": "es-dev-server --node-resolve --dedupe --watch --open",
     "test": "npm run lint"
   },
   "author": "D2L Corporation",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@polymer/iron-test-helpers": "^3",
     "@webcomponents/webcomponentsjs": "^2",
     "babel-eslint": "^10",
-    "chromedriver": "^2.40.0",
+    "es-dev-server": "^2.1.0",
     "eslint": "^6",
     "eslint-config-brightspace": "^0.6.0",
     "eslint-plugin-html": "^6",
-    "eslint-plugin-sort-class-members": "^1",
-    "frau-ci": "^1",
-    "polymer-cli": "^1",
-    "sauce-connect-launcher": "^1",
-    "wct-browser-legacy": "^1"
+    "eslint-plugin-sort-class-members": "^1"
   },
   "version": "2.6.10",
   "resolutions": {
