@@ -34,7 +34,7 @@
   },
   "main": "d2l-inputs.js",
   "dependencies": {
-    "@brightspace-ui/core": "^1.113.4",
+    "@brightspace-ui/core": "^1.113.5",
     "@polymer/polymer": "^3.0.0",
     "d2l-typography": "BrightspaceUI/typography#semver:^7"
   }
