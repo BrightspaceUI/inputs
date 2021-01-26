@@ -7,29 +7,24 @@
   "name": "d2l-inputs",
   "scripts": {
     "lint": "npm run lint:wc && npm run lint:js",
-    "lint:js": "eslint . --ext .js,.html test/**/*.html demo/**/*.html",
-    "lint:wc": "polymer lint",
-    "test:polymer:local": "polymer test --skip-plugin sauce",
-    "test:polymer:sauce": "polymer test --skip-plugin local",
-    "test": "npm run lint && npm run test:polymer:local"
+    "lint:js": "eslint . --ext .js,.html demo/**/*.html",
+    "lint:wc": "polymer lint --rules polymer-3",
+    "start": "es-dev-server --node-resolve --dedupe --watch --open",
+    "test": "npm run lint"
   },
   "author": "D2L Corporation",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@polymer/iron-test-helpers": "^3",
     "@webcomponents/webcomponentsjs": "^2",
     "babel-eslint": "^10",
-    "chromedriver": "^2.40.0",
+    "es-dev-server": "^2.1.0",
     "eslint": "^6",
     "eslint-config-brightspace": "^0.6.0",
     "eslint-plugin-html": "^6",
     "eslint-plugin-sort-class-members": "^1",
-    "frau-ci": "^1",
-    "polymer-cli": "^1",
-    "sauce-connect-launcher": "^1",
-    "wct-browser-legacy": "^1"
+    "polymer-cli": "^1"
   },
-  "version": "2.6.9",
+  "version": "2.6.10",
   "resolutions": {
     "inherits": "2.0.3",
     "samsam": "1.1.3",
@@ -38,9 +33,8 @@
   },
   "main": "d2l-inputs.js",
   "dependencies": {
-    "@brightspace-ui/core": "^1.19.1",
+    "@brightspace-ui/core": "^1.113.5",
     "@polymer/polymer": "^3.0.0",
-    "d2l-typography": "BrightspaceUI/typography#semver:^7",
-    "fastdom": "^1"
+    "d2l-typography": "BrightspaceUI/typography#semver:^7"
   }
 }
