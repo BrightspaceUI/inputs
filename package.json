@@ -24,7 +24,7 @@
     "eslint-plugin-sort-class-members": "^1",
     "polymer-cli": "^1"
   },
-  "version": "3.2.0",
+  "version": "3.3.0",
   "main": "d2l-inputs.js",
   "files": [
     "d2l-input-checkbox-spacer.js",
