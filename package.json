@@ -27,7 +27,6 @@
   "version": "4.0.0",
   "main": "d2l-inputs.js",
   "files": [
-    "d2l-input-checkbox-spacer.js",
     "d2l-input-checkbox.js",
     "d2l-input-radio-styles.js",
     "d2l-input-search.js",
