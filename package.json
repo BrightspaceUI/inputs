@@ -15,7 +15,6 @@
   "author": "D2L Corporation",
   "license": "Apache-2.0",
   "devDependencies": {
-    "@webcomponents/webcomponentsjs": "^2",
     "babel-eslint": "^10",
     "es-dev-server": "^2.1.0",
     "eslint": "^6",
@@ -27,12 +26,8 @@
   "version": "4.1.0",
   "main": "d2l-inputs.js",
   "files": [
-    "d2l-input-checkbox.js",
     "d2l-input-radio-styles.js",
-    "d2l-input-search.js",
-    "d2l-input-shared-styles.js",
-    "d2l-input-text.js",
-    "d2l-input-textarea.js"
+    "d2l-input-shared-styles.js"
   ],
   "publishConfig": {
     "access": "public"
